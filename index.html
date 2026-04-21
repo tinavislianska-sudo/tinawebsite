@@ -379,7 +379,7 @@
 const notes = [
   {
     id: 'about', pinned: true,
-    emoji: '✦', title: 'About Me',
+    emoji: '🙋‍♀️', title: 'About Me',
     date: 'Mar 2026', folder: 'Notes',
     preview: "Curious by nature. Started earning early…",
     header: 'March 2026',
@@ -398,7 +398,7 @@ const notes = [
   // ── 2025–Present ──
   {
     id: 'exp1', group: 'experience',
-    emoji: '🤖', title: 'CogniAgent · Glorium · Spell',
+    emoji: '🤖', title: '2025 – Present',
     date: '2025–Present', folder: 'Experience',
     preview: 'AI Advocate · GEO · Brand Builder',
     header: '2025 – Present',
@@ -419,7 +419,7 @@ const notes = [
       <div class="job-role">Growth Tester &amp; Advisor</div>
       <div class="job-meta">December 2025 – April 2026 · United States · Part-time</div>
       <p>Principle is a San Francisco-based startup building strategic simulations for executive teams. I worked closely with the founder on his personal LinkedIn content and ran several content experiments in parallel.</p>
-      <p>Launched and grew <strong>Not Original</strong> – a LinkedIn newsletter mapping classic business strategy playbooks (Coca-Cola, Ford, Porsche, F1) to what's actually happening in AI today. Ran <strong>LockedIN</strong>, an episodic LinkedIn series built around an AI simulation cartoon. And took a couple of deliberately unhinged content experiments live on X.</p>
+      <p>Launched and grew Not Original – a LinkedIn newsletter mapping classic business strategy playbooks (Coca-Cola, Ford, Porsche, F1) to what's actually happening in AI today. Ran LockedIN, an episodic LinkedIn series built around an AI simulation cartoon. And took a couple of deliberately unhinged content experiments live on X.</p>
       <hr>
       <h1>Spell Wallet</h1>
       <div class="job-role">Brand Builder · MPC Wallet</div>
@@ -432,7 +432,7 @@ const notes = [
   // ── 2024–2025 ──
   {
     id: 'exp2', group: 'experience',
-    emoji: '🎮', title: 'Gaming · Eight Forces · Atleta · Bitcoin',
+    emoji: '🎮', title: '2023 – 2025',
     date: '2023–2025', folder: 'Experience',
     preview: 'Product Marketing · Growth · Partnerships · Comms',
     header: '2024 – 2025',
@@ -469,7 +469,7 @@ const notes = [
   // ── 2020–2022 ──
   {
     id: 'exp3', group: 'experience',
-    emoji: '🎨', title: 'WhiteBIT · OpenSea',
+    emoji: '🎨', title: '2020 – 2023',
     date: '2020–2023', folder: 'Experience',
     preview: 'Content · NFT Artist',
     header: '2020 – 2023',
@@ -492,32 +492,25 @@ const notes = [
   // ── 2017–2022 ──
   {
     id: 'exp4', group: 'experience',
-    emoji: '✍️', title: 'R Agency · Blue Carrot · Press',
+    emoji: '✍️', title: '2017 – 2022 (Early Career)',
     date: '2017–2022', folder: 'Experience',
     preview: 'Copywriting · Production · Journalism',
     header: '2017 – 2022',
     render: () => `
       <h1>R Agency</h1>
-      <div class="job-role">Creative Copywriter · B2C Agency</div>
+      <div class="job-role">Creative Copywriter – R Agency</div>
       <div class="job-meta">May 2021 – February 2022 · Kyiv</div>
-      <ul>
-        <li>Developed creative concepts and produced PR publications, case studies, and press releases</li>
-        <li>Directed event promotion campaigns and contributed to building the agency's overall media presence</li>
-      </ul>
+      <p>B2C creative agency based in Kyiv. I developed creative concepts, produced PR publications, case studies, and press releases, and directed event promotion campaigns that built the agency's media presence.</p>
       <hr>
-      <h1>Blue Carrot Video Production</h1>
-      <div class="job-role">Creative Producer · B2C Studio</div>
+      <h1>Blue Carrot Animation</h1>
+      <div class="job-role">Creative Producer – Blue Carrot Video Production</div>
       <div class="job-meta">March 2019 – April 2021 · Lviv, Ukraine</div>
-      <ul>
-        <li>Led end-to-end animation projects, from concept and scriptwriting through full production management</li>
-        <li>Edited and produced high-quality video content using After Effects and Adobe Premiere Pro</li>
-        <li>Successfully delivered technical and non-technical video content that consistently met client business objectives</li>
-      </ul>
+      <p>B2C animation and video production studio based in Lviv. I led end-to-end animation projects – concept, scriptwriting, full production management – and delivered technical and non-technical video content using After Effects and Adobe Premiere Pro.</p>
       <hr>
-      <h1>Independent</h1>
-      <div class="job-role">Journalist</div>
+      <h1>Contract Journalist, Photographer</h1>
+      <div class="job-role">Journalist – Independent</div>
       <div class="job-meta">February 2017 – May 2019 · Lviv, Ukraine</div>
-      <p>Independent journalistic background — wrote diverse media formats in various styles, tailored to specific media platforms.</p>
+      <p>Wrote across diverse media formats and styles, tailored to specific platforms. This is where the writing instinct got sharpened.</p>
     `
   },
 
@@ -610,7 +603,19 @@ const notes = [
     `
   },
   {
-    id: 'contact', bottom: true,
+    id: 'life', bottom: true,
+    emoji: '🌍', title: 'Life',
+    date: 'Always', folder: 'More',
+    preview: 'Outside the work stuff…',
+    header: 'Life',
+    render: () => `
+      <h1>Life</h1>
+      <hr>
+      <p>Coming soon.</p>
+    `
+  },
+  {
+    id: 'contact', pinned: true,
     emoji: '📬', title: 'Contact',
     date: 'Lisbon, Portugal', folder: 'Notes',
     preview: 'kvislianska@gmail.com',
@@ -620,16 +625,13 @@ const notes = [
       <hr>
       <div class="contact-row">
         <div class="contact-lbl">Email</div>
-        <div class="contact-val"><a href="mailto:kvislianska@gmail.com">kvislianska@gmail.com</a></div>
+        <div class="contact-val"><a href="mailto:tina.vislianska@gmail.com">tina.vislianska@gmail.com</a></div>
       </div>
       <div class="contact-row">
         <div class="contact-lbl">LinkedIn</div>
         <div class="contact-val"><a href="https://www.linkedin.com/in/kristinavislianska" target="_blank" rel="noopener">linkedin.com/in/kristinavislianska</a></div>
       </div>
-      <div class="contact-row">
-        <div class="contact-lbl">Portfolio</div>
-        <div class="contact-val"><a href="https://drive.google.com/file/d/1lzWuqhb7jbQhz8jIc4oZRcfmpIO-szC/view" target="_blank" rel="noopener">View Portfolio →</a></div>
-      </div>
+
       <div class="contact-row">
         <div class="contact-lbl">Location</div>
         <div class="contact-val">Lisbon, Portugal</div>
@@ -642,7 +644,7 @@ const notes = [
 const groups = [
   { label: '📌 Pinned', filter: n => n.pinned },
   { label: 'Experience', filter: n => n.group === 'experience' },
-  { label: '——', filter: n => n.bottom },
+  { label: 'More', filter: n => n.bottom },
 ];
 
 // ═══ STATE ═══
