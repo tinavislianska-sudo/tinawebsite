@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tina Vislianska</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --sidebar-bg: #f5f5f0;
+      --sidebar-border: #dcdcdc;
+      --text: #1c1c1e;
+      --text-2: #3a3a3c;
+      --muted: #8e8e93;
+      --accent: #007aff;
+      --active-bg: #007aff;
+      --active-text: #ffffff;
+      --hover-bg: rgba(0,0,0,0.05);
+      --divider: #e5e5ea;
+      --group-label: #8e8e93;
+      --tag-bg: rgba(0,122,255,0.1);
+      --tag-text: #007aff;
+    }
+    [data-theme="dark"] {
+      --bg: #1c1c1e;
+      --sidebar-bg: #2c2c2e;
+      --sidebar-border: #3a3a3c;
+      --text: #f2f2f7;
+      --text-2: #aeaeb2;
+      --muted: #636366;
+      --accent: #0a84ff;
+      --active-bg: #0a84ff;
+      --hover-bg: rgba(255,255,255,0.06);
+      --divider: #38383a;
+      --group-label: #636366;
+      --tag-bg: rgba(10,132,255,0.18);
+      --tag-text: #0a84ff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .app {
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ═══ SIDEBAR ═══ */
+    .sidebar {
+      width: 300px;
+      min-width: 300px;
+      height: 100vh;
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--sidebar-border);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    .notes-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px 0 4px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--divider) transparent;
+    }
+    .notes-list::-webkit-scrollbar { width: 4px; }
+    .notes-list::-webkit-scrollbar-track { background: transparent; }
+    .notes-list::-webkit-scrollbar-thumb { background: var(--divider); border-radius: 2px; }
+
+    .group-label {
+      padding: 14px 20px 5px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--group-label);
+      text-transform: uppercase;
+      letter-spacing: 0.055em;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .note-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 9px 12px 9px 16px;
+      margin: 1px 8px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.12s;
+    }
+    .note-item:hover { background: var(--hover-bg); }
+    .note-item.active { background: var(--active-bg); }
+
+    .note-emoji {
+      font-size: 22px;
+      line-height: 1.25;
+      flex-shrink: 0;
+      width: 28px;
+      text-align: center;
+    }
+
+    .note-body { flex: 1; min-width: 0; }
+
+    .note-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 2px;
+    }
+
+    .note-meta-line {
+      display: flex;
+      align-items: baseline;
+      gap: 5px;
+      margin-bottom: 3px;
+    }
+    .note-date {
+      font-size: 11.5px;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+    .note-preview {
+      font-size: 11.5px;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .note-folder {
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .note-item.active .note-title,
+    .note-item.active .note-date,
+    .note-item.active .note-preview,
+    .note-item.active .note-folder { color: rgba(255,255,255,0.9); }
+
+    .sidebar-footer {
+      border-top: 1px solid var(--sidebar-border);
+      padding: 10px 20px;
+    }
+    .dark-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 13px;
+      color: var(--muted);
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 3px 0;
+      transition: color 0.15s;
+    }
+    .dark-btn:hover { color: var(--text); }
+
+    /* ═══ CONTENT ═══ */
+    .content {
+      flex: 1;
+      overflow-y: auto;
+      background: var(--bg);
+      position: relative;
+    }
+
+    .content-header {
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      text-align: right;
+      padding: 18px 32px 0;
+      font-size: 12px;
+      color: var(--muted);
+      z-index: 10;
+    }
+
+    .content-body {
+      padding: 32px 56px 80px;
+      max-width: 760px;
+    }
+
+    /* ═══ NOTE CONTENT STYLES ═══ */
+    #note-content h1 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 20px;
+      line-height: 1.15;
+    }
+
+    #note-content p {
+      font-size: 15px;
+      line-height: 1.72;
+      color: var(--text-2);
+      margin-bottom: 14px;
+    }
+
+    #note-content strong { color: var(--text); font-weight: 600; }
+
+    #note-content hr {
+      border: none;
+      border-top: 1px solid var(--divider);
+      margin: 24px 0;
+    }
+
+    #note-content ul { list-style: none; margin-bottom: 12px; }
+    #note-content ul li {
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--text-2);
+      padding-left: 18px;
+      position: relative;
+      margin-bottom: 7px;
+    }
+    #note-content ul li::before {
+      content: '✦';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 7.5px;
+      top: 5px;
+    }
+
+    .job-role {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .job-meta {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    /* Stats */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin: 4px 0;
+    }
+    .stat { padding: 16px 0; }
+    .stat-num {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-lbl { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+    /* Tags */
+    .tag-row { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 8px; }
+    .tag {
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      font-size: 12.5px;
+      padding: 4px 12px;
+      border-radius: 100px;
+    }
+
+    /* Skills */
+    .skill-group { margin-bottom: 22px; }
+    .skill-group-name {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    /* Education */
+    .edu-entry { margin-bottom: 4px; }
+    .edu-inst { font-size: 15px; font-weight: 600; color: var(--text); }
+    .edu-deg { font-size: 14px; color: var(--text-2); margin-top: 1px; }
+    .edu-year { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    /* Contact */
+    .contact-row {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .contact-lbl {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      width: 88px;
+      flex-shrink: 0;
+    }
+    .contact-val { font-size: 15px; color: var(--text-2); }
+    .contact-val a { color: var(--accent); text-decoration: none; }
+    .contact-val a:hover { text-decoration: underline; }
+
+    /* Mobile */
+    @media (max-width: 680px) {
+      .sidebar { position: fixed; left: -100%; transition: left 0.25s; z-index: 100; }
+      .sidebar.open { left: 0; }
+      .content-body { padding: 24px 24px 60px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .mob-menu { display: flex; }
+    }
+    .mob-menu {
+      display: none;
+      position: fixed;
+      top: 12px;
+      left: 12px;
+      z-index: 200;
+      background: var(--sidebar-bg);
+      border: 1px solid var(--sidebar-border);
+      border-radius: 8px;
+      padding: 7px 11px;
+      cursor: pointer;
+      font-size: 13px;
+      color: var(--text);
+      font-family: inherit;
+      align-items: center;
+      gap: 6px;
+    }
+  </style>
+</head>
+<body>
+
+<button class="mob-menu" onclick="document.querySelector('.sidebar').classList.toggle('open')">
+  ☰ Menu
+</button>
+
+<div class="app">
+
+  <!-- ═══ SIDEBAR ═══ -->
+  <aside class="sidebar">
+    <div class="notes-list" id="notes-list"></div>
+    <div class="sidebar-footer">
+      <button class="dark-btn" id="dark-btn" onclick="toggleDark()">
+        <span id="dark-icon">🌙</span>
+        <span id="dark-label">Dark</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ═══ CONTENT ═══ -->
+  <main class="content">
+    <div class="content-header" id="content-header"></div>
+    <div class="content-body">
+      <div id="note-content"></div>
+    </div>
+  </main>
+
+</div>
+
+<script>
+// ═══ DATA ═══
+const notes = [
+  {
+    id: 'about', pinned: true,
+    emoji: '✦', title: 'About Me',
+    date: 'Mar 2026', folder: 'Notes',
+    preview: "Curious by nature. Started earning early…",
+    header: 'March 2026',
+    render: () => `
+      <h1>About Me</h1>
+      <p><strong>Hi, I'm Tina.</strong> A Founding Marketing Engineer passionate about building things from scratch.</p>
+      <hr>
+      <p>Curious by nature, I was always founding something: a photography circle where I taught teenagers street photography, a punk zine in school, a media startup about underground youth culture at university.</p>
+      <p>Now I channel that same instinct into growth systems for B2B AI companies: community infrastructure, content engines, GTM strategy.</p>
+      <p>Currently also deep in streaming and running viral growth mechanics across social channels — building a personal playbook for what actually makes content go viral.</p>
+      <hr>
+      <p>Check my notes to explore my journey.</p>
+    `
+  },
+
+  // ── 2025–Present ──
+  {
+    id: 'exp1', group: 'experience',
+    emoji: '🤖', title: 'CogniAgent · Glorium · Spell',
+    date: '2025–Present', folder: 'Experience',
+    preview: 'AI Advocate · GEO · Brand Builder',
+    header: '2025 – Present',
+    render: () => `
+      <h1>CogniAgent AI</h1>
+      <div class="job-role">Senior Developer Advocate</div>
+      <div class="job-meta">December 2025 – Present · United States</div>
+      <p>Driving AI adoption to transform businesses into scalable growth engines.</p>
+      <ul>
+        <li>Translate complex technical concepts into clear, accessible content — step-by-step guides and plain-language breakdowns of APIs, HTTP Requests, MCP, and more</li>
+        <li>Define and execute a global AI Enablement strategy aligned across product, marketing, and business goals</li>
+        <li>Build and manage a structured content roadmap, improving cross-team coordination and accountability</li>
+        <li>Design repeatable, scalable processes for content planning, event participation, and performance tracking</li>
+        <li>Lead end-to-end production of advanced technical and video content — from product demos to full-scale foundation courses</li>
+        <li>Partner with Product Development to champion a user-first, product-oriented approach to business growth</li>
+        <li>Leverage vibe coding in Claude Code and Cursor to rapidly prototype data-driven tools and surface actionable growth insights</li>
+      </ul>
+      <hr>
+      <h1>Glorium Technologies</h1>
+      <div class="job-role">Generative Search Optimization Specialist · GEO</div>
+      <div class="job-meta">December 2025 – Present · United States</div>
+      <p>Drive GEO across Reddit, Quora, and niche forums — positioning content where AI models actively source answers.</p>
+      <ul>
+        <li>Build and deploy custom scrapers via Claude Code to mine Reddit threads, Quora answers, and niche communities for trending topics and content gaps</li>
+        <li>Transform raw community data into insight-driven content strategies aligned with how AI search engines surface information</li>
+        <li>Identify high-intent conversations to inform content ranking in ChatGPT, Perplexity, and Google AI Overviews</li>
+      </ul>
+      <hr>
+      <h1>Spell Wallet</h1>
+      <div class="job-role">Brand Builder · MPC Wallet</div>
+      <div class="job-meta">June 2025 – October 2025 · Florida, United States</div>
+      <p>One of the most energising chapters of my career. A talented, driven team — people who showed up every day committed to moving the needle. The product: an MPC crypto wallet launched across iOS, Android, and Telegram Mini-App, scaling to over 4 million users, with new chains and opportunities added continuously.</p>
+      <p>My role spanned brand building and community — two things that, in crypto, live or die together. Daily health checks, rapid-fire growth experiments, community-first thinking at every touchpoint.</p>
+      <ul>
+        <li>Orchestrated and hosted 10+ AMA sessions, driving direct community engagement and brand visibility</li>
+        <li>Developed and executed multi-platform content calendars, resulting in a 45% increase in cross-platform engagement</li>
+        <li>Implemented a high-touch reply strategy across key social channels, boosting organic reach and cultivating a loyal community</li>
+        <li>Successfully launched and scaled the brand's YouTube channel and live streaming program</li>
+      </ul>
+      <p>As the market shifted and volatility increased, I made the deliberate decision to move toward more stable product environments. The chapter closed — but the experience, the knowledge, and the gratitude for that team came with me.</p>
+    `
+  },
+
+  // ── 2024–2025 ──
+  {
+    id: 'exp2', group: 'experience',
+    emoji: '🎮', title: 'Gaming · Eight Forces · Atleta',
+    date: '2024–2025', folder: 'Experience',
+    preview: 'Product Marketing · Growth · Partnerships',
+    header: '2024 – 2025',
+    render: () => `
+      <h1>Gaming Platform, NDA</h1>
+      <div class="job-role">Product Marketing · Gaming Platform</div>
+      <div class="job-meta">July 2024 – June 2025 · Lisbon, Portugal</div>
+      <p>This one holds a special place. If there was ever a project that demanded everything — this was it. Arms like an octopus, brain running in parallel threads. We were building a gaming platform with gambling mechanics across multiple iterations, and I wore every hat: product, marketing, design, operations, and whatever else needed wearing that day.</p>
+      <p>I loved it.</p>
+      <p>I brought the team in, trained them, built the marketing engine from scratch, and delivered:</p>
+      <ul>
+        <li>Built a go-to-market strategy from the ground up — brand voice, messaging, and multi-channel content presence across TikTok, X, Telegram, and YouTube</li>
+        <li>Recruited and led a 6-person creative and user acquisition team, delivering 120K pre-launch sign-ups within 10 months</li>
+        <li>Engineered a viral content growth strategy generating 1,000+ brand mentions, 500+ UGC pieces, and 2,000+ organic messages — all for under $10 in under 2 weeks</li>
+      </ul>
+      <p>The project evolved constantly — hypotheses tested and validated at speed, pivots made mid-flight. A fast-moving, fast-growing startup in every sense of the word.</p>
+      <p>An incredible journey with an incredible team.</p>
+      <hr>
+      <h1>Eight Forces</h1>
+      <div class="job-role">Head of Brand Communications · Growth Agency</div>
+      <div class="job-meta">January 2024 – May 2025 · Lisbon, Portugal</div>
+      <p>Met Max, my CEO, in a chat. We spoke on the phone that same day — and I was hired. Three people at the start: me and two co-founders. From there, we added talent weekly.</p>
+      <p>What we were building: a growth marketing agency specialising in crypto projects. Whatever was blocking your growth — we solved it. My focus was Content and Communications.</p>
+      <ul>
+        <li>Devised and executed brand strategies for 4 Web3 clients — top campaign delivered a 50% increase in Twitter engagement and 70% channel growth</li>
+        <li>Drove brand visibility initiatives boosting UGC and securing PR placements in specialised industry media</li>
+      </ul>
+      <p>Early-stage and fast. The kind of environment where you learn to move with conviction — and where the results you ship are entirely your own.</p>
+      <hr>
+      <h1>Atleta Network</h1>
+      <div class="job-role">Partnerships Manager · L1 Blockchain</div>
+      <div class="job-meta">January 2024 – August 2024</div>
+      <p>Some partnerships you plan. Some you just go get. I was watching the Usyk vs. Fury fight and thought — Usyk's team should be on this project. So I reached out cold. Within a week of the fight, we had a co-marketing activation running.</p>
+      <p>That was the job: take a partnership from idea to measurable result. Most partners I brought in eventually moved into BD and were integrated into the core stack.</p>
+      <ul>
+        <li>Crafted compelling pitch decks and led targeted cold outreach to secure Tier-1 through Tier-3 partnerships</li>
+        <li>Built and managed cross-platform collaborations, overseeing end-to-end communications to continuously grow the partner network</li>
+        <li>Consistently onboarded 10+ new partners monthly, driving measurable increases in brand visibility and audience reach</li>
+      </ul>
+      <p>Project-based engagement.</p>
+    `
+  },
+
+  // ── 2020–2024 ──
+  {
+    id: 'exp3', group: 'experience',
+    emoji: '₿', title: 'Bitcoin · WhiteBIT · OpenSea',
+    date: '2020–2024', folder: 'Experience',
+    preview: 'Comms · Content · NFT Artist',
+    header: '2020 – 2024',
+    render: () => `
+      <h1>Bitcoin Magazine</h1>
+      <div class="job-role">Head of Communications · Media</div>
+      <div class="job-meta">October 2023 – January 2024 · United States</div>
+      <p>Working with one of the most iconic names in Bitcoin media — and bringing that knowledge to my homeland by localising the US branch. Project-based, but dense with action and results.</p>
+      <ul>
+        <li>Led a full rebrand and social relaunch, resulting in +130K new followers and a 2.4× increase in engagement</li>
+        <li>Conceived and launched the "Proof-for-Women" editorial track, generating 15K new newsletter subscriptions within 3 months</li>
+        <li>Collaborated with Forbes editorial teams on cross-publication content, expanding reach into mainstream financial media</li>
+      </ul>
+      <p>Bitcoin is more than a beat — it's a movement. Getting to shape how that story reached a new audience was worth every late night.</p>
+      <p>Project-based engagement.</p>
+      <hr>
+      <h1>WhiteBIT</h1>
+      <div class="job-role">Lead Content Marketer, Brand Communications · CEX, Fintech</div>
+      <div class="job-meta">July 2022 – March 2023 · Europe</div>
+      <ul>
+        <li>Rolled out a gamified onboarding campaign, driving a 50% increase in community chat activity</li>
+        <li>Overhauled email strategy, achieving a 25% increase in open rates and a 20% reduction in unsubscribes</li>
+        <li>Launched a brand platform that tripled UGC volume and delivered a 40% boost in social Engagement Rate</li>
+      </ul>
+      <hr>
+      <h1>OpenSea</h1>
+      <div class="job-role">1/1 NFT Artist</div>
+      <div class="job-meta">September 2020 – August 2022</div>
+      <ul>
+        <li>Featured in Slanted 2024, Ukraine Issue — internationally recognized design and culture publication</li>
+        <li>Successfully created and sold a personal NFT collection</li>
+        <li>Operated as an independent growth hacker, executing hands-on content marketing, community management, and brand evangelism across Web3 ecosystems</li>
+        <li>Built personal Twitter and Discord channels from scratch — reaching 1K followers in 3 months with zero paid spend</li>
+      </ul>
+    `
+  },
+
+  // ── 2017–2022 ──
+  {
+    id: 'exp4', group: 'experience',
+    emoji: '✍️', title: 'R Agency · Blue Carrot · Press',
+    date: '2017–2022', folder: 'Experience',
+    preview: 'Copywriting · Production · Journalism',
+    header: '2017 – 2022',
+    render: () => `
+      <h1>R Agency</h1>
+      <div class="job-role">Creative Copywriter · B2C Agency</div>
+      <div class="job-meta">May 2021 – February 2022 · Kyiv</div>
+      <ul>
+        <li>Developed creative concepts and produced PR publications, case studies, and press releases</li>
+        <li>Directed event promotion campaigns and contributed to building the agency's overall media presence</li>
+      </ul>
+      <hr>
+      <h1>Blue Carrot Video Production</h1>
+      <div class="job-role">Creative Producer · B2C Studio</div>
+      <div class="job-meta">March 2019 – April 2021 · Lviv, Ukraine</div>
+      <ul>
+        <li>Led end-to-end animation projects, from concept and scriptwriting through full production management</li>
+        <li>Edited and produced high-quality video content using After Effects and Adobe Premiere Pro</li>
+        <li>Successfully delivered technical and non-technical video content that consistently met client business objectives</li>
+      </ul>
+      <hr>
+      <h1>Independent</h1>
+      <div class="job-role">Journalist</div>
+      <div class="job-meta">February 2017 – May 2019 · Lviv, Ukraine</div>
+      <p>Independent journalistic background — wrote diverse media formats in various styles, tailored to specific media platforms.</p>
+    `
+  },
+
+  // ── Bottom sections ──
+  {
+    id: 'education', bottom: true,
+    emoji: '🎓', title: 'Education',
+    date: '2012–2019', folder: 'Education',
+    preview: "Master's, Mediacommunications",
+    header: '2012 – 2019',
+    render: () => `
+      <h1>Education</h1>
+      <hr>
+      <div class="edu-entry">
+        <div class="edu-inst">Ukrainian Catholic University</div>
+        <div class="edu-deg">Master's degree · Mediacommunications &amp; Marketing</div>
+        <div class="edu-year">2017 – 2019</div>
+      </div>
+      <hr>
+      <div class="edu-entry">
+        <div class="edu-inst">Europa-Universität Viadrina Frankfurt (Oder)</div>
+        <div class="edu-deg">Erasmus+ · Culture, Media &amp; Communications</div>
+        <div class="edu-year">2018</div>
+      </div>
+      <hr>
+      <div class="edu-entry">
+        <div class="edu-inst">FHWien der WKW</div>
+        <div class="edu-deg">Certificate · International School of Multimedia Journalism</div>
+        <div class="edu-year">2018</div>
+      </div>
+      <hr>
+      <div class="edu-entry">
+        <div class="edu-inst">Ivan Franko National University of Lviv</div>
+        <div class="edu-deg">Bachelor's degree · English-Ukrainian Translation</div>
+        <div class="edu-year">2012 – 2016</div>
+      </div>
+    `
+  },
+  {
+    id: 'skills', bottom: true,
+    emoji: '⚙️', title: 'Skills & Tools',
+    date: 'All time', folder: 'Skills',
+    preview: 'Go-to-Market, AI Adoption, GEO…',
+    header: 'Skills & Tools',
+    render: () => `
+      <h1>Skills &amp; Tools</h1>
+      <hr>
+      <div class="skill-group">
+        <div class="skill-group-name">Strategy</div>
+        <div class="tag-row">
+          <span class="tag">Go-to-Market Strategy</span><span class="tag">Growth Marketing</span>
+          <span class="tag">Brand Communications</span><span class="tag">Operations Management</span>
+          <span class="tag">Product Marketing</span><span class="tag">Community Building</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-name">AI &amp; Technical</div>
+        <div class="tag-row">
+          <span class="tag">AI Adoption</span><span class="tag">Claude Code</span>
+          <span class="tag">Cursor</span><span class="tag">Data Automation</span>
+          <span class="tag">GEO / SEO</span><span class="tag">Web Scraping</span>
+          <span class="tag">Generative AI Tools</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-name">Content</div>
+        <div class="tag-row">
+          <span class="tag">Content Strategy</span><span class="tag">Copywriting</span>
+          <span class="tag">Video Production</span><span class="tag">After Effects</span>
+          <span class="tag">Adobe Premiere Pro</span><span class="tag">Newsletter Marketing</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-name">Platforms</div>
+        <div class="tag-row">
+          <span class="tag">Web3 / Blockchain</span><span class="tag">HubSpot</span>
+          <span class="tag">Twitter / X</span><span class="tag">TikTok</span>
+          <span class="tag">YouTube</span><span class="tag">Telegram</span><span class="tag">Discord</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-name">Languages</div>
+        <div class="tag-row">
+          <span class="tag">English — Full Professional</span>
+          <span class="tag">Ukrainian — Native or Bilingual</span>
+        </div>
+      </div>
+      <hr>
+      <p style="font-size:13px;color:var(--muted)">Certifications: HubSpot Certified ×2</p>
+    `
+  },
+  {
+    id: 'contact', bottom: true,
+    emoji: '📬', title: 'Contact',
+    date: 'Lisbon, Portugal', folder: 'Notes',
+    preview: 'kvislianska@gmail.com',
+    header: 'Get in Touch',
+    render: () => `
+      <h1>Contact</h1>
+      <hr>
+      <div class="contact-row">
+        <div class="contact-lbl">Email</div>
+        <div class="contact-val"><a href="mailto:kvislianska@gmail.com">kvislianska@gmail.com</a></div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-lbl">LinkedIn</div>
+        <div class="contact-val"><a href="https://www.linkedin.com/in/kristinavislianska" target="_blank" rel="noopener">linkedin.com/in/kristinavislianska</a></div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-lbl">Portfolio</div>
+        <div class="contact-val"><a href="https://drive.google.com/file/d/1lzWuqhb7jbQhz8jIc4oZRcfmpIO-szC/view" target="_blank" rel="noopener">View Portfolio →</a></div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-lbl">Location</div>
+        <div class="contact-val">Lisbon, Portugal</div>
+      </div>
+    `
+  }
+];
+
+// ═══ GROUPS ═══
+const groups = [
+  { label: '📌 Pinned', filter: n => n.pinned },
+  { label: 'Experience', filter: n => n.group === 'experience' },
+  { label: '——', filter: n => n.bottom },
+];
+
+// ═══ STATE ═══
+let activeId = 'about';
+let dark = false;
+
+// ═══ RENDER ═══
+function renderSidebar() {
+  const list = document.getElementById('notes-list');
+  list.innerHTML = '';
+  groups.forEach(g => {
+    const items = notes.filter(g.filter);
+    if (!items.length) return;
+    const lbl = document.createElement('div');
+    lbl.className = 'group-label';
+    lbl.textContent = g.label;
+    list.appendChild(lbl);
+    items.forEach(n => list.appendChild(makeItem(n)));
+  });
+}
+
+function makeItem(note) {
+  const el = document.createElement('div');
+  el.className = 'note-item' + (note.id === activeId ? ' active' : '');
+  el.dataset.id = note.id;
+  el.innerHTML = `
+    <div class="note-emoji">${note.emoji}</div>
+    <div class="note-body">
+      <div class="note-title">${note.title}</div>
+      <div class="note-meta-line">
+        <span class="note-date">${note.date}</span>
+        <span class="note-preview">${note.preview}</span>
+      </div>
+      <div class="note-folder">📁 ${note.folder}</div>
+    </div>`;
+  el.addEventListener('click', () => selectNote(note.id));
+  return el;
+}
+
+function selectNote(id) {
+  activeId = id;
+  const note = notes.find(n => n.id === id);
+  if (!note) return;
+  document.querySelectorAll('.note-item').forEach(el =>
+    el.classList.toggle('active', el.dataset.id === id)
+  );
+  document.getElementById('note-content').innerHTML = note.render();
+  document.getElementById('content-header').textContent = note.header;
+  document.querySelector('.content').scrollTop = 0;
+  // close mobile sidebar
+  document.querySelector('.sidebar').classList.remove('open');
+}
+
+function toggleDark() {
+  dark = !dark;
+  document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+  document.getElementById('dark-icon').textContent = dark ? '☀️' : '🌙';
+  document.getElementById('dark-label').textContent = dark ? 'Light' : 'Dark';
+}
+
+// ═══ INIT ═══
+renderSidebar();
+selectNote('about');
+</script>
+</body>
+</html>
