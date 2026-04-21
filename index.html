@@ -174,6 +174,65 @@
     }
     .dark-btn:hover { color: var(--text); }
 
+    .summary-btn {
+      width: 100%;
+      margin-top: 8px;
+      padding: 8px 12px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 13px;
+      font-family: inherit;
+      cursor: pointer;
+      font-weight: 600;
+      transition: opacity 0.15s;
+    }
+    .summary-btn:hover { opacity: 0.85; }
+    .summary-btn:disabled { opacity: 0.5; cursor: default; }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 500;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--bg);
+      border: 1px solid var(--divider);
+      border-radius: 16px;
+      padding: 32px;
+      max-width: 520px;
+      width: 90%;
+      position: relative;
+    }
+    .modal h2 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+    .modal p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text-2);
+    }
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: var(--muted);
+      line-height: 1;
+    }
+
     /* ═══ CONTENT ═══ */
     .content {
       flex: 1;
@@ -361,6 +420,7 @@
         <span id="dark-icon">🌙</span>
         <span id="dark-label">Dark</span>
       </button>
+      <button class="summary-btn" id="summary-btn" onclick="getSummary()">✦ Quick Summary</button>
     </div>
   </aside>
 
@@ -372,6 +432,15 @@
     </div>
   </main>
 
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="document.getElementById('modal-overlay').classList.remove('open')">×</button>
+    <h2>✦ Quick Summary</h2>
+    <p id="modal-text">Generating…</p>
+  </div>
 </div>
 
 <script>
@@ -664,6 +733,35 @@ function toggleDark() {
   document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
   document.getElementById('dark-icon').textContent = dark ? '☀️' : '🌙';
   document.getElementById('dark-label').textContent = dark ? 'Light' : 'Dark';
+}
+
+async function getSummary() {
+  const btn = document.getElementById('summary-btn');
+  const modal = document.getElementById('modal-overlay');
+  const text = document.getElementById('modal-text');
+  btn.disabled = true;
+  btn.textContent = 'Generating…';
+  modal.classList.add('open');
+  text.textContent = 'Generating…';
+  try {
+    const res = await fetch('https://cv-summary.tina-vislianska.workers.dev/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+    });
+    const data = await res.json();
+    text.textContent = data.summary;
+  } catch {
+    text.textContent = 'Something went wrong. Try again.';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '✦ Quick Summary';
+  }
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('modal-overlay')) {
+    document.getElementById('modal-overlay').classList.remove('open');
+  }
 }
 
 // ═══ INIT ═══
