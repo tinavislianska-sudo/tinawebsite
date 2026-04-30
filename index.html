@@ -380,38 +380,89 @@
     .contact-val a { color: var(--accent); text-decoration: none; }
     .contact-val a:hover { text-decoration: underline; }
 
-    /* Mobile */
-    @media (max-width: 680px) {
-      .sidebar { position: fixed; left: -100%; transition: left 0.25s; z-index: 100; }
-      .sidebar.open { left: 0; }
-      .content-body { padding: 24px 24px 60px; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .mob-menu { display: flex; }
+    /* ═══ MOBILE OVERLAY ═══ */
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 99;
     }
+    .sidebar-overlay.open { display: block; }
+
     .mob-menu {
       display: none;
       position: fixed;
-      top: 12px;
-      left: 12px;
+      top: 14px;
+      left: 14px;
       z-index: 200;
       background: var(--sidebar-bg);
       border: 1px solid var(--sidebar-border);
-      border-radius: 8px;
-      padding: 7px 11px;
+      border-radius: 10px;
+      padding: 8px 14px;
       cursor: pointer;
-      font-size: 13px;
+      font-size: 14px;
+      font-weight: 600;
       color: var(--text);
       font-family: inherit;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    @media (max-width: 680px) {
+      .mob-menu { display: flex; }
+
+      .sidebar {
+        position: fixed;
+        left: -100%;
+        width: 85vw;
+        max-width: 320px;
+        transition: left 0.25s ease;
+        z-index: 100;
+        box-shadow: 4px 0 24px rgba(0,0,0,0.12);
+      }
+      .sidebar.open { left: 0; }
+
+      .content-body {
+        padding: 72px 20px 80px;
+        max-width: 100%;
+      }
+
+      .content-header {
+        padding: 18px 20px 0 64px;
+        font-size: 11px;
+      }
+
+      #note-content h1 {
+        font-size: 22px;
+      }
+
+      .job-role { font-size: 14px; }
+      .job-meta { font-size: 12px; }
+
+      #note-content p,
+      #note-content ul li {
+        font-size: 14px;
+      }
+
+      .contact-row { flex-direction: column; gap: 3px; }
+      .contact-lbl { width: auto; }
+
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .modal { padding: 24px 20px; width: 95%; }
+      .modal h2 { font-size: 16px; }
+      .modal p { font-size: 14px; }
+
+      .summary-btn { font-size: 12px; padding: 8px 10px; }
     }
   </style>
 </head>
 <body>
 
-<button class="mob-menu" onclick="document.querySelector('.sidebar').classList.toggle('open')">
-  ☰ Menu
-</button>
+<button class="mob-menu" onclick="toggleSidebar()">☰ Menu</button>
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
 
 <div class="app">
 
@@ -737,6 +788,12 @@ function selectNote(id) {
   document.querySelector('.content').scrollTop = 0;
   // close mobile sidebar
   document.querySelector('.sidebar').classList.remove('open');
+  document.getElementById('sidebar-overlay').classList.remove('open');
+}
+
+function toggleSidebar() {
+  document.querySelector('.sidebar').classList.toggle('open');
+  document.getElementById('sidebar-overlay').classList.toggle('open');
 }
 
 function toggleDark() {
