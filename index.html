@@ -303,6 +303,44 @@
       top: 5px;
     }
 
+    .case-h2 {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text);
+      margin: 24px 0 10px;
+    }
+
+    .case-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 40px 0 2px;
+      letter-spacing: -0.01em;
+    }
+    .case-title:first-of-type { margin-top: 32px; }
+    .case-company {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--accent);
+      margin: 24px 0 14px;
+    }
+    .case-company:first-of-type { margin-top: 0; }
+
+    .case-gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 4px;
+    }
+    .case-gallery img {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--divider);
+      display: block;
+    }
+
     .job-role {
       font-size: 15px;
       font-weight: 500;
@@ -352,6 +390,54 @@
       letter-spacing: 0.07em;
       color: var(--muted);
       margin-bottom: 8px;
+    }
+
+    .positioning-block {
+      text-align: center;
+      padding: 28px 20px;
+      margin-bottom: 28px;
+      background: var(--tag-bg);
+      border-radius: 16px;
+    }
+    .positioning-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      margin-bottom: 6px;
+    }
+    .positioning-sub {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+    }
+
+    .rbs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .rbs-card {
+      background: var(--sidebar-bg);
+      border: 1px solid var(--sidebar-border);
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .rbs-emoji { font-size: 20px; margin-bottom: 6px; }
+    .rbs-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .rbs-items { font-size: 12.5px; color: var(--muted); line-height: 1.6; }
+
+    @media (max-width: 680px) {
+      .rbs-grid { grid-template-columns: 1fr; }
     }
 
     /* Education */
@@ -509,140 +595,334 @@ const notes = [
     render: () => `
       <h1>About Me</h1>
       <p><strong>Hi, I'm Tina. A Founding Marketing Engineer passionate about building things from scratch.</strong></p>
+      <p>Check my CV <a href="https://drive.google.com/file/d/1QCajCPseIoKvSKVNMnrLPl6lJjuRVe0E/view?usp=sharing" target="_blank" rel="noopener" style="color:var(--accent)">here</a>.</p>
       <hr>
-      <p>Curious by nature, I was always founding something: a photography circle where I taught teenagers street photography, a punk zine in school, a media startup about underground youth culture at university.</p>
-      <p>Now I channel that same instinct into growth systems for B2B AI companies: community infrastructure, content engines, GTM strategy.</p>
-      <p>I like connecting with people, I like building with people and I like bringing people to the product.</p>
+      <p>I build AI-native product and GTM systems.</p>
+      <p>My work combines customer intelligence, product discovery, AI Search, and automation. I build systems that turn fragmented customer signals into product decisions, AI capabilities, and go-to-market strategies.</p>
+      <p>Over the past few years, I've worked across AI startups, B2B SaaS, crypto, and consumer products — helping founders understand their customers, validate ideas faster, and build repeatable ways of executing with AI.</p>
+      <h2 class="case-h2">What I Build</h2>
+      <ul>
+        <li>Customer intelligence systems using Reddit research, competitor analysis, user interviews, and AI-powered data collection</li>
+        <li>AI Search (GEO) strategies that improve discoverability across ChatGPT, Perplexity, and other LLM-powered search platforms</li>
+        <li>Product discovery workflows that transform customer pain points into product capabilities, AI agents, and GTM hypotheses</li>
+        <li>AI-powered operating systems for research, content production, and internal workflows</li>
+        <li>Founder growth experimentation systems that validate distribution and audience growth through rapid iteration</li>
+      </ul>
+      <p>I enjoy building from zero — connecting product, customer research, and AI into systems that help startups learn faster, make better decisions, and ship with confidence.</p>
       <hr>
-      <p>Check my notes to explore my journey.</p>
+      <p>Check my cases to explore my journey.</p>
+      <hr>
+      <h1>Contact</h1>
+      <div class="contact-row">
+        <div class="contact-lbl">Email</div>
+        <div class="contact-val"><a href="mailto:tina.vislianska@gmail.com">tina.vislianska@gmail.com</a></div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-lbl">LinkedIn</div>
+        <div class="contact-val"><a href="https://www.linkedin.com/in/kristinavislianska" target="_blank" rel="noopener">linkedin.com/in/kristinavislianska</a></div>
+      </div>
+      <div class="contact-row">
+        <div class="contact-lbl">Location</div>
+        <div class="contact-val">Lisbon, Portugal</div>
+      </div>
     `
   },
 
-  // ── 2025–Present ──
+  // ── Cases ──
   {
-    id: 'exp1', group: 'experience',
-    emoji: '🤖', title: '2025 – Present',
-    date: '2025–Present', folder: 'Experience',
-    preview: 'AI Advocate · GEO · Brand Builder',
-    header: '2025 – Present',
+    id: 'case-cogniagent', group: 'cases',
+    emoji: '🤖', title: 'CogniAgent',
+    date: '2025–Present', folder: 'Cases',
+    preview: 'Founding AI Growth Systems Lead',
+    header: 'CogniAgent',
     render: () => `
-      <h1>Trusted Nomad</h1>
-      <div class="job-role">Founder</div>
-      <div class="job-meta">2026 – Present · Lisbon, Portugal</div>
-      <p>Building a closed nomad network platform. <a href="https://trustednomad.io/" target="_blank" rel="noopener" style="color:var(--accent)">trustednomad.io</a></p>
-      <hr>
-      <h1>CogniAgent AI</h1>
-      <div class="job-role">Senior Developer Advocate</div>
-      <div class="job-meta">December 2025 – Present · United States</div>
-      <p>CogniAgent is an AI workflow automation platform for SMBs. My job is basically three things: build, explain, and grow.</p>
-      <p>I build data-driven pipelines to understand what actually hurts our target customers. For example: I scraped Reddit threads via Apify, mapped real pain points across target segments, turned them into automation templates, built those templates myself, and packaged them with a knowledge base — plug-and-play ready for the audience. I also translate all the complex technical stuff into content people actually want to read, watch, and follow – think workflow guides, tutorials, and hands-on templates. And I advise the product team and devs on what the audience actually needs and how it behaves.</p>
-      <hr>
-      <h1>Glorium Technologies</h1>
-      <div class="job-role">Generative Search Optimization Specialist · GEO</div>
-      <div class="job-meta">December 2025 – Present · United States</div>
-      <p>Glorium is a software product development company. I architect and manage community intelligence systems that convert raw platform signals into GEO-optimized content strategies. Built to get placed as a source by LLMs, not just ranked by search engines.</p>
-      <p>For example my case: 3 tested frameworks driving weekly LLM source placement (vs. industry-standard monthly), 1K+ avg. post views and 10+ comments per post in low-competition niches – creating demand where none previously existed (across Reddit).</p>
-      <hr>
-      <h1>Principle</h1>
-      <div class="job-role">Growth Tester &amp; Advisor</div>
-      <div class="job-meta">December 2025 – April 2026 · United States · Part-time</div>
-      <p>Principle is a San Francisco-based startup building strategic simulations for executive teams. I worked closely with the founder on his personal LinkedIn content and ran several content experiments in parallel.</p>
-      <p>Launched and grew Not Original – a LinkedIn newsletter mapping classic business strategy playbooks (Coca-Cola, Ford, Porsche, F1) to what's actually happening in AI today. Ran LockedIN, an episodic LinkedIn series built around an AI simulation cartoon. And took a couple of deliberately unhinged content experiments live on X.</p>
+      <h1>CogniAgent</h1>
+      <div class="job-role">AI Workflow Automation | SaaS — Founding AI Growth Systems Lead</div>
+      <div class="job-meta">2025 – Present</div>
+      <p>From zero to a working growth engine, I built the customer intelligence, content, and documentation systems that let a founding-stage AI automation platform understand its users, make user-oriented product decisions, and scale content production without scaling headcount.</p>
+      <h2 class="case-h2">The Challenge</h2>
+      <p>As a founding-stage company, CogniAgent had no established systems for understanding its customers, translating product capability into user-facing content, or feeding customer insight back into product and design decisions. Everything needed to be built from scratch.</p>
+      <h2 class="case-h2">What I Built</h2>
+      <ul>
+        <li>Built customer intelligence systems using Reddit scraping, competitor monitoring, and customer feedback aggregation through dedicated AI scrapers</li>
+        <li>Created reusable AI agent templates, tutorials, onboarding materials, and product documentation tailored to specific audience segments and pain points</li>
+        <li>Acted as the voice of the customer by translating feedback into UX improvements through close collaboration with founders, developers, and designers</li>
+        <li>Built an AI-powered content production pipeline using Claude Code, Remotion, and agentic workflows</li>
+        <li>Designed and implemented internal agentic systems that automated operational workflows across teams</li>
+        <li>Led SMM and Email functions by bridging technical teams and marketing teams, translating complex documentation into accessible product narratives</li>
+        <li>Built a growth intelligence engine that identified customer pain points and converted them directly into creative concepts and campaign messaging</li>
+      </ul>
+      <h2 class="case-h2">Outcomes</h2>
+      <ul>
+        <li>Reduced cost per lead from $15 to $3 through intelligence-driven creative strategy</li>
+        <li>Automated 90% of internal repetitive workflows using custom-built agentic systems</li>
+        <li>Increased content production capacity by 80% while removing most manual production work</li>
+        <li>Established a continuous customer intelligence discovery loop connecting Reddit, competitors, customer feedback, product, and marketing</li>
+        <li>Delivered reusable AI agent templates, tutorials, and documentation that improved onboarding and product adoption</li>
+        <li>Created a direct feedback bridge between customers, product, engineering, and growth teams</li>
+      </ul>
+      <h2 class="case-h2">Selected</h2>
+
+      <div class="case-title">1. Agentic Workflow Systems &amp; AI Orchestration</div>
+      <div class="case-gallery">
+        <img src="images/cognagent-1.png" alt="Agentic systems built at CogniAgent for various tasks and solutions">
+      </div>
+      <p>Designed and built plug and play agentic systems from scratch across multiple verticals, combining AI reasoning, workflow automation, human approvals, and business software into autonomous operational systems.</p>
+      <h2 class="case-h2">What I Built</h2>
+      <ul>
+        <li>Designed end-to-end multi-agent architectures for sales, support, operations, hiring, and customer success</li>
+        <li>Built agent orchestration logic with routing, escalation, memory, and human-in-the-loop workflows</li>
+        <li>Developed systems capable of long-running conversations, follow-ups, approvals, and multi-step decision making</li>
+        <li>Implemented integrations with CRMs, communication channels, ticketing systems, calendars, payment systems, and internal tools</li>
+        <li>Connected agents to external systems through APIs, webhooks, and Model Context Protocol (MCP) servers, enabling dynamic tool use and real-time data access</li>
+        <li>Built reusable workflow templates for lead qualification, support triage, dispatching, recruiting, onboarding, review generation, cart recovery, and customer retention</li>
+        <li>Designed retrieval pipelines combining knowledge bases, CRM data, and external tools to power context-aware decision making</li>
+      </ul>
+      <h2 class="case-h2">Technologies &amp; Systems</h2>
+      <div class="tag-row">
+        <span class="tag">MCP</span>
+        <span class="tag">Multi-Agent Systems</span><span class="tag">API</span>
+        <span class="tag">Webhooks</span><span class="tag">CRM Integrations</span>
+        <span class="tag">Human-in-the-Loop</span>
+        <span class="tag">AI Memory</span><span class="tag">LLM Routing</span>
+      </div>
+      <div class="case-title">2. AI Content Automation Pipeline</div>
+      <div class="case-gallery">
+        <img src="images/cognagent-2.png" alt="From building agents to YouTube videos — content creation with CogniAgent">
+      </div>
+      <p>Built an end-to-end AI content system that transformed product development work into scalable educational content and automated video production.</p>
+      <h2 class="case-h2">What I Built</h2>
+      <ul>
+        <li>Created a reusable content pipeline that converted agent builds into documentation, guides, and video tutorials</li>
+        <li>Built a system to transform product guides into YouTube scripts, visuals, and tutorials using AI</li>
+        <li>Automated video production using Claude for script generation and Remotion for programmatic video rendering</li>
+        <li>Developed repeatable templates for tutorials, product explainers, feature launches, and workflow walkthroughs</li>
+        <li>Standardized visual components, animations, and layouts to enable scalable video production with minimal manual work</li>
+        <li>Created an AI-assisted content workflow covering ideation, scripting, rendering, and publishing</li>
+      </ul>
+      <h2 class="case-h2">Technologies</h2>
+      <div class="tag-row">
+        <span class="tag">Claude</span><span class="tag">Remotion</span>
+        <span class="tag">AI Video Generation</span><span class="tag">Content Automation</span>
+        <span class="tag">Programmatic Video Production</span><span class="tag">Workflow Automation</span>
+      </div>
+      <div class="case-title">3. AI Market Intelligence &amp; Vertical Research System</div>
+      <div class="case-gallery">
+        <img src="images/cognagent-3.png" alt="AI market intelligence and vertical research system built at CogniAgent">
+      </div>
+      <p>Conducted large-scale research and competitive analysis across multiple service verticals to identify where AI agents could deliver the highest business impact and where CogniAgent had defensible product advantages.</p>
+      <h2 class="case-h2">What I Built</h2>
+      <ul>
+        <li>Researched multiple verticals including HVAC, Cleaning, Security, Restaurants, Auto Repair, and others</li>
+        <li>Mapped the target customer profiles (ICP), including company size, revenue range, team size, and existing software stack</li>
+        <li>Identified the core integrations used in each vertical, including platforms such as ServiceTitan, Jobber, HouseCall Pro, Twilio, QuickBooks, Google Business Profile, Stripe, Salesforce, HubSpot, Toast, OpenTable, and many others</li>
+        <li>Built a pain-point database sourced from large-scale scraping and research, prioritizing problems by business impact and urgency signals</li>
+        <li>Built a library of AI workflow templates aligned to these pain points</li>
+        <li>Built an integration map showing which external systems each workflow depended on</li>
+        <li>Created a competitor registry tracking positioning, feature coverage, threat level, and differentiation for each competitor</li>
+        <li>Developed a coverage matrix comparing CogniAgent capabilities against competitors across every workflow category</li>
+        <li>Identified exclusive opportunities and whitespace areas where competitors had limited or no coverage</li>
+      </ul>
+      <h2 class="case-h2">Research Outputs</h2>
+      <div class="tag-row">
+        <span class="tag">Vertical overview and ICP mapping</span>
+        <span class="tag">Pain-point prioritization framework</span>
+        <span class="tag">Integration ecosystem mapping</span>
+        <span class="tag">Competitor registry</span>
+        <span class="tag">Feature coverage matrix</span>
+        <span class="tag">Product positioning analysis</span>
+        <span class="tag">Gap analysis and opportunity identification</span>
+      </div>
+      <h2 class="case-h2">Outcomes</h2>
+      <p>Created a repeatable research framework that connected: customer pain points → required integrations → workflow opportunities → competitive positioning → product strategy.</p>
     `
   },
-
-  // ── 2024–2025 ──
   {
-    id: 'exp2', group: 'experience',
-    emoji: '🎮', title: '2023 – 2025',
-    date: '2023–2025', folder: 'Experience',
-    preview: 'Product Marketing · Growth · Partnerships · Comms',
-    header: '2024 – 2025',
+    id: 'case-nikohealth', group: 'cases',
+    emoji: '🩺', title: 'NikoHealth',
+    date: '2025–Present', folder: 'Cases',
+    preview: 'GEO for US Healthcare B2B SaaS',
+    header: 'NikoHealth',
     render: () => `
-      <h1>Self Employed</h1>
-      <div class="job-role">Independent Consultant — Growth, Brand &amp; Community</div>
-      <div class="job-meta">October 2023 – October 2025 · United States</div>
-      <p>Led growth, communications, partnerships, and community strategy as an independent consultant across four projects.</p>
-      <hr>
-      <h1>Bitcoin Magazine</h1>
-      <div class="job-role">Head of Communications – Bitcoin Magazine Ukraine</div>
-      <div class="job-meta">October 2023 – January 2024</div>
-      <p>Bitcoin Magazine is one of the most iconic names in Bitcoin media. I led the localisation of the US branch for the Ukrainian market – project-based, but dense with action and results.</p>
-      <p>Full rebrand and social relaunch: +130K new followers, 2.4× engagement increase. Conceived and launched "Proof-for-Women" – an editorial track that generated 15K new newsletter subscriptions in 3 months. Collaborated with Forbes editorial teams on cross-publication content, expanding reach into mainstream financial media.</p>
-      <p>Bitcoin is a movement. Getting to shape how that story reached a new audience was worth every late night.</p>
-      <hr>
-      <h1>Atleta Network</h1>
-      <div class="job-role">Partnerships Manager – Atleta Network · L1 Blockchain</div>
-      <div class="job-meta">January 2024 – August 2024</div>
-      <p>Atleta is a L1 blockchain. My job was simple: take a partnership from idea to measurable result.</p>
-      <p>Some partnerships you plan. Some you just go get. I was watching the Usyk vs. Fury fight and thought – Usyk's team should be on this project. Reached out cold. Within a week of the fight (not me, Usyk vs Fury), we had a co-marketing activation running.</p>
-      <p>Cold outreach, pitch decks, end-to-end deal management – 10+ new partners onboarded monthly. Most partners I brought in eventually moved into BD and were integrated into the core stack.</p>
-      <hr>
-      <h1>Gaming Platform, NDA</h1>
-      <div class="job-role">Growth Marketer – Gaming Platform</div>
-      <div class="job-meta">July 2024 – June 2025 · Lisbon, Portugal</div>
-      <p>A gaming platform with gambling mechanics. If there was ever a project that demanded everything – this was it. I wore every hat: product, marketing, design, operations, and whatever else needed wearing that day.</p>
-      <p>Built a full GTM strategy from zero — brand voice, multi-channel presence across TikTok, X, Telegram, and YouTube, led a 6-person creative and UA team to 120K pre-launch sign-ups in 10 months, and engineered a viral content engine that produced 1K+ brand mentions, 500+ UGC pieces, and 2K+ organic messages for under $10 in under 2 weeks.</p>
-      <hr>
-      <h1>Spell Wallet</h1>
-      <div class="job-role">Brand Builder – MPC Wallet</div>
-      <div class="job-meta">June 2025 – October 2025 · Florida, United States</div>
-      <p>Spell Wallet is an MPC crypto wallet available on iOS, Android, and Telegram – scaled to 4M+ users. I owned brand building and community, which in crypto are basically the same thing.</p>
-      <p>Hosted 10+ AMAs with 200+ avg. participants, executed multi-platform content calendars that drove 45% engagement growth in 6 months, built a reply-led distribution strategy that grew organic reach 3x, and pushed YouTube from 0 to 2K+ subscribers with 150+ live viewers.</p>
-      <hr>
-      <h1>Eight Forces</h1>
-      <div class="job-role">Head of Brand Communications – Eight Forces</div>
-      <div class="job-meta">March 2023 – October 2023 · Lisbon, Portugal</div>
-      <p>Eight Forces is a growth marketing agency specialising in crypto projects. Three people at the start – me and two co-founders – then new talent added weekly. My focus was content and communications: whatever was blocking a client's growth, we solved it.</p>
-      <p>Devised and executed brand strategies for 4 Web3 clients – top campaign delivered 50% increase in Twitter engagement and 70% channel growth. Early-stage and fast. The kind of environment where you learn to move with conviction – and where the results you ship are entirely your own.</p>
+      <h1>NikoHealth</h1>
+      <div class="job-role">GEO Specialist · Glorium Technologies | NikoHealth — US Healthcare B2B SaaS</div>
+      <div class="job-meta">December 2025 – Present</div>
+      <p>Built and operated a full Generative Engine Optimization (GEO) system designed to increase visibility inside AI search products and large language models for a niche healthcare SaaS company operating in the DME/HME market.</p>
+      <div class="case-gallery">
+        <img src="images/nikohealth-geo.png" alt="NikoHealth GEO system — Reddit monitoring, automated reports, LinkedIn authority, AI crawler audit, and LLM citations">
+      </div>
+      <h2 class="case-h2">What I Built</h2>
+      <ul>
+        <li>Designed a Reddit-based citation engine focused on the discussions and communities most likely to be surfaced by LLMs during healthcare software research</li>
+        <li>Built and managed a LinkedIn content system targeting healthcare operators, billers, and DME executives to create additional authoritative content sources</li>
+        <li>Conducted a technical AI crawler audit to improve discoverability and indexing by AI retrieval systems and answer engines</li>
+        <li>Mapped high-intent queries across the DME/HME space and aligned content production with LLM retrieval patterns</li>
+        <li>Identified communities, topics, and discussion formats that were repeatedly cited by ChatGPT, Perplexity, and other answer engines</li>
+        <li>Created workflows for turning customer pain points and product expertise into content optimized for AI retrieval rather than traditional SEO rankings</li>
+        <li>Monitored AI search visibility and citation frequency across answer engines</li>
+      </ul>
+
+      <div class="case-title">GEO Components</div>
+
+      <div class="case-company">1. Reddit Citation Engine</div>
+      <ul>
+        <li>Targeted high-value healthcare IT, medical billing, and DME communities</li>
+        <li>Created content designed to generate long-tail citations in LLM responses</li>
+        <li>Focused on discussion formats that consistently appear in AI-generated answers</li>
+      </ul>
+
+      <div class="case-company">2. LinkedIn Authority Layer</div>
+      <p>Produced expert content around:</p>
+      <div class="tag-row">
+        <span class="tag">Medicare billing</span><span class="tag">DME documentation</span>
+        <span class="tag">Prior authorization</span><span class="tag">Revenue cycle challenges</span>
+        <span class="tag">HME operational workflows</span>
+      </div>
+
+      <div class="case-company">3. Technical GEO Infrastructure</div>
+      <div class="tag-row">
+        <span class="tag">AI crawler audit</span><span class="tag">Content accessibility review</span>
+        <span class="tag">JSON Schema</span><span class="tag">Retrieval optimization for answer engines</span>
+      </div>
+
+      <h2 class="case-h2">Outcomes</h2>
+      <ul>
+        <li>Achieved recurring monthly citations in ChatGPT and Perplexity responses</li>
+        <li>Generated 1,000+ impressions per Reddit post in target communities</li>
+        <li>Increased brand visibility within AI-generated recommendations and answer experiences</li>
+        <li>Established an early GEO framework for a highly specialized healthcare B2B market</li>
+      </ul>
     `
   },
-
-  // ── 2020–2022 ──
   {
-    id: 'exp3', group: 'experience',
-    emoji: '🎨', title: '2020 – 2023',
-    date: '2020–2023', folder: 'Experience',
-    preview: 'Content · NFT Artist',
-    header: '2020 – 2023',
+    id: 'case-whitebit', group: 'cases',
+    emoji: '💰', title: 'WhiteBIT',
+    date: 'Jul 2022–Mar 2023', folder: 'Cases',
+    preview: 'FinTech · Crypto Exchange',
+    header: 'WhiteBIT',
     render: () => `
-      <h1>WhiteBIT</h1>
-      <div class="job-role">Lead Content Marketer, Brand Communications – WhiteBIT</div>
+      <h1><a href="https://whitebit.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">WhiteBIT</a></h1>
+      <div class="job-role">Lead Content Marketer, Brand Communications</div>
       <div class="job-meta">July 2022 – March 2023 · Europe</div>
-      <p>WhiteBIT is the largest European cryptocurrency exchange, serving millions of users globally. I led content and brand communications – building campaigns that turned platform activity into community energy.</p>
-      <p>Rolled out a gamified onboarding campaign that drove a 50% increase in community chat activity. Overhauled the email strategy – 25% increase in open rates, 20% drop in unsubscribes. Launched a brand platform that tripled UGC volume and delivered a 40% boost in social engagement rate. RedDot 2023 Brand &amp; Communication winner (for creative direction).</p>
-      <p>On the brand side: produced a promo video with FC Barcelona, got a Forbes feature written on the CEO, and ran campaigns for DreamHack, Blockchain Week, Valencia Running Marathon, and a MOT (moving temporary museums by Sasha Balbeck) campaign.</p>
-      <hr>
-      <h1>OpenSea</h1>
-      <div class="job-role">1/1 NFT Artist – OpenSea</div>
-      <div class="job-meta">September 2020 – August 2022</div>
-      <p>This is where the crypto journey started. I created and sold a personal NFT collection on OpenSea, built a Twitter and Discord presence from scratch – 1K followers in 3 months, zero paid spend – and operated as an independent growth hacker across Web3 ecosystems: content, community, brand evangelism.</p>
-      <p>The work got noticed – featured in Slanted 2024 Ukraine Issue, Wonderzine, OKO mag, and dozens of viral publications.</p>
+      <p>From brand communication platform to partnerships and growth campaigns, I helped shape how WhiteBIT communicated with millions of users across Europe during one of the most dynamic periods in crypto.</p>
+      <div class="case-gallery">
+        <img src="images/whitebitcase1.png" alt="WhiteBIT partnership campaign — 360° campaign development">
+        <img src="images/dreamhack.png" alt="WhiteBIT x DreamHack event campaign">
+        <img src="images/whitebitcase3.png" alt="WhiteBIT slogan development — naming and campaigns">
+        <img src="images/whitebitcase4.png" alt="WhiteBIT DreamHack event campaign development">
+        <img src="images/activity.png" alt="WhiteBIT community gamification system">
+      </div>
+      <h2 class="case-h2">The Challenge</h2>
+      <p>WhiteBIT was evolving rapidly as both a product and a brand. Its existing communication platform no longer reflected the company's maturity, making it harder to reinforce its position as a market leader.</p>
+      <h2 class="case-h2">What I Built</h2>
+      <ul>
+        <li>Developed a new brand communication platform and led the creative direction of its visual identity</li>
+        <li>Aligned cross-functional teams across SMM, SEO, PR, email, and content around the new tone of voice and communication strategy</li>
+        <li>Supported partnership launches and brand activations from concept to execution</li>
+        <li>Introduced a mascot-driven communication style that increased community participation and UGC creation</li>
+      </ul>
+      <h2 class="case-h2">Outcomes</h2>
+      <ul>
+        <li>Supported a brand transformation recognised with the <a href="https://www.red-dot.org/project/whitebit-crypto-currency-exchange-66027" target="_blank" rel="noopener" style="color:var(--accent)">2023 Red Dot Award</a> for Brand &amp; Communications</li>
+        <li>Increased community engagement by 50% through a gamified onboarding experience</li>
+        <li>Improved email performance with a 25% increase in open rates and a 20% reduction in unsubscribes</li>
+        <li>Built a communication platform that tripled user-generated content and drove a 40% uplift in social engagement</li>
+        <li>Designed event activations that generated organic social distribution and earned brand visibility through attendee-created content</li>
+        <li>Partnered with influencers across TikTok, Instagram, and YouTube to create platform-native content and branded activations that drove higher engagement and improved conversion performance</li>
+      </ul>
     `
   },
-
-  // ── 2017–2022 ──
   {
-    id: 'exp4', group: 'experience',
-    emoji: '✍️', title: '2017 – 2022 (Early Career)',
-    date: '2017–2022', folder: 'Experience',
-    preview: 'Copywriting · Production · Journalism',
-    header: '2017 – 2022',
+    id: 'case-bitcoin', group: 'cases',
+    emoji: '₿', title: 'Bitcoin Magazine',
+    date: 'Oct 2023–Jan 2024', folder: 'Cases',
+    preview: 'Scaling a Media Brand',
+    header: 'Bitcoin Magazine',
     render: () => `
-      <h1>R Agency</h1>
-      <div class="job-role">Creative Copywriter – R Agency</div>
-      <div class="job-meta">May 2021 – February 2022 · Kyiv</div>
-      <p>B2C creative agency based in Kyiv. I developed creative concepts, produced PR publications, case studies, and press releases, and directed event promotion campaigns that built the agency's media presence.</p>
-      <hr>
-      <h1>Blue Carrot Animation</h1>
-      <div class="job-role">Creative Producer – Blue Carrot Video Production</div>
-      <div class="job-meta">March 2019 – April 2021 · Lviv, Ukraine</div>
-      <p>B2C animation and video production studio based in Lviv. I led end-to-end animation projects – concept, scriptwriting, full production management – and delivered technical and non-technical video content using After Effects and Adobe Premiere Pro.</p>
-      <hr>
-      <h1>Contract Journalist, Photographer</h1>
-      <div class="job-role">Journalist – Independent</div>
-      <div class="job-meta">February 2017 – May 2019 · Lviv, Ukraine</div>
-      <p>Wrote across diverse media formats and styles, tailored to specific platforms. This is where the writing instinct got sharpened.</p>
+      <h1>Bitcoin Magazine</h1>
+      <div class="job-role">Independent Consultant — Scaling a Media Brand</div>
+      <div class="job-meta">October 2023 – January 2024</div>
+      <p>Independent consulting engagement to reposition a leading Bitcoin media brand for a new generation of readers.</p>
+      <div class="case-gallery">
+        <img src="images/bitcoinmagazine-case.png" alt="Bitcoin Magazine rebrand and relaunch results">
+      </div>
+      <h2 class="case-h2">The Challenge</h2>
+      <p>The brand needed a refreshed identity and stronger engagement with newer audiences while maintaining credibility with existing readers.</p>
+      <h2 class="case-h2">What I Built</h2>
+      <ul>
+        <li>Led the rebrand and social relaunch</li>
+        <li>Redesigned editorial communication strategy</li>
+        <li>Created and launched the Proof for Women editorial initiative</li>
+        <li>Built newsletter acquisition loops around community and content</li>
+      </ul>
+      <h2 class="case-h2">Outcomes</h2>
+      <ul>
+        <li>+130K new social followers</li>
+        <li>2.4× increase in engagement</li>
+        <li>15K newsletter subscriptions generated within 3 months</li>
+      </ul>
+    `
+  },
+  {
+    id: 'case-atleta', group: 'cases',
+    emoji: '🔗', title: 'Atleta Network',
+    date: 'Jan–Aug 2024', folder: 'Cases',
+    preview: 'Building Partnerships from Zero',
+    header: 'Atleta Network',
+    render: () => `
+      <h1>Atleta Network</h1>
+      <div class="job-role">Independent Consultant — Building Partnerships from Zero</div>
+      <div class="job-meta">January 2024 – August 2024</div>
+      <p>Independent consulting engagement to build a partnerships engine from zero for an early-stage L1 blockchain.</p>
+      <div class="case-gallery">
+        <img src="images/atleta-case.png" alt="Atleta Network partnerships pipeline and impact">
+      </div>
+      <h2 class="case-h2">The Challenge</h2>
+      <p>As an early-stage L1, the project lacked an established ecosystem and partnership engine.</p>
+      <h2 class="case-h2">What I Built</h2>
+      <ul>
+        <li>Created the partnership acquisition process from scratch</li>
+        <li>Designed pitch decks and partnership materials</li>
+        <li>Managed outreach, negotiations, onboarding, and execution</li>
+        <li>Established repeatable partnership workflows</li>
+      </ul>
+      <h2 class="case-h2">Outcomes</h2>
+      <ul>
+        <li>10+ new partnerships onboarded every month, among which is RTF — a project led by Oleksandr Usyk</li>
+        <li>Built a scalable partnership pipeline and activation systems that helped keeping partners in the loop</li>
+      </ul>
+    `
+  },
+  {
+    id: 'case-spell', group: 'cases',
+    emoji: '✨', title: 'Spell Wallet',
+    date: 'Jun–Oct 2025', folder: 'Cases',
+    preview: 'Community-Led Distribution',
+    header: 'Spell Wallet',
+    render: () => `
+      <h1>Spell Wallet</h1>
+      <div class="job-role">Independent Consultant — Community-Led Distribution</div>
+      <div class="job-meta">June 2025 – October 2025</div>
+      <p>Independent consulting engagement to grow community and distribution for an MPC crypto wallet in a highly competitive market.</p>
+      <div class="case-gallery">
+        <img src="images/spellwallet-1year.png" alt="1 Year of Spell Wallet — impact recap">
+      </div>
+      <h2 class="case-h2">The Challenge</h2>
+      <p>Grow awareness and community engagement in an extremely competitive wallet market.</p>
+      <h2 class="case-h2">What I Built</h2>
+      <ul>
+        <li>Established YouTube and social content systems</li>
+        <li>Hosted AMA programs and community events</li>
+        <li>Built a reply-first distribution strategy on X</li>
+        <li>Created repeatable engagement playbooks</li>
+      </ul>
+      <h2 class="case-h2">Outcomes</h2>
+      <ul>
+        <li>45% increase in engagement in six months</li>
+        <li>Organic reach increased 3×</li>
+        <li>Grew YouTube from 0 to 2,000+ subscribers</li>
+        <li>150+ average live attendees during community events</li>
+      </ul>
     `
   },
 
@@ -690,53 +970,84 @@ const notes = [
     render: () => `
       <h1>Skills &amp; Tools</h1>
       <hr>
-      <p>I'm AI-native. Listing tools feels pointless when the stack changes daily — so I won't pretend a list tells you anything real.</p>
-      <p>What I can tell you: I build data-automation pipelines in n8n, Zapier, Make. I run OpenClaw in Terminal. I build custom Skills in Claude. This website was built with Claude Code. This text was edited with custom Claude skills.</p>
-      <p>I also make things for fun: visuals, videos (Kling, Seedance, Kling Motion), music (Suno, custom speech and voice via ElevenLabs). I feed Figma prototypes into Claude and edit screens and animations there. I vibe-code small apps for myself — one maps every abandoned city by coordinates into an urbanistic infographic, another lets you break bird song into individual sound nodes and recombine them into a playable instrument.</p>
-      <p>I hate slop. And I still think none of this changes the core thing: it's all just an agent. The octopus finally has hands. What's more real than ever is your thinking, your framework, you — running the machines.</p>
-    `
-  },
-  {
-    id: 'life', bottom: true,
-    emoji: '🌍', title: 'Life',
-    date: 'Always', folder: 'More',
-    preview: 'Outside the work stuff…',
-    header: 'Life',
-    render: () => `
-      <h1>Life</h1>
-      <hr>
-      <p>Yesterday — this note is from 26.04.2026 — I met a local artist with a studio near my house. He invited me in for a short walkthrough, and at some point asked how old I was. My answer landed with: "wow, you've lived a very vibrant and energetic life."</p>
-      <p>Maybe. I sometimes think it's not enough. I want to explore as much as possible.</p>
-      <p>I've lived in Spain, Portugal, France. Drove through Egypt and saw places that don't exist in any tourist brochure. Netherlands, Brussels. Went to F1 in Barcelona — I'm a fan. And I hope much more is still to come.</p>
-      <p>Life doesn't stop. Neither do I. My goal is to explore it, perceive it, live it.</p>
-    `
-  },
-  {
-    id: 'contact', pinned: true,
-    emoji: '📬', title: 'Contact',
-    date: 'Lisbon, Portugal', folder: 'Notes',
-    preview: 'kvislianska@gmail.com',
-    header: 'Get in Touch',
-    render: () => `
-      <h1>Contact</h1>
-      <hr>
-      <div class="contact-row">
-        <div class="contact-lbl">Email</div>
-        <div class="contact-val"><a href="mailto:tina.vislianska@gmail.com">tina.vislianska@gmail.com</a></div>
-      </div>
-      <div class="contact-row">
-        <div class="contact-lbl">LinkedIn</div>
-        <div class="contact-val"><a href="https://www.linkedin.com/in/kristinavislianska" target="_blank" rel="noopener">linkedin.com/in/kristinavislianska</a></div>
-      </div>
-      <div class="contact-row">
-        <div class="contact-lbl">X</div>
-        <div class="contact-val"><a href="https://x.com/callsense" target="_blank" rel="noopener">x.com/callsense</a></div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">Research</div>
+        <div class="tag-row">
+          <span class="tag">Market Intelligence</span><span class="tag">Vertical Research</span>
+          <span class="tag">Competitive Analysis</span><span class="tag">ICP Research</span>
+          <span class="tag">AI Search Strategy</span>
+          <span class="tag">Product Matrix &amp; Strategy</span><span class="tag">Product Positioning</span>
+        </div>
       </div>
 
-      <div class="contact-row">
-        <div class="contact-lbl">Location</div>
-        <div class="contact-val">Lisbon, Portugal</div>
+      <div class="skill-group">
+        <div class="skill-group-name">Agentic Systems</div>
+        <div class="tag-row">
+          <span class="tag">Multi-Agent Systems</span>
+          <span class="tag">Model Context Protocol (MCP)</span><span class="tag">Human-in-the-Loop Systems</span>
+        </div>
       </div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">Automation</div>
+        <div class="tag-row">
+          <span class="tag">n8n</span><span class="tag">Make</span>
+          <span class="tag">Zapier</span>
+          <span class="tag">Webhooks</span><span class="tag">APIs</span><span class="tag">Connectors</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">AI Stack</div>
+        <div class="tag-row">
+          <span class="tag">OpenAI</span><span class="tag">Claude</span>
+          <span class="tag">Gemini</span><span class="tag">Perplexity</span>
+          <span class="tag">Lovable</span><span class="tag">Cursor</span><span class="tag">Antigravity</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">Integrations</div>
+        <div class="tag-row">
+          <span class="tag">HubSpot</span><span class="tag">Salesforce</span>
+          <span class="tag">ServiceTitan</span><span class="tag">Jobber</span>
+          <span class="tag">Housecall Pro</span><span class="tag">Twilio</span>
+          <span class="tag">Slack</span><span class="tag">Stripe</span>
+          <span class="tag">QuickBooks</span><span class="tag">Gmail</span>
+          <span class="tag">Google Workspace</span><span class="tag">Shopify</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">Development</div>
+        <div class="tag-row">
+          <span class="tag">Python</span><span class="tag">JavaScript</span>
+          <span class="tag">GitHub</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">Content Systems</div>
+        <div class="tag-row">
+          <span class="tag">TikTok Content System</span><span class="tag">Claude Code</span>
+          <span class="tag">LinkedIn Content Systems</span><span class="tag">AI Video Production</span>
+          <span class="tag">YouTube Automation</span><span class="tag">Content Repurposing</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-name">AI Search &amp; GEO</div>
+        <div class="tag-row">
+          <span class="tag">ChatGPT</span><span class="tag">Perplexity</span>
+          <span class="tag">Google AI Overviews</span><span class="tag">Reddit Intelligence</span>
+          <span class="tag">LLM Citation Tracking</span><span class="tag">AI Crawler Audits</span>
+          <span class="tag">Entity Optimization</span>
+        </div>
+      </div>
+
+      <hr>
+      <p>I'm AI-native. Listing every tool I've touched feels pointless when the stack changes daily. I focus on understanding systems, workflows, and business problems — then assemble the right stack to solve them.</p>
     `
   }
 ];
@@ -744,7 +1055,7 @@ const notes = [
 // ═══ GROUPS ═══
 const groups = [
   { label: '📌 Pinned', filter: n => n.pinned },
-  { label: 'Experience', filter: n => n.group === 'experience' },
+  { label: 'Cases', filter: n => n.group === 'cases' },
   { label: 'More', filter: n => n.bottom },
 ];
 
