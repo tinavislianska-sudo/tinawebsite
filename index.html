@@ -107,6 +107,8 @@
       align-items: center;
       gap: 5px;
     }
+    .group-ic { display: flex; align-items: center; }
+    .group-ic svg { width: 12px; height: 12px; stroke: var(--group-label); }
 
     .note-item {
       display: flex;
@@ -119,15 +121,24 @@
       transition: background 0.12s;
     }
     .note-item:hover { background: var(--hover-bg); }
+    .note-item:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
     .note-item.active { background: var(--active-bg); }
 
     .note-emoji {
-      font-size: 22px;
-      line-height: 1.25;
       flex-shrink: 0;
       width: 28px;
-      text-align: center;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+    .note-emoji svg {
+      width: 19px;
+      height: 19px;
+      stroke: var(--muted);
+      transition: stroke 0.12s;
+    }
+    .note-item.active .note-emoji svg { stroke: rgba(255,255,255,0.9); }
 
     .note-body { flex: 1; min-width: 0; }
 
@@ -167,6 +178,7 @@
       align-items: center;
       gap: 3px;
     }
+    .folder-ic { width: 11px; height: 11px; flex-shrink: 0; }
 
     .note-item.active .note-title,
     .note-item.active .note-date,
@@ -188,14 +200,16 @@
       align-items: center;
       gap: 7px;
       padding: 3px 0;
+      margin-top: 10px;
       transition: color 0.15s;
     }
     .dark-btn:hover { color: var(--text); }
+    .btn-ic { display: inline-flex; align-items: center; }
+    .btn-ic svg { width: 14px; height: 14px; }
 
-    .summary-btn {
+    .contact-btn {
       width: 100%;
-      margin-top: 8px;
-      padding: 8px 12px;
+      padding: 9px 12px;
       background: var(--accent);
       color: #fff;
       border: none;
@@ -203,54 +217,30 @@
       font-size: 13px;
       font-family: inherit;
       cursor: pointer;
-      font-weight: 600;
-      transition: opacity 0.15s;
-    }
-    .summary-btn:hover { opacity: 0.85; }
-    .summary-btn:disabled { opacity: 0.5; cursor: default; }
-
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.4);
-      z-index: 500;
+      font-weight: 700;
+      display: flex;
       align-items: center;
       justify-content: center;
+      gap: 6px;
+      transition: opacity 0.15s;
     }
-    .modal-overlay.open { display: flex; }
-    .modal {
-      background: var(--bg);
-      border: 1px solid var(--divider);
-      border-radius: 16px;
-      padding: 32px;
-      max-width: 520px;
-      width: 90%;
-      position: relative;
-    }
-    .modal h2 {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 16px;
-      color: var(--text);
-    }
-    .modal p {
-      font-size: 15px;
-      line-height: 1.7;
-      color: var(--text-2);
-    }
-    .modal-close {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      background: none;
-      border: none;
-      font-size: 20px;
-      cursor: pointer;
-      color: var(--muted);
-      line-height: 1;
-    }
+    .contact-btn:hover { opacity: 0.85; }
 
+    .summary-btn {
+      width: 100%;
+      margin-top: 8px;
+      padding: 8px 12px;
+      background: transparent;
+      color: var(--text-2);
+      border: 1px solid var(--sidebar-border);
+      border-radius: 8px;
+      font-size: 12.5px;
+      font-family: inherit;
+      cursor: pointer;
+      font-weight: 600;
+      transition: opacity 0.15s, background 0.15s;
+    }
+    .summary-btn:hover { background: var(--hover-bg); }
     /* ═══ CONTENT ═══ */
     .content {
       flex: 1;
@@ -327,21 +317,26 @@
       margin: 24px 0 10px;
     }
 
-    .case-title {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--text);
-      margin: 40px 0 2px;
-      letter-spacing: -0.01em;
-    }
-    .case-title:first-of-type { margin-top: 32px; }
-    .case-company {
-      font-size: 15px;
+    /* CTA buttons */
+    .cta-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 14px;
       font-weight: 600;
-      color: var(--accent);
-      margin: 24px 0 14px;
+      font-family: inherit;
+      cursor: pointer;
+      text-decoration: none;
+      border: none;
+      transition: opacity 0.15s, background 0.15s;
     }
-    .case-company:first-of-type { margin-top: 0; }
+    .cta-btn.primary { background: var(--accent); color: #fff; }
+    .cta-btn.primary:hover { opacity: 0.85; }
+    .cta-btn.secondary { background: transparent; color: var(--text); border: 1px solid var(--sidebar-border); }
+    .cta-btn.secondary:hover { background: var(--hover-bg); }
 
     .case-gallery {
       display: flex;
@@ -367,6 +362,69 @@
       color: var(--muted);
       margin-bottom: 18px;
     }
+    .evidence-block {
+      border: 1px solid var(--divider);
+      border-radius: 12px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    .evidence-block summary {
+      cursor: pointer;
+      padding: 14px 18px;
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--text);
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--sidebar-bg);
+    }
+    .evidence-block summary::-webkit-details-marker { display: none; }
+    .evidence-block summary::after {
+      content: '+';
+      font-size: 18px;
+      color: var(--muted);
+      font-weight: 400;
+    }
+    .evidence-block[open] summary::after { content: '−'; }
+    .evidence-block summary .ev-sub { font-size: 12.5px; font-weight: 400; color: var(--muted); margin-left: 8px; }
+    .evidence-body { padding: 18px; }
+    .evidence-body p:last-child, .evidence-body ul:last-child, .evidence-body .tag-row:last-child { margin-bottom: 0; }
+
+    /* Challenge / Solution / Result compact cards */
+    .pdr-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--divider);
+      border: 1px solid var(--divider);
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 4px 0 22px;
+    }
+    .pdr-card { background: var(--bg); padding: 14px 16px; }
+    .pdr-label {
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .pdr-text { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+    @media (max-width: 680px) {
+      .pdr-grid { grid-template-columns: 1fr; }
+    }
+
+    .case-summary {
+      font-size: 17px;
+      color: var(--text-2);
+      line-height: 1.5;
+      margin: -8px 0 18px;
+    }
+    .tools-line { font-size: 13px; color: var(--muted); }
+    .tools-line strong { color: var(--text-2); font-weight: 600; }
 
     /* Stats */
     .stats-grid {
@@ -552,11 +610,9 @@
 
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
 
-      .modal { padding: 24px 20px; width: 95%; }
-      .modal h2 { font-size: 16px; }
-      .modal p { font-size: 14px; }
-
       .summary-btn { font-size: 12px; padding: 8px 10px; }
+      .cta-row { flex-direction: column; }
+      .cta-btn { width: 100%; justify-content: center; }
     }
   </style>
 </head>
@@ -571,11 +627,12 @@
   <aside class="sidebar">
     <div class="notes-list" id="notes-list"></div>
     <div class="sidebar-footer">
+      <button class="contact-btn" onclick="goToContact()"><span class="btn-ic" id="mail-icon"></span> Work with me</button>
+      <button class="summary-btn" onclick="window.open('https://drive.google.com/file/d/1_TjSHfcXwo3ejxj6izr3JIF8KAB9BHVe/view?usp=sharing','_blank','noopener')">⬇ Download CV</button>
       <button class="dark-btn" id="dark-btn" onclick="toggleDark()">
-        <span id="dark-icon">🌙</span>
+        <span class="btn-ic" id="dark-icon"></span>
         <span id="dark-label">Dark</span>
       </button>
-      <button class="summary-btn" id="summary-btn" onclick="getSummary()">✦ Quick Summary</button>
     </div>
   </aside>
 
@@ -589,391 +646,465 @@
 
 </div>
 
-<!-- Modal -->
-<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
-  <div class="modal">
-    <button class="modal-close" onclick="document.getElementById('modal-overlay').classList.remove('open')">×</button>
-    <h2>✦ Quick Summary</h2>
-    <p id="modal-text">Generating…</p>
-  </div>
-</div>
-
 <script>
+// ═══ ICONS ═══
+const ICONS = {
+  profile: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.25"/><path d="M5.75 19c.7-4 2.85-6 6.25-6s5.55 2 6.25 6"/></svg>',
+  aiOrbit: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2.25"/><path d="M4.35 8.1c2-3.35 5.75-4.9 9.25-3.8 3.45 1.05 5.85 4.45 5.65 8.05-.2 3.65-2.95 6.75-6.55 7.35"/><path d="M19.65 15.9c-2 3.35-5.75 4.9-9.25 3.8-3.45-1.05-5.85-4.45-5.65-8.05.2-3.65 2.95-6.75 6.55-7.35"/><circle cx="4.6" cy="8" r="1"/><circle cx="19.4" cy="16" r="1"/></svg>',
+  templates: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.75" y="4.25" width="7.25" height="6.5" rx="1.5"/><rect x="13" y="4.25" width="7.25" height="6.5" rx="1.5"/><rect x="3.75" y="13.25" width="7.25" height="6.5" rx="1.5"/><path d="M16.6 13.5v6M13.6 16.5h6"/></svg>',
+  health: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.2-7-10.1A3.9 3.9 0 0 1 12 7.5a3.9 3.9 0 0 1 7 2.4C19 15.8 12 20 12 20Z"/><path d="M8.5 12h2l1-2.2 1.5 4.4 1-2.2h1.5"/></svg>',
+  growth: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 18.5V14M10 18.5v-8M15 18.5V7M20 18.5V3.5"/><path d="m4.5 9 5-4 4 2 6-5"/></svg>',
+  fintech: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="6" width="17" height="12.5" rx="2.5"/><path d="M3.5 10h17M7 14.25h3M16.75 14.25h.5"/></svg>',
+  media: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="m10 9 5 3-5 3Z"/></svg>',
+  partnerships: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m9.25 8.25 2-2a4 4 0 0 1 5.65 5.65l-2 2M14.75 15.75l-2 2a4 4 0 0 1-5.65-5.65l2-2M8.75 15.25l6.5-6.5"/></svg>',
+  community: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9" r="2.5"/><circle cx="16.5" cy="10" r="2"/><path d="M4.5 19c.45-3.35 1.95-5 4.5-5s4.05 1.65 4.5 5M14 15c2.8-.65 4.65.7 5.25 3.5"/></svg>',
+  education: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 9 8.5-4 8.5 4-8.5 4Z"/><path d="M6.5 10.5v4.25c3.2 2.25 7.8 2.25 11 0V10.5M20.5 9v6"/></svg>',
+  skills: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5v3M12 17.5v3M3.5 12h3M17.5 12h3M6 6l2.1 2.1M15.9 15.9 18 18M18 6l-2.1 2.1M8.1 15.9 6 18"/><circle cx="12" cy="12" r="3.25"/></svg>',
+  search: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.75" cy="10.75" r="6.25"/><path d="m15.5 15.5 4.25 4.25"/></svg>',
+  summary: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 1.35 4.15L17.5 8.5l-4.15 1.35L12 14l-1.35-4.15L6.5 8.5l4.15-1.35Z"/><path d="m18.25 14.5.75 2.25 2.25.75-2.25.75-.75 2.25-.75-2.25-2.25-.75 2.25-.75Z"/></svg>',
+  contact: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="14" rx="2.5"/><path d="m5 7 7 5 7-5"/></svg>',
+  pin: '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v6M6 8h8l1 3H5l1-3z"/><path d="M10 11v7"/></svg>',
+  moon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M19.25 15.6A8 8 0 0 1 8.4 4.75 8 8 0 1 0 19.25 15.6Z"/></svg>',
+  sun: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.5"/><path d="M12 2.75v2M12 19.25v2M2.75 12h2M19.25 12h2M5.45 5.45l1.4 1.4M17.15 17.15l1.4 1.4M18.55 5.45l-1.4 1.4M6.85 17.15l-1.4 1.4"/></svg>'
+};
+
 // ═══ DATA ═══
 const notes = [
   {
     id: 'about', pinned: true,
-    emoji: '🙋‍♀️', title: 'About Me',
-    date: 'Mar 2026', folder: 'Notes',
-    preview: "Curious by nature. Started earning early…",
-    header: 'March 2026',
+    icon: 'profile', title: 'About',
+    date: 'Updated Jul 2026', folder: 'Notes',
+    preview: "AI product marketing & growth systems",
+    header: 'Updated July 2026',
     render: () => `
-      <h1>About Me</h1>
-      <p><strong>Hi, I'm Kristina. I build AI-native product marketing and growth systems.</strong></p>
+      <h1>About</h1>
+      <p><strong>Hi, I'm Kristina. I turn customer intelligence into AI products, positioning and scalable growth systems.</strong></p>
+      <p>I work with early-stage B2B SaaS and AI companies across product discovery, go-to-market experimentation, GEO and workflow automation.</p>
+
+      <h2 class="case-h2">Selected Outcomes</h2>
       <div class="stats-grid">
         <div class="stat">
           <div class="stat-num">$15 → $3</div>
-          <div class="stat-lbl">Cost per lead — <a href="#" onclick="selectNote('case-cogniagent');return false;" style="color:var(--accent)">CogniAgent</a></div>
+          <div class="stat-lbl">Cost per lead — <a href="#case-cogniagent" style="color:var(--accent)">CogniAgent</a></div>
         </div>
         <div class="stat">
           <div class="stat-num">90%</div>
-          <div class="stat-lbl">Workflows automated — <a href="#" onclick="selectNote('case-cogniagent');return false;" style="color:var(--accent)">CogniAgent</a></div>
+          <div class="stat-lbl">Workflows automated — <a href="#case-cogniagent" style="color:var(--accent)">CogniAgent</a></div>
         </div>
         <div class="stat">
           <div class="stat-num">+80%</div>
-          <div class="stat-lbl">Content production capacity — <a href="#" onclick="selectNote('case-cogniagent');return false;" style="color:var(--accent)">CogniAgent</a></div>
+          <div class="stat-lbl">Content production capacity — <a href="#case-cogniagent" style="color:var(--accent)">CogniAgent</a></div>
         </div>
         <div class="stat">
           <div class="stat-num">+130K</div>
-          <div class="stat-lbl">Social followers added — <a href="#" onclick="selectNote('case-bitcoin');return false;" style="color:var(--accent)">Bitcoin Magazine</a></div>
+          <div class="stat-lbl">Social followers added — <a href="#case-bitcoin" style="color:var(--accent)">Bitcoin Magazine</a></div>
         </div>
       </div>
-      <p>Check my CV <a href="https://drive.google.com/file/d/1_TjSHfcXwo3ejxj6izr3JIF8KAB9BHVe/view?usp=sharing" target="_blank" rel="noopener" style="color:var(--accent)">here</a>.</p>
-      <hr>
-      <p>I help early-stage B2B SaaS and AI companies turn customer intelligence into product decisions, positioning, and scalable go-to-market execution.</p>
-      <p>My work connects customer research, product discovery, generative engine optimization (GEO), content systems, and automation — helping founders learn faster, make better decisions, and scale execution without scaling repetitive work.</p>
+
       <h2 class="case-h2">What I Build</h2>
       <ul>
-        <li>Customer intelligence systems combining Reddit research, competitor analysis, user interviews, and customer feedback</li>
-        <li>Product discovery workflows that turn customer pain points into product capabilities, AI agents, and GTM hypotheses</li>
-        <li>GEO systems that improve discoverability and citations across AI answer engines</li>
-        <li>AI-powered operating systems for research, content production, and internal workflows</li>
-        <li>Founder-led growth experiments that validate positioning, distribution, and audience demand</li>
+        <li>Customer intelligence and product-discovery systems</li>
+        <li>AI-agent products and workflow prototypes</li>
+        <li>Positioning, GEO and go-to-market experiments</li>
+        <li>Automated research and content operations</li>
       </ul>
+
+      <p>Explore the cases to see the product decisions, systems and outcomes behind the work.</p>
+
+      <div class="cta-row">
+        <a href="#case-cogniagent" class="cta-btn primary">View Selected Work</a>
+        <a href="https://drive.google.com/file/d/1_TjSHfcXwo3ejxj6izr3JIF8KAB9BHVe/view?usp=sharing" target="_blank" rel="noopener" class="cta-btn secondary">Download CV</a>
+      </div>
+
       <hr>
-      <p>Explore the case studies to see the systems, decisions, and measurable outcomes behind the work.</p>
-      <hr>
-      <h1>Contact</h1>
-      <div class="contact-row">
-        <div class="contact-lbl">Email</div>
-        <div class="contact-val"><a href="mailto:tina.vislianska@gmail.com">tina.vislianska@gmail.com</a></div>
-      </div>
-      <div class="contact-row">
-        <div class="contact-lbl">LinkedIn</div>
-        <div class="contact-val"><a href="https://www.linkedin.com/in/kristinavislianska" target="_blank" rel="noopener">linkedin.com/in/kristinavislianska</a></div>
-      </div>
-      <div class="contact-row">
-        <div class="contact-lbl">Location</div>
-        <div class="contact-val">Lisbon, Portugal</div>
-      </div>
+      <h2 id="contact">Contact</h2>
+      <p>Based in Lisbon, Portugal</p>
+      <p><a href="mailto:tina.vislianska@gmail.com" style="color:var(--accent)">Email</a> · <a href="https://www.linkedin.com/in/kristinavislianska" target="_blank" rel="noopener" style="color:var(--accent)">LinkedIn</a></p>
     `
   },
 
   // ── Cases ──
   {
-    id: 'case-cogniagent', group: 'cases',
-    emoji: '🤖', title: 'CogniAgent',
+    id: 'case-cogniagent', group: 'cases', subgroup: 'selected',
+    icon: 'aiOrbit', title: 'CogniAgent',
     date: '2025–Present', folder: 'Cases',
-    preview: '$15→$3 CPL · 90% automated',
+    preview: 'AI product, intelligence and automation systems',
     header: 'CogniAgent',
     render: () => `
       <h1>CogniAgent</h1>
+      <p class="case-summary">Building the product intelligence and growth systems for an early-stage AI automation platform.</p>
       <div class="job-role">Founding AI Growth Systems Lead</div>
-      <div class="job-meta">2025 – Present</div>
-      <p>From zero to a working growth engine, I built the customer intelligence, content, and documentation systems that let a founding-stage AI automation platform understand its users, make user-oriented product decisions, and scale content production without scaling headcount.</p>
-      <h2 class="case-h2">The Challenge</h2>
-      <p>As a founding-stage company, CogniAgent had no established systems for understanding its customers, translating product capability into user-facing content, or feeding customer insight back into product and design decisions. Everything needed to be built from scratch.</p>
-      <h2 class="case-h2">My Ownership</h2>
-      <p>I designed and built the customer intelligence, agentic workflow, and content automation systems described below — end to end, as the first and only growth systems hire.</p>
-      <h2 class="case-h2">What I Built</h2>
-      <ul>
-        <li>Built a continuous customer intelligence system combining Reddit research, competitor monitoring, interviews, and feedback to inform product, UX, and GTM decisions</li>
-      </ul>
-      <h2 class="case-h2">Outcomes</h2>
-      <ul>
-        <li>Reduced cost per lead from $15 to $3 through intelligence-led creative strategy and customer pain-point analysis</li>
-        <li>Automated 90% of repetitive internal workflows and increased content production capacity by 80% using agentic systems, Claude Code, and Remotion</li>
-      </ul>
-      <h2 class="case-h2">Evidence: Three Systems I Built</h2>
+      <div class="job-meta">Founding-stage AI SaaS · Full-time · 2025 – Present</div>
 
-      <div class="case-title">1. Agentic Workflow Systems &amp; AI Orchestration</div>
       <div class="case-gallery">
         <img src="images/cognagent-1.png" alt="Agentic systems built at CogniAgent for various tasks and solutions">
       </div>
-      <p>Designed and built plug and play agentic systems from scratch across multiple verticals, combining AI reasoning, workflow automation, human approvals, and business software into autonomous operational systems.</p>
-      <h2 class="case-h2">What I Built</h2>
-      <ul>
-        <li>Designed end-to-end multi-agent architectures for sales, support, operations, hiring, and customer success</li>
-        <li>Built agent orchestration logic with routing, escalation, memory, and human-in-the-loop workflows</li>
-        <li>Developed systems capable of long-running conversations, follow-ups, approvals, and multi-step decision making</li>
-        <li>Implemented integrations with CRMs, communication channels, ticketing systems, calendars, payment systems, and internal tools</li>
-        <li>Connected agents to external systems through APIs, webhooks, and Model Context Protocol (MCP) servers, enabling dynamic tool use and real-time data access</li>
-        <li>Built reusable workflow templates for lead qualification, support triage, dispatching, recruiting, onboarding, review generation, cart recovery, and customer retention</li>
-        <li>Designed retrieval pipelines combining knowledge bases, CRM data, and external tools to power context-aware decision making</li>
-      </ul>
-      <h2 class="case-h2">Technologies &amp; Systems</h2>
-      <div class="tag-row">
-        <span class="tag">MCP</span>
-        <span class="tag">Multi-Agent Systems</span><span class="tag">API</span>
-        <span class="tag">Webhooks</span><span class="tag">CRM Integrations</span>
-        <span class="tag">Human-in-the-Loop</span>
-        <span class="tag">AI Memory</span><span class="tag">LLM Routing</span>
+
+      <div class="pdr-grid">
+        <div class="pdr-card">
+          <div class="pdr-label">Challenge</div>
+          <div class="pdr-text">No repeatable way to understand customers or turn capabilities into content</div>
+        </div>
+        <div class="pdr-card">
+          <div class="pdr-label">Solution</div>
+          <div class="pdr-text">Customer intelligence, agent templates, and automated content as one system</div>
+        </div>
+        <div class="pdr-card">
+          <div class="pdr-label">Result</div>
+          <div class="pdr-text">$15 → $3 CPL, 90% workflows automated, +80% content capacity</div>
+        </div>
       </div>
-      <div class="case-title">2. AI Content Automation Pipeline</div>
-      <div class="case-gallery">
-        <img src="images/cognagent-2.png" alt="From building agents to YouTube videos — content creation with CogniAgent">
-      </div>
-      <p>Built an end-to-end AI content system that transformed product development work into scalable educational content and automated video production.</p>
-      <h2 class="case-h2">What I Built</h2>
-      <ul>
-        <li>Created a reusable content pipeline that converted agent builds into documentation, guides, and video tutorials</li>
-        <li>Built a system to transform product guides into YouTube scripts, visuals, and tutorials using AI</li>
-        <li>Automated video production using Claude for script generation and Remotion for programmatic video rendering</li>
-        <li>Developed repeatable templates for tutorials, product explainers, feature launches, and workflow walkthroughs</li>
-        <li>Standardized visual components, animations, and layouts to enable scalable video production with minimal manual work</li>
-        <li>Created an AI-assisted content workflow covering ideation, scripting, rendering, and publishing</li>
-      </ul>
-      <h2 class="case-h2">Technologies</h2>
-      <div class="tag-row">
-        <span class="tag">Claude</span><span class="tag">Remotion</span>
-        <span class="tag">AI Video Generation</span><span class="tag">Content Automation</span>
-        <span class="tag">Programmatic Video Production</span><span class="tag">Workflow Automation</span>
-      </div>
-      <div class="case-title">3. AI Market Intelligence &amp; Vertical Research System</div>
-      <div class="case-gallery">
-        <img src="images/cognagent-3.png" alt="AI market intelligence and vertical research system built at CogniAgent">
-      </div>
-      <p>Conducted large-scale research and competitive analysis across multiple service verticals to identify where AI agents could deliver the highest business impact and where CogniAgent had defensible product advantages.</p>
-      <h2 class="case-h2">What I Built</h2>
-      <ul>
-        <li>Researched multiple verticals including HVAC, Cleaning, Security, Restaurants, Auto Repair, and others</li>
-        <li>Mapped the target customer profiles (ICP), including company size, revenue range, team size, and existing software stack</li>
-        <li>Identified the core integrations used in each vertical, including platforms such as ServiceTitan, Jobber, HouseCall Pro, Twilio, QuickBooks, Google Business Profile, Stripe, Salesforce, HubSpot, Toast, OpenTable, and many others</li>
-        <li>Built a pain-point database sourced from large-scale scraping and research, prioritizing problems by business impact and urgency signals</li>
-        <li>Built a library of AI workflow templates aligned to these pain points</li>
-        <li>Built an integration map showing which external systems each workflow depended on</li>
-        <li>Created a competitor registry tracking positioning, feature coverage, threat level, and differentiation for each competitor</li>
-        <li>Developed a coverage matrix comparing CogniAgent capabilities against competitors across every workflow category</li>
-        <li>Identified exclusive opportunities and whitespace areas where competitors had limited or no coverage</li>
-      </ul>
-      <h2 class="case-h2">Research Outputs</h2>
-      <div class="tag-row">
-        <span class="tag">Vertical overview and ICP mapping</span>
-        <span class="tag">Pain-point prioritization framework</span>
-        <span class="tag">Integration ecosystem mapping</span>
-        <span class="tag">Competitor registry</span>
-        <span class="tag">Feature coverage matrix</span>
-        <span class="tag">Product positioning analysis</span>
-        <span class="tag">Gap analysis and opportunity identification</span>
-      </div>
-      <h2 class="case-h2">Outcomes</h2>
-      <p>Created a repeatable research framework that connected: customer pain points → required integrations → workflow opportunities → competitive positioning → product strategy.</p>
+
+      <p><strong>Selected Product Work</strong> — the AI agent systems, AI content machine, and market-intelligence system behind these results.</p>
+
+      <details class="evidence-block">
+        <summary>AI Agent Systems <span class="ev-sub">Orchestration &amp; integrations</span></summary>
+        <div class="evidence-body">
+          <ul>
+            <li>Multi-agent architectures for sales, support, operations, hiring, and customer success</li>
+            <li>Agent orchestration logic: routing, escalation, memory, and human-in-the-loop approvals</li>
+            <li>Long-running conversations, follow-ups, and multi-step decision making</li>
+            <li>Integrations with CRMs, ticketing, calendars, and payment systems via APIs, webhooks, and MCP servers</li>
+          </ul>
+          <p class="tools-line"><strong>MCP · Multi-Agent Systems · APIs · Webhooks · CRM Integrations</strong></p>
+          <div class="case-gallery">
+            <img src="images/cognagent-1.png" alt="Agentic systems built at CogniAgent for various tasks and solutions">
+          </div>
+        </div>
+      </details>
+
+      <details class="evidence-block">
+        <summary>AI Content Machine <span class="ev-sub">Templates, tutorials &amp; content pipeline</span></summary>
+        <div class="evidence-body">
+          <ul>
+            <li>Reusable AI-agent templates for lead qualification, support triage, dispatching, recruiting, onboarding, review generation, cart recovery, and customer retention</li>
+            <li>Tutorials, onboarding materials, and product documentation tailored to specific audience segments</li>
+            <li>Secondary: an automated content pipeline using Claude Code for scripts and Remotion for programmatic video, turning each template into a public tutorial</li>
+          </ul>
+          <p class="tools-line"><strong>Claude Code · Remotion</strong></p>
+          <div class="case-gallery">
+            <img src="images/cognagent-2.png" alt="From building agents to YouTube videos — content creation with CogniAgent">
+          </div>
+        </div>
+      </details>
+
+      <details class="evidence-block">
+        <summary>Market Intelligence System <span class="ev-sub">Vertical &amp; competitor research</span></summary>
+        <div class="evidence-body">
+          <ul>
+            <li>Researched multiple verticals — HVAC, cleaning, security, restaurants, auto repair, and others</li>
+            <li>Mapped ICPs: company size, revenue range, team size, and existing software stack</li>
+            <li>Identified core integrations per vertical (ServiceTitan, Jobber, HouseCall Pro, Twilio, QuickBooks, Stripe, Salesforce, HubSpot, and others)</li>
+            <li>Built a pain-point database prioritized by business impact and urgency</li>
+            <li>Competitor registry and coverage matrix comparing CogniAgent against competitors</li>
+            <li>Identified exclusive opportunities and whitespace where competitors had limited coverage</li>
+          </ul>
+          <div class="tag-row">
+            <span class="tag">Vertical &amp; ICP mapping</span><span class="tag">Pain-point framework</span>
+            <span class="tag">Integration mapping</span><span class="tag">Competitor registry</span>
+            <span class="tag">Coverage matrix</span><span class="tag">Positioning analysis</span>
+          </div>
+          <p>Result: a repeatable research framework connecting pain points → integrations → workflow opportunities → competitive positioning → product strategy.</p>
+          <div class="case-gallery">
+            <img src="images/cognagent-3.png" alt="AI market intelligence and vertical research system built at CogniAgent">
+          </div>
+        </div>
+      </details>
     `
   },
   {
-    id: 'case-nikohealth', group: 'cases',
-    emoji: '🩺', title: 'Glorium Technologies',
+    id: 'case-nikohealth', group: 'cases', subgroup: 'selected',
+    icon: 'health', title: 'Glorium Technologies',
     date: '2025–Present', folder: 'Cases',
-    preview: 'GEO for US Healthcare B2B SaaS',
+    preview: 'GEO strategy for healthcare SaaS',
     header: 'Glorium Technologies',
     render: () => `
       <h1>Glorium Technologies</h1>
-      <div class="job-role">AI Search &amp; Intelligence Strategist · Glorium Technologies | NikoHealth — US Healthcare B2B SaaS</div>
-      <div class="job-meta">December 2025 – Present</div>
-      <p>Built and operated a full generative engine optimization (GEO) system designed to increase visibility inside AI search products and large language models for a niche healthcare SaaS company operating in the DME/HME market.</p>
+      <p class="case-summary">A GEO system built to earn AI citations for a niche healthcare B2B SaaS company.</p>
+      <div class="job-role">AI Search &amp; Intelligence Strategist · Glorium Technologies | NikoHealth</div>
+      <div class="job-meta">US healthcare B2B SaaS · Full-time · December 2025 – Present</div>
+
       <div class="case-gallery">
         <img src="images/nikohealth-geo.png" alt="NikoHealth GEO system — Reddit monitoring, automated reports, LinkedIn authority, AI crawler audit, and LLM citations">
       </div>
-      <h2 class="case-h2">What I Built</h2>
-      <ul>
-        <li>Designed a Reddit-based citation engine focused on the discussions and communities most likely to be surfaced by LLMs during healthcare software research</li>
-        <li>Built and managed a LinkedIn content system targeting healthcare operators, billers, and DME executives to create additional authoritative content sources</li>
-        <li>Conducted a technical AI crawler audit to improve discoverability and indexing by AI retrieval systems and answer engines</li>
-        <li>Mapped high-intent queries across the DME/HME space and aligned content production with LLM retrieval patterns</li>
-        <li>Identified communities, topics, and discussion formats that were repeatedly cited by ChatGPT, Perplexity, and other answer engines</li>
-        <li>Created workflows for turning customer pain points and product expertise into content optimized for AI retrieval rather than traditional SEO rankings</li>
-        <li>Monitored AI search visibility and citation frequency across answer engines</li>
-      </ul>
 
-      <div class="case-title">GEO Components</div>
-
-      <div class="case-company">1. Reddit Citation Engine</div>
-      <ul>
-        <li>Targeted high-value healthcare IT, medical billing, and DME communities</li>
-        <li>Created content designed to generate long-tail citations in LLM responses</li>
-        <li>Focused on discussion formats that consistently appear in AI-generated answers</li>
-      </ul>
-
-      <div class="case-company">2. LinkedIn Authority Layer</div>
-      <p>Produced expert content around:</p>
-      <div class="tag-row">
-        <span class="tag">Medicare billing</span><span class="tag">DME documentation</span>
-        <span class="tag">Prior authorization</span><span class="tag">Revenue cycle challenges</span>
-        <span class="tag">HME operational workflows</span>
+      <div class="pdr-grid">
+        <div class="pdr-card">
+          <div class="pdr-label">Challenge</div>
+          <div class="pdr-text">Zero visibility inside AI answer engines for a niche healthcare SaaS</div>
+        </div>
+        <div class="pdr-card">
+          <div class="pdr-label">Solution</div>
+          <div class="pdr-text">GEO system spanning Reddit, LinkedIn, and technical infrastructure</div>
+        </div>
+        <div class="pdr-card">
+          <div class="pdr-label">Result</div>
+          <div class="pdr-text">Recurring monthly citations in ChatGPT and Perplexity</div>
+        </div>
       </div>
 
-      <div class="case-company">3. Technical GEO Infrastructure</div>
-      <div class="tag-row">
-        <span class="tag">AI crawler audit</span><span class="tag">Content accessibility review</span>
-        <span class="tag">JSON Schema</span><span class="tag">Retrieval optimization for answer engines</span>
-      </div>
+      <p class="tools-line"><strong>Tools</strong> — Reddit · LinkedIn · AI Crawler Audit Tooling</p>
 
-      <h2 class="case-h2">Outcomes</h2>
-      <ul>
-        <li>Achieved recurring monthly citations in ChatGPT and Perplexity responses</li>
-        <li>Generated 1,000+ impressions per targeted Reddit post</li>
-      </ul>
+      <details class="evidence-block">
+        <summary>View Detailed Process <span class="ev-sub">Challenge, decisions &amp; build</span></summary>
+        <div class="evidence-body">
+          <p>NikoHealth had zero visibility inside AI answer engines. Traditional SEO didn't translate to citations in ChatGPT or Perplexity, and there was no existing system to earn discovery inside AI search for a specialized healthcare niche.</p>
+          <ul>
+            <li>Reddit citation engine targeting healthcare IT, billing, and DME communities</li>
+            <li>LinkedIn authority content on Medicare billing, prior authorization, and revenue cycle topics</li>
+            <li>Technical AI crawler audit and content accessibility review</li>
+            <li>Query mapping across the DME/HME space aligned to LLM retrieval patterns</li>
+          </ul>
+          <p><strong>Key decisions:</strong></p>
+          <ul>
+            <li>Prioritized discussion formats that consistently appear in AI-generated answers over generic SEO content</li>
+            <li>Built LinkedIn authority content around the exact billing and compliance topics buyers search</li>
+            <li>Ran a technical audit before scaling content, to fix discoverability at the source</li>
+          </ul>
+          <p>1,000+ impressions per targeted Reddit post, alongside recurring citations.</p>
+        </div>
+      </details>
     `
   },
   {
-    id: 'case-principle', group: 'cases',
-    emoji: '🚀', title: 'Future Principle',
+    id: 'case-principle', group: 'cases', subgroup: 'selected',
+    icon: 'growth', title: 'Future Principle',
     date: 'Jan–Apr 2025', folder: 'Cases',
-    preview: 'Growth Systems Advisor',
+    preview: 'Product-led growth experiments',
     header: 'Future Principle',
     render: () => `
       <h1>Future Principle</h1>
+      <p class="case-summary">A founder-led growth experimentation system for an early-stage startup testing distribution and audience growth.</p>
       <div class="job-role">Growth Systems Advisor</div>
-      <div class="job-meta">January 2025 – April 2025 · Project</div>
-      <p>Short-term advisory engagement to help an early-stage startup validate distribution and audience growth through founder-led experimentation.</p>
-      <h2 class="case-h2">The Challenge</h2>
-      <p>The founder needed a repeatable way to test distribution channels and grow an audience without an existing marketing function.</p>
-      <h2 class="case-h2">What I Built</h2>
-      <ul>
-        <li>Built founder-led experimentation systems for early-stage startups</li>
-      </ul>
-      <h2 class="case-h2">Outcomes</h2>
-      <ul>
-        <li>Grew a LinkedIn newsletter to 780 subscribers in its first month</li>
-      </ul>
+      <div class="job-meta">Early-stage startup · Project · January 2025 – April 2025</div>
+
+      <div class="pdr-grid">
+        <div class="pdr-card">
+          <div class="pdr-label">Challenge</div>
+          <div class="pdr-text">No repeatable way to test distribution or grow an audience</div>
+        </div>
+        <div class="pdr-card">
+          <div class="pdr-label">Solution</div>
+          <div class="pdr-text">Founder-led experimentation system, launched on LinkedIn</div>
+        </div>
+        <div class="pdr-card">
+          <div class="pdr-label">Result</div>
+          <div class="pdr-text">LinkedIn newsletter to 780 subscribers in month one</div>
+        </div>
+      </div>
+
+      <details class="evidence-block">
+        <summary>View Detailed Process <span class="ev-sub">Challenge, decisions &amp; build</span></summary>
+        <div class="evidence-body">
+          <p>The founder had no repeatable way to test distribution channels or grow an audience, and no existing marketing function to build on.</p>
+          <ul>
+            <li>Founder-led experimentation system for testing distribution channels</li>
+            <li>LinkedIn newsletter launched and grown from zero</li>
+          </ul>
+          <p><strong>Key decision:</strong> focused the first experiment on a single channel — LinkedIn — instead of spreading across platforms.</p>
+        </div>
+      </details>
     `
   },
   {
-    id: 'case-whitebit', group: 'cases',
-    emoji: '💰', title: 'WhiteBIT',
+    id: 'case-whitebit', group: 'cases', subgroup: 'previous',
+    icon: 'fintech', title: 'WhiteBIT',
     date: 'Jul 2022–Mar 2023', folder: 'Cases',
-    preview: 'FinTech · Crypto Exchange',
+    preview: 'Fintech growth and market expansion',
     header: 'WhiteBIT',
     render: () => `
       <h1><a href="https://whitebit.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">WhiteBIT</a></h1>
+      <p class="case-summary">A brand communications platform rebuild for one of Europe's largest crypto exchanges.</p>
       <div class="job-role">Lead Content Marketer, Brand Communications</div>
-      <div class="job-meta">July 2022 – March 2023 · Europe</div>
-      <p>From brand communication platform to partnerships and growth campaigns, I helped shape how WhiteBIT communicated with millions of users across Europe during one of the most dynamic periods in crypto.</p>
+      <div class="job-meta">Established crypto exchange, Europe · Full-time · July 2022 – March 2023</div>
+
       <div class="case-gallery">
         <img src="images/whitebitcase1.png" alt="WhiteBIT partnership campaign — 360° campaign development">
-        <img src="images/dreamhack.png" alt="WhiteBIT x DreamHack event campaign">
-        <img src="images/whitebitcase3.png" alt="WhiteBIT slogan development — naming and campaigns">
-        <img src="images/whitebitcase4.png" alt="WhiteBIT DreamHack event campaign development">
-        <img src="images/activity.png" alt="WhiteBIT community gamification system">
       </div>
-      <h2 class="case-h2">The Challenge</h2>
-      <p>WhiteBIT was evolving rapidly as both a product and a brand. Its existing communication platform no longer reflected the company's maturity, making it harder to reinforce its position as a market leader.</p>
-      <h2 class="case-h2">What I Built</h2>
-      <ul>
-        <li>Developed a new brand communication platform and led the creative direction of its visual identity</li>
-        <li>Aligned cross-functional teams across SMM, SEO, PR, email, and content around the new tone of voice and communication strategy</li>
-        <li>Supported partnership launches and brand activations from concept to execution</li>
-        <li>Introduced a mascot-driven communication style that increased community participation and UGC creation</li>
-      </ul>
-      <h2 class="case-h2">Outcomes</h2>
-      <ul>
-        <li>Contributed to the brand transformation recognized with a <a href="https://www.red-dot.org/project/whitebit-crypto-currency-exchange-66027" target="_blank" rel="noopener" style="color:var(--accent)">2023 Red Dot Award</a> for Brand &amp; Communication Design</li>
-        <li>Increased community engagement by 50% through a gamified onboarding experience</li>
-        <li>Improved email performance with a 25% increase in open rates and a 20% reduction in unsubscribes</li>
-        <li>Built a communication platform that tripled user-generated content and drove a 40% uplift in social engagement</li>
-        <li>Designed event activations that generated organic social distribution and earned brand visibility through attendee-created content</li>
-        <li>Partnered with influencers across TikTok, Instagram, and YouTube to create platform-native content and branded activations that drove higher engagement and improved conversion performance</li>
-      </ul>
+
+      <div class="pdr-grid">
+        <div class="pdr-card">
+          <div class="pdr-label">Challenge</div>
+          <div class="pdr-text">Brand platform no longer matched the company's market-leader maturity</div>
+        </div>
+        <div class="pdr-card">
+          <div class="pdr-label">Solution</div>
+          <div class="pdr-text">Rebuilt brand communications with a mascot-driven content strategy</div>
+        </div>
+        <div class="pdr-card">
+          <div class="pdr-label">Result</div>
+          <div class="pdr-text">Red Dot Award contribution, 50% community growth, 3× UGC</div>
+        </div>
+      </div>
+
+      <details class="evidence-block">
+        <summary>View Detailed Process <span class="ev-sub">Challenge, decisions &amp; evidence</span></summary>
+        <div class="evidence-body">
+          <p>WhiteBIT's brand communications no longer reflected its growing market-leader status. There was no unified platform connecting SMM, SEO, PR, email, and content — making it harder to reinforce its position as Europe's largest crypto exchange.</p>
+          <ul>
+            <li>New brand communication platform with a unified visual identity</li>
+            <li>Mascot-driven content strategy to drive community participation and UGC</li>
+            <li>Gamified onboarding experience</li>
+            <li>Influencer partnerships across TikTok, Instagram, and YouTube</li>
+          </ul>
+          <p><strong>Key decisions:</strong></p>
+          <ul>
+            <li>Made the mascot central to onboarding, not just decoration, to drive opt-in participation</li>
+            <li>Aligned SMM, SEO, PR, email, and content under one tone of voice instead of siloed channels</li>
+            <li>Chose platform-native influencer content over traditional ad placements</li>
+          </ul>
+          <p>Contributed to the brand transformation recognized with a <a href="https://www.red-dot.org/project/whitebit-crypto-currency-exchange-66027" target="_blank" rel="noopener" style="color:var(--accent)">2023 Red Dot Award</a> for Brand &amp; Communication Design. Results: 50% increase in community engagement, 3× user-generated content, 40% increase in social engagement, 25% increase in email open rate, 20% reduction in unsubscribes.</p>
+          <div class="case-gallery">
+            <img src="images/dreamhack.png" alt="WhiteBIT x DreamHack event campaign">
+            <img src="images/whitebitcase3.png" alt="WhiteBIT slogan development — naming and campaigns">
+            <img src="images/whitebitcase4.png" alt="WhiteBIT DreamHack event campaign development">
+            <img src="images/activity.png" alt="WhiteBIT community gamification system">
+          </div>
+        </div>
+      </details>
     `
   },
   {
-    id: 'case-bitcoin', group: 'cases',
-    emoji: '₿', title: 'Bitcoin Magazine',
+    id: 'case-bitcoin', group: 'cases', subgroup: 'previous',
+    icon: 'media', title: 'Bitcoin Magazine',
     date: 'Oct 2023–Jan 2024', folder: 'Cases',
-    preview: 'Scaling a Media Brand',
+    preview: 'Audience and content growth',
     header: 'Bitcoin Magazine',
     render: () => `
       <h1>Bitcoin Magazine</h1>
-      <div class="job-role">Independent Consultant — Scaling a Media Brand</div>
-      <div class="job-meta">October 2023 – January 2024</div>
-      <p>Independent consulting engagement to reposition a leading Bitcoin media brand for a new generation of readers.</p>
+      <p class="case-summary">A rebrand and relaunch that repositioned a leading Bitcoin media brand for a new generation of readers.</p>
+      <div class="job-role">Independent Consultant</div>
+      <div class="job-meta">Media brand · Freelance · October 2023 – January 2024</div>
+
       <div class="case-gallery">
         <img src="images/bitcoinmagazine-case.png" alt="Bitcoin Magazine rebrand and relaunch results">
       </div>
-      <h2 class="case-h2">The Challenge</h2>
-      <p>The brand needed a refreshed identity and stronger engagement with newer audiences while maintaining credibility with existing readers.</p>
-      <h2 class="case-h2">What I Built</h2>
-      <ul>
-        <li>Led the rebrand and social relaunch</li>
-        <li>Redesigned editorial communication strategy</li>
-        <li>Created and launched the Proof for Women editorial initiative</li>
-        <li>Built newsletter acquisition loops around community and content</li>
-      </ul>
-      <h2 class="case-h2">Outcomes</h2>
-      <ul>
-        <li>+130K new social followers</li>
-        <li>2.4× increase in engagement</li>
-        <li>15K newsletter subscriptions generated within 3 months</li>
-      </ul>
+
+      <div class="pdr-grid">
+        <div class="pdr-card">
+          <div class="pdr-label">Challenge</div>
+          <div class="pdr-text">Outdated brand losing relevance with newer audiences</div>
+        </div>
+        <div class="pdr-card">
+          <div class="pdr-label">Solution</div>
+          <div class="pdr-text">Full rebrand, relaunch, and a new editorial track — Proof for Women</div>
+        </div>
+        <div class="pdr-card">
+          <div class="pdr-label">Result</div>
+          <div class="pdr-text">+130K followers, 2.4× engagement, 15K subscribers in 3 months</div>
+        </div>
+      </div>
+
+      <details class="evidence-block">
+        <summary>View Detailed Process <span class="ev-sub">Challenge &amp; decisions</span></summary>
+        <div class="evidence-body">
+          <p>Bitcoin Magazine's brand no longer resonated with newer audiences, risking relevance even while keeping credibility with longtime readers.</p>
+          <ul>
+            <li>Full rebrand and social relaunch</li>
+            <li>Proof for Women editorial initiative</li>
+            <li>Newsletter acquisition loops built around community and content</li>
+          </ul>
+          <p><strong>Key decisions:</strong> launched a dedicated editorial track (Proof for Women) instead of only adjusting the existing voice, and paired the rebrand with a social relaunch rather than a quiet visual refresh.</p>
+        </div>
+      </details>
     `
   },
   {
-    id: 'case-atleta', group: 'cases',
-    emoji: '🔗', title: 'Atleta Network',
+    id: 'case-atleta', group: 'cases', subgroup: 'previous',
+    icon: 'partnerships', title: 'Atleta Network',
     date: 'Jan–Aug 2024', folder: 'Cases',
-    preview: 'Building Partnerships from Zero',
+    preview: 'Partnership system from zero',
     header: 'Atleta Network',
     render: () => `
       <h1>Atleta Network</h1>
-      <div class="job-role">Independent Consultant — Building Partnerships from Zero</div>
-      <div class="job-meta">January 2024 – August 2024</div>
-      <p>Independent consulting engagement to build a partnerships engine from zero for an early-stage L1 blockchain.</p>
+      <p class="case-summary">A partnerships engine built from zero for an early-stage L1 blockchain.</p>
+      <div class="job-role">Independent Consultant</div>
+      <div class="job-meta">Early-stage L1 blockchain · Freelance · January 2024 – August 2024</div>
+
       <div class="case-gallery">
         <img src="images/atleta-case.png" alt="Atleta Network partnerships pipeline and impact">
       </div>
-      <h2 class="case-h2">The Challenge</h2>
-      <p>As an early-stage L1, the project lacked an established ecosystem and partnership engine.</p>
-      <h2 class="case-h2">What I Built</h2>
-      <ul>
-        <li>Created the partnership acquisition process from scratch</li>
-        <li>Designed pitch decks and partnership materials</li>
-        <li>Managed outreach, negotiations, onboarding, and execution</li>
-        <li>Established repeatable partnership workflows</li>
-      </ul>
-      <h2 class="case-h2">Outcomes</h2>
-      <ul>
-        <li>10+ new partnerships onboarded every month, among which is RTF — a project led by Oleksandr Usyk</li>
-        <li>Built a scalable partnership pipeline and activation systems that helped keeping partners in the loop</li>
-      </ul>
+
+      <div class="pdr-grid">
+        <div class="pdr-card">
+          <div class="pdr-label">Challenge</div>
+          <div class="pdr-text">No partnership process for an early-stage L1 blockchain</div>
+        </div>
+        <div class="pdr-card">
+          <div class="pdr-label">Solution</div>
+          <div class="pdr-text">Built a partnerships pipeline from cold outreach to close</div>
+        </div>
+        <div class="pdr-card">
+          <div class="pdr-label">Result</div>
+          <div class="pdr-text">10+ new partners onboarded every month</div>
+        </div>
+      </div>
+
+      <details class="evidence-block">
+        <summary>View Detailed Process <span class="ev-sub">Challenge &amp; decisions</span></summary>
+        <div class="evidence-body">
+          <p>Atleta had no partnership process — no pipeline, no materials, no playbook — while needing to build ecosystem credibility fast as an early-stage L1 blockchain.</p>
+          <ul>
+            <li>Partnership acquisition process built from scratch</li>
+            <li>Pitch decks and partnership materials</li>
+            <li>Repeatable outreach-to-close workflow</li>
+          </ul>
+          <p><strong>Key decisions:</strong> went after high-profile targets directly — including RTF, led by Oleksandr Usyk — instead of only inbound interest, and built repeatable workflows early so partnerships scaled past one-off deals.</p>
+        </div>
+      </details>
     `
   },
   {
-    id: 'case-spell', group: 'cases',
-    emoji: '✨', title: 'Spell Wallet',
+    id: 'case-spell', group: 'cases', subgroup: 'previous',
+    icon: 'community', title: 'Spell Wallet',
     date: 'Jun–Oct 2025', folder: 'Cases',
-    preview: 'Community-Led Distribution',
+    preview: 'Community-led product distribution',
     header: 'Spell Wallet',
     render: () => `
       <h1>Spell Wallet</h1>
-      <div class="job-role">Independent Consultant — Community-Led Distribution</div>
-      <div class="job-meta">June 2025 – October 2025</div>
-      <p>Independent consulting engagement to grow community and distribution for an MPC crypto wallet in a highly competitive market.</p>
+      <p class="case-summary">A community-led distribution strategy for an MPC crypto wallet in a saturated market.</p>
+      <div class="job-role">Independent Consultant</div>
+      <div class="job-meta">MPC crypto wallet · Freelance · June 2025 – October 2025</div>
+
       <div class="case-gallery">
         <img src="images/spellwallet-1year.png" alt="1 Year of Spell Wallet — impact recap">
       </div>
-      <h2 class="case-h2">The Challenge</h2>
-      <p>Grow awareness and community engagement in an extremely competitive wallet market.</p>
-      <h2 class="case-h2">What I Built</h2>
-      <ul>
-        <li>Established YouTube and social content systems</li>
-        <li>Hosted AMA programs and community events</li>
-        <li>Built a reply-first distribution strategy on X</li>
-        <li>Created repeatable engagement playbooks</li>
-      </ul>
-      <h2 class="case-h2">Outcomes</h2>
-      <ul>
-        <li>45% increase in engagement in six months</li>
-        <li>Organic reach increased 3×</li>
-        <li>Grew YouTube from 0 to 2,000+ subscribers</li>
-        <li>150+ average live attendees during community events</li>
-      </ul>
+
+      <div class="pdr-grid">
+        <div class="pdr-card">
+          <div class="pdr-label">Challenge</div>
+          <div class="pdr-text">Standing out for a new MPC wallet in a saturated market</div>
+        </div>
+        <div class="pdr-card">
+          <div class="pdr-label">Solution</div>
+          <div class="pdr-text">Reply-first, AMA-driven community distribution strategy</div>
+        </div>
+        <div class="pdr-card">
+          <div class="pdr-label">Result</div>
+          <div class="pdr-text">45% engagement growth, YouTube 0 → 2K+ subscribers</div>
+        </div>
+      </div>
+
+      <details class="evidence-block">
+        <summary>View Detailed Process <span class="ev-sub">Challenge &amp; decisions</span></summary>
+        <div class="evidence-body">
+          <p>Standing out for a new MPC wallet in an extremely competitive, saturated market — with no existing community or content system.</p>
+          <ul>
+            <li>YouTube and social content systems</li>
+            <li>AMA programs and community events</li>
+            <li>Reply-first distribution strategy on X</li>
+          </ul>
+          <p><strong>Key decisions:</strong> prioritized reply-first engagement over broadcast-only content, and used live AMAs as the anchor for community trust, not just announcements.</p>
+          <p>Result also included 150+ average live attendees during community events.</p>
+        </div>
+      </details>
     `
   },
 
   // ── Bottom sections ──
   {
     id: 'education', bottom: true,
-    emoji: '🎓', title: 'Education',
+    icon: 'education', title: 'Education',
     date: '2012–2019', folder: 'Education',
     preview: "Master's, Mediacommunications",
     header: '2012 – 2019',
@@ -1007,9 +1138,9 @@ const notes = [
   },
   {
     id: 'skills', bottom: true,
-    emoji: '⚙️', title: 'Skills & Tools',
+    icon: 'skills', title: 'Skills & Tools',
     date: 'All time', folder: 'Skills',
-    preview: 'Go-to-Market, AI Adoption, GEO…',
+    preview: 'Product, GTM and AI capabilities',
     header: 'Skills & Tools',
     render: () => `
       <h1>Skills &amp; Tools</h1>
@@ -1125,8 +1256,9 @@ const notes = [
 
 // ═══ GROUPS ═══
 const groups = [
-  { label: '📌 Pinned', filter: n => n.pinned },
-  { label: 'Cases', filter: n => n.group === 'cases' },
+  { label: 'Pinned', icon: 'pin', filter: n => n.pinned },
+  { label: 'Selected Product Work', filter: n => n.group === 'cases' && n.subgroup === 'selected' },
+  { label: 'Previous Work', filter: n => n.group === 'cases' && n.subgroup === 'previous' },
   { label: 'More', filter: n => n.bottom },
 ];
 
@@ -1143,7 +1275,7 @@ function renderSidebar() {
     if (!items.length) return;
     const lbl = document.createElement('div');
     lbl.className = 'group-label';
-    lbl.textContent = g.label;
+    lbl.innerHTML = (g.icon ? `<span class="group-ic">${ICONS[g.icon]}</span>` : '') + g.label;
     list.appendChild(lbl);
     items.forEach(n => list.appendChild(makeItem(n)));
   });
@@ -1153,17 +1285,26 @@ function makeItem(note) {
   const el = document.createElement('div');
   el.className = 'note-item' + (note.id === activeId ? ' active' : '');
   el.dataset.id = note.id;
+  el.setAttribute('role', 'button');
+  el.setAttribute('tabindex', '0');
+  el.setAttribute('aria-current', note.id === activeId ? 'true' : 'false');
   el.innerHTML = `
-    <div class="note-emoji">${note.emoji}</div>
+    <div class="note-emoji">${ICONS[note.icon] || ''}</div>
     <div class="note-body">
       <div class="note-title">${note.title}</div>
       <div class="note-meta-line">
         <span class="note-date">${note.date}</span>
         <span class="note-preview">${note.preview}</span>
       </div>
-      <div class="note-folder">📁 ${note.folder}</div>
+      <div class="note-folder"><svg class="folder-ic" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 5.5A1.5 1.5 0 014 4h3.5l1.5 2H16a1.5 1.5 0 011.5 1.5v6A1.5 1.5 0 0116 15H4a1.5 1.5 0 01-1.5-1.5v-8z"/></svg> ${note.folder}</div>
     </div>`;
   el.addEventListener('click', () => selectNote(note.id));
+  el.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      selectNote(note.id);
+    }
+  });
   return el;
 }
 
@@ -1171,12 +1312,15 @@ function selectNote(id) {
   activeId = id;
   const note = notes.find(n => n.id === id);
   if (!note) return;
-  document.querySelectorAll('.note-item').forEach(el =>
-    el.classList.toggle('active', el.dataset.id === id)
-  );
+  document.querySelectorAll('.note-item').forEach(el => {
+    const isActive = el.dataset.id === id;
+    el.classList.toggle('active', isActive);
+    el.setAttribute('aria-current', isActive ? 'true' : 'false');
+  });
   document.getElementById('note-content').innerHTML = note.render();
   document.getElementById('content-header').textContent = note.header;
   document.querySelector('.content').scrollTop = 0;
+  history.replaceState(null, '', '#' + id);
   // close mobile sidebar
   document.querySelector('.sidebar').classList.remove('open');
   document.getElementById('sidebar-overlay').classList.remove('open');
@@ -1190,42 +1334,28 @@ function toggleSidebar() {
 function toggleDark() {
   dark = !dark;
   document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
-  document.getElementById('dark-icon').textContent = dark ? '☀️' : '🌙';
+  document.getElementById('dark-icon').innerHTML = ICONS[dark ? 'sun' : 'moon'];
   document.getElementById('dark-label').textContent = dark ? 'Light' : 'Dark';
 }
 
-async function getSummary() {
-  const btn = document.getElementById('summary-btn');
-  const modal = document.getElementById('modal-overlay');
-  const text = document.getElementById('modal-text');
-  btn.disabled = true;
-  btn.textContent = 'Generating…';
-  modal.classList.add('open');
-  text.textContent = 'Generating…';
-  try {
-    const res = await fetch('https://cv-summary.tina-vislianska.workers.dev/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-    });
-    const data = await res.json();
-    text.textContent = data.summary;
-  } catch {
-    text.textContent = 'Something went wrong. Try again.';
-  } finally {
-    btn.disabled = false;
-    btn.textContent = '✦ Quick Summary';
-  }
-}
-
-function closeModal(e) {
-  if (e.target === document.getElementById('modal-overlay')) {
-    document.getElementById('modal-overlay').classList.remove('open');
-  }
+function goToContact() {
+  selectNote('about');
+  requestAnimationFrame(() => {
+    const el = document.getElementById('contact');
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
 }
 
 // ═══ INIT ═══
+document.getElementById('dark-icon').innerHTML = ICONS.moon;
+document.getElementById('mail-icon').innerHTML = ICONS.contact;
 renderSidebar();
-selectNote('about');
+const initialId = notes.some(n => n.id === location.hash.slice(1)) ? location.hash.slice(1) : 'about';
+selectNote(initialId);
+window.addEventListener('hashchange', () => {
+  const id = location.hash.slice(1);
+  if (notes.some(n => n.id === id) && id !== activeId) selectNote(id);
+});
 </script>
 </body>
 </html>
