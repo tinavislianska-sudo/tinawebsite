@@ -426,6 +426,28 @@
     .tools-line { font-size: 13px; color: var(--muted); }
     .tools-line strong { color: var(--text-2); font-weight: 600; }
 
+    .flow-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+      margin: 4px 0 24px;
+    }
+    .flow-step {
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      font-size: 12.5px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+    .flow-arrow { color: var(--muted); font-size: 13px; }
+    @media (max-width: 680px) {
+      .flow-row { flex-direction: column; align-items: flex-start; }
+      .flow-arrow { transform: rotate(90deg); margin-left: 8px; }
+    }
+
     /* Stats */
     .stats-grid {
       display: grid;
@@ -678,8 +700,9 @@ const notes = [
     header: 'Updated July 2026',
     render: () => `
       <h1>About</h1>
-      <p><strong>Hi, I'm Kristina. I turn customer intelligence into AI products, positioning and scalable growth systems.</strong></p>
-      <p>I work with early-stage B2B SaaS and AI companies across product discovery, go-to-market experimentation, GEO and workflow automation.</p>
+      <div class="job-role">Growth AI Marketer</div>
+      <p><strong>Hi, I'm Kristina. I use AI agents to find growth other people can't see — then build the systems that compound it.</strong></p>
+      <p>I work with early-stage B2B SaaS and AI companies on customer intelligence, GEO, and workflow automation, turning what I learn about buyers into product decisions and repeatable growth systems.</p>
 
       <h2 class="case-h2">Selected Outcomes</h2>
       <div class="stats-grid">
@@ -703,8 +726,8 @@ const notes = [
 
       <h2 class="case-h2">What I Build</h2>
       <ul>
-        <li>Customer intelligence and product-discovery systems</li>
-        <li>AI-agent products and workflow prototypes</li>
+        <li>AI-agent growth systems and workflow automation</li>
+        <li>Customer intelligence and product-discovery pipelines</li>
         <li>Positioning, GEO and go-to-market experiments</li>
         <li>Automated research and content operations</li>
       </ul>
@@ -732,7 +755,7 @@ const notes = [
     header: 'CogniAgent',
     render: () => `
       <h1>CogniAgent</h1>
-      <p class="case-summary">Building the product intelligence and growth systems for an early-stage AI automation platform.</p>
+      <p class="case-summary">Turning customer intelligence into AI-powered growth systems.</p>
       <div class="job-role">Founding AI Growth Systems Lead</div>
       <div class="job-meta">Founding-stage AI SaaS · Full-time · 2025 – Present</div>
 
@@ -740,33 +763,66 @@ const notes = [
         <img src="images/cognagent-1.png" alt="Agentic systems built at CogniAgent for various tasks and solutions">
       </div>
 
+      <p>CogniAgent had powerful automation capabilities, but no repeatable system for identifying the highest-value customer problems, translating them into product use cases, and taking those use cases to market.</p>
+      <p>I built the intelligence and execution systems connecting customer pain points, product opportunities, agent templates, and automated content — helping reduce cost per lead from $15 to $3 while automating 90% of recurring workflows.</p>
+
       <div class="pdr-grid">
         <div class="pdr-card">
-          <div class="pdr-label">Challenge</div>
-          <div class="pdr-text">No repeatable way to understand customers or turn capabilities into content</div>
+          <div class="pdr-label">Business Challenge</div>
+          <div class="pdr-text">Powerful AI capabilities, but no repeatable way to determine which customer problems, verticals, and workflows offered the strongest growth opportunities</div>
         </div>
         <div class="pdr-card">
-          <div class="pdr-label">Solution</div>
-          <div class="pdr-text">Customer intelligence, agent templates, and automated content as one system</div>
+          <div class="pdr-label">What I Built</div>
+          <div class="pdr-text">A system connecting market intelligence, product use cases, AI-agent templates, and automated go-to-market execution</div>
         </div>
         <div class="pdr-card">
-          <div class="pdr-label">Result</div>
-          <div class="pdr-text">$15 → $3 CPL, 90% workflows automated, +80% content capacity</div>
+          <div class="pdr-label">Business Impact</div>
+          <div class="pdr-text">$15 → $3 CPL · 90% of recurring workflows automated · 80% more content capacity</div>
         </div>
       </div>
 
-      <p><strong>Selected Product Work</strong> — the AI agent systems, AI content machine, and market-intelligence system behind these results.</p>
+      <p><strong>How the system worked</strong></p>
+      <div class="flow-row">
+        <span class="flow-step">Customer evidence</span><span class="flow-arrow">→</span>
+        <span class="flow-step">Prioritized pain points</span><span class="flow-arrow">→</span>
+        <span class="flow-step">Agent workflow</span><span class="flow-arrow">→</span>
+        <span class="flow-step">Reusable template</span><span class="flow-arrow">→</span>
+        <span class="flow-step">Tutorial &amp; distribution</span><span class="flow-arrow">→</span>
+        <span class="flow-step">Leads &amp; product learning</span>
+      </div>
+
+      <p><strong>Selected Product Work</strong> — the systems that find the opportunity, then capture it.</p>
+
+      <details class="evidence-block" open>
+        <summary>1. Customer &amp; Market Intelligence <span class="ev-sub">Finding the growth opportunities</span></summary>
+        <div class="evidence-body">
+          <p>I researched customer pain points, operational workflows, software stacks, buying conditions, and competitor coverage across service-business verticals. The resulting intelligence system showed where CogniAgent could solve urgent problems, which integrations mattered, and where competitors were leaving valuable whitespace.</p>
+          <ul>
+            <li>Mapped software stacks and ICPs across verticals — HVAC, cleaning, security, restaurants, auto repair, and others — to identify required integrations (ServiceTitan, Jobber, HouseCall Pro, Twilio, QuickBooks, Stripe, Salesforce, HubSpot, and others)</li>
+            <li>Built a pain-point database to prioritize workflows by urgency and commercial value</li>
+            <li>Compared competitors to find defensible positioning and underserved use cases</li>
+          </ul>
+          <div class="tag-row">
+            <span class="tag">ICP mapping</span><span class="tag">Pain-point framework</span>
+            <span class="tag">Integration mapping</span><span class="tag">Competitor registry</span>
+            <span class="tag">Coverage matrix</span><span class="tag">Positioning analysis</span>
+          </div>
+          <div class="case-gallery">
+            <img src="images/cognagent-3.png" alt="AI market intelligence and vertical research system built at CogniAgent">
+          </div>
+        </div>
+      </details>
 
       <details class="evidence-block">
-        <summary>AI Agent Systems <span class="ev-sub">Orchestration &amp; integrations</span></summary>
+        <summary>2. Productized Agent Workflows <span class="ev-sub">Turning intelligence into product opportunities</span></summary>
         <div class="evidence-body">
+          <p>I translated the strongest customer problems into reusable agent workflows for lead qualification, customer support, dispatching, recruiting, onboarding, review generation, cart recovery, and retention. Orchestration, memory, escalation, and integrations are the enabling layer — not the headline.</p>
           <ul>
             <li>Multi-agent architectures for sales, support, operations, hiring, and customer success</li>
-            <li>Agent orchestration logic: routing, escalation, memory, and human-in-the-loop approvals</li>
-            <li>Long-running conversations, follow-ups, and multi-step decision making</li>
+            <li>Orchestration logic with routing, escalation, memory, and human-in-the-loop approvals</li>
             <li>Integrations with CRMs, ticketing, calendars, and payment systems via APIs, webhooks, and MCP servers</li>
           </ul>
-          <p class="tools-line"><strong>MCP · Multi-Agent Systems · APIs · Webhooks · CRM Integrations</strong></p>
+          <p class="tools-line"><strong>Tools</strong> — MCP · Multi-Agent Systems · APIs · Webhooks · CRM Integrations</p>
           <div class="case-gallery">
             <img src="images/cognagent-1.png" alt="Agentic systems built at CogniAgent for various tasks and solutions">
           </div>
@@ -774,96 +830,111 @@ const notes = [
       </details>
 
       <details class="evidence-block">
-        <summary>AI Content Machine <span class="ev-sub">Templates, tutorials &amp; content pipeline</span></summary>
+        <summary>3. Automated Growth Engine <span class="ev-sub">Turning each solution into repeatable distribution</span></summary>
         <div class="evidence-body">
+          <p>Every validated workflow became more than a product capability. I built a system for converting it into a reusable template, tutorial, onboarding asset, documentation, and programmatic video — expanding content capacity by 80% without equivalent headcount growth.</p>
           <ul>
-            <li>Reusable AI-agent templates for lead qualification, support triage, dispatching, recruiting, onboarding, review generation, cart recovery, and customer retention</li>
-            <li>Tutorials, onboarding materials, and product documentation tailored to specific audience segments</li>
-            <li>Secondary: an automated content pipeline using Claude Code for scripts and Remotion for programmatic video, turning each template into a public tutorial</li>
+            <li>Reusable AI-agent templates and tutorials tailored to specific audience segments</li>
+            <li>Automated content pipeline using Claude Code for scripts and Remotion for programmatic video</li>
           </ul>
-          <p class="tools-line"><strong>Claude Code · Remotion</strong></p>
+          <p class="tools-line"><strong>Tools</strong> — Claude Code · Remotion</p>
           <div class="case-gallery">
             <img src="images/cognagent-2.png" alt="From building agents to YouTube videos — content creation with CogniAgent">
           </div>
         </div>
       </details>
 
-      <details class="evidence-block">
-        <summary>Market Intelligence System <span class="ev-sub">Vertical &amp; competitor research</span></summary>
-        <div class="evidence-body">
-          <ul>
-            <li>Researched multiple verticals — HVAC, cleaning, security, restaurants, auto repair, and others</li>
-            <li>Mapped ICPs: company size, revenue range, team size, and existing software stack</li>
-            <li>Identified core integrations per vertical (ServiceTitan, Jobber, HouseCall Pro, Twilio, QuickBooks, Stripe, Salesforce, HubSpot, and others)</li>
-            <li>Built a pain-point database prioritized by business impact and urgency</li>
-            <li>Competitor registry and coverage matrix comparing CogniAgent against competitors</li>
-            <li>Identified exclusive opportunities and whitespace where competitors had limited coverage</li>
-          </ul>
-          <div class="tag-row">
-            <span class="tag">Vertical &amp; ICP mapping</span><span class="tag">Pain-point framework</span>
-            <span class="tag">Integration mapping</span><span class="tag">Competitor registry</span>
-            <span class="tag">Coverage matrix</span><span class="tag">Positioning analysis</span>
-          </div>
-          <p>Result: a repeatable research framework connecting pain points → integrations → workflow opportunities → competitive positioning → product strategy.</p>
-          <div class="case-gallery">
-            <img src="images/cognagent-3.png" alt="AI market intelligence and vertical research system built at CogniAgent">
-          </div>
-        </div>
-      </details>
+      <h2 class="case-h2">Business Impact</h2>
+      <ul>
+        <li>Reduced cost per lead from $15 to $3 across the workflows I owned</li>
+        <li>Automated approximately 90% of recurring research, content, and operational workflows</li>
+        <li>Increased content production capacity by 80% without increasing team size</li>
+      </ul>
+
+      <div class="cta-row">
+        <a href="#" onclick="goToContact();return false;" class="cta-btn primary">Build a Growth System Like This</a>
+      </div>
     `
   },
   {
     id: 'case-nikohealth', group: 'cases', subgroup: 'selected',
-    icon: 'health', title: 'Glorium Technologies',
+    icon: 'health', title: 'NikoHealth',
     date: '2025–Present', folder: 'Cases',
     preview: 'GEO strategy for healthcare SaaS',
-    header: 'Glorium Technologies',
+    header: 'NikoHealth',
     render: () => `
-      <h1>Glorium Technologies</h1>
-      <p class="case-summary">A GEO system built to earn AI citations for a niche healthcare B2B SaaS company.</p>
-      <div class="job-role">AI Search &amp; Intelligence Strategist · Glorium Technologies | NikoHealth</div>
-      <div class="job-meta">US healthcare B2B SaaS · Full-time · December 2025 – Present</div>
+      <h1>NikoHealth</h1>
+      <p class="case-summary">From zero AI-search visibility to recurring citations in high-intent healthcare queries.</p>
+      <div class="job-role">AI Search &amp; Intelligence Strategist</div>
+      <div class="job-meta">NikoHealth, through Glorium Technologies · US healthcare B2B SaaS · December 2025 – Present</div>
 
       <div class="case-gallery">
         <img src="images/nikohealth-geo.png" alt="NikoHealth GEO system — Reddit monitoring, automated reports, LinkedIn authority, AI crawler audit, and LLM citations">
       </div>
 
+      <p>NikoHealth had strong expertise in DME/HME operations, billing, and compliance — but that expertise was absent from the answers buyers increasingly received through ChatGPT and Perplexity.</p>
+      <p>I mapped how AI engines answered commercially relevant questions, identified the sources and formats shaping those answers, and built a GEO system connecting query intelligence, technical discoverability, community authority, and continuous citation monitoring.</p>
+
       <div class="pdr-grid">
         <div class="pdr-card">
-          <div class="pdr-label">Challenge</div>
-          <div class="pdr-text">Zero visibility inside AI answer engines for a niche healthcare SaaS</div>
+          <div class="pdr-label">Growth Opportunity</div>
+          <div class="pdr-text">High-intent healthcare software questions were increasingly answered by AI engines, but NikoHealth was absent from the sources shaping those answers</div>
         </div>
         <div class="pdr-card">
-          <div class="pdr-label">Solution</div>
-          <div class="pdr-text">GEO system spanning Reddit, LinkedIn, and technical infrastructure</div>
+          <div class="pdr-label">System Built</div>
+          <div class="pdr-text">Query intelligence, source-pattern analysis, technical discoverability, authority content, community participation, and citation monitoring</div>
         </div>
         <div class="pdr-card">
-          <div class="pdr-label">Result</div>
-          <div class="pdr-text">Recurring monthly citations in ChatGPT and Perplexity</div>
+          <div class="pdr-label">Early Outcome</div>
+          <div class="pdr-text">From zero visibility to recurring citations in ChatGPT and Perplexity, with targeted Reddit posts generating 1,000+ impressions</div>
         </div>
       </div>
 
-      <p class="tools-line"><strong>Tools</strong> — Reddit · LinkedIn · AI Crawler Audit Tooling</p>
+      <p><strong>How the system works</strong></p>
+      <div class="flow-row">
+        <span class="flow-step">Track queries</span><span class="flow-arrow">→</span>
+        <span class="flow-step">Inspect cited sources</span><span class="flow-arrow">→</span>
+        <span class="flow-step">Identify gaps</span><span class="flow-arrow">→</span>
+        <span class="flow-step">Create authoritative evidence</span><span class="flow-arrow">→</span>
+        <span class="flow-step">Measure citation changes</span><span class="flow-arrow">→</span>
+        <span class="flow-step">Refine</span>
+      </div>
 
-      <details class="evidence-block">
-        <summary>View Detailed Process <span class="ev-sub">Challenge, decisions &amp; build</span></summary>
-        <div class="evidence-body">
-          <p>NikoHealth had zero visibility inside AI answer engines. Traditional SEO didn't translate to citations in ChatGPT or Perplexity, and there was no existing system to earn discovery inside AI search for a specialized healthcare niche.</p>
-          <ul>
-            <li>Reddit citation engine targeting healthcare IT, billing, and DME communities</li>
-            <li>LinkedIn authority content on Medicare billing, prior authorization, and revenue cycle topics</li>
-            <li>Technical AI crawler audit and content accessibility review</li>
-            <li>Query mapping across the DME/HME space aligned to LLM retrieval patterns</li>
-          </ul>
-          <p><strong>Key decisions:</strong></p>
-          <ul>
-            <li>Prioritized discussion formats that consistently appear in AI-generated answers over generic SEO content</li>
-            <li>Built LinkedIn authority content around the exact billing and compliance topics buyers search</li>
-            <li>Ran a technical audit before scaling content, to fix discoverability at the source</li>
-          </ul>
-          <p>1,000+ impressions per targeted Reddit post, alongside recurring citations.</p>
-        </div>
-      </details>
+      <h2 class="case-h2">1. Map Buyer Questions</h2>
+      <p>Mapped commercially relevant questions across DME/HME billing, Medicare compliance, prior authorization, revenue-cycle management, and operational software — chosen for commercial intent, product relevance, recurrence, existing competitive visibility, and likelihood of triggering a sourced AI answer.</p>
+
+      <h2 class="case-h2">2. Reverse-Engineer AI Answers</h2>
+      <p>Analyzed which domains, discussion formats, and authority signals repeatedly appeared in ChatGPT and Perplexity answers. This customer- and search-intelligence layer is why the Reddit and LinkedIn strategy came from evidence, not a generic channel playbook.</p>
+
+      <h2 class="case-h2">3. Build Authority &amp; Accessibility</h2>
+      <ul>
+        <li><strong>Technical</strong> — crawler access, indexability, and content accessibility</li>
+        <li><strong>Owned authority</strong> — expert LinkedIn content built around specific buyer questions</li>
+        <li><strong>Third-party authority</strong> — community presence and useful participation in relevant Reddit communities</li>
+      </ul>
+
+      <h2 class="case-h2">4. Monitor &amp; Compound</h2>
+      <p>A continuous feedback loop, not a one-off campaign — tracking which queries produced citations, inspecting what changed, and feeding that evidence back into content and technical fixes.</p>
+
+      <h2 class="case-h2">Three Decisions That Shaped the System</h2>
+      <ul>
+        <li><strong>Follow citation behavior, not conventional SEO assumptions.</strong> Discussion-led sources appeared repeatedly in AI-generated answers, so the strategy prioritized formats AI engines were demonstrably retrieving.</li>
+        <li><strong>Build around buyer questions, not broad content categories.</strong> LinkedIn content focused on specific billing, compliance, and authorization problems already appearing in high-intent searches.</li>
+        <li><strong>Fix retrieval before scaling production.</strong> I audited crawler access and content accessibility first, preventing investment in content that AI systems couldn't reliably discover or interpret.</li>
+      </ul>
+
+      <h2 class="case-h2">Results</h2>
+      <ul>
+        <li>Established recurring ChatGPT and Perplexity visibility across a monitored set of commercially relevant DME/HME queries</li>
+        <li>Targeted community contributions generated 1,000+ impressions per post, alongside appearing among sources retrieved by AI engines</li>
+      </ul>
+
+      <p class="tools-line"><strong>System components</strong> — Query intelligence · Source analysis · Technical discoverability · Authority content · Community presence · Citation monitoring</p>
+      <p class="tools-line" style="margin-top:4px"><strong>Implementation</strong> — Reddit · LinkedIn · AI crawler audit tooling</p>
+
+      <div class="cta-row">
+        <a href="#" onclick="goToContact();return false;" class="cta-btn primary">Build a Growth System Like This</a>
+      </div>
     `
   },
   {
