@@ -195,6 +195,15 @@
   .service-card li::before { content: '✓'; position: absolute; left: 0; color: var(--text); font-weight: 700; font-size: 11px; }
   @media (max-width: 560px) { .service-grid { grid-template-columns: 1fr; } }
 
+  /* ── Audit banner ── */
+  .audit-banner { padding: 56px 24px; text-align: center; }
+  .audit-banner-card {
+    max-width: 620px; margin: 0 auto; background: var(--card); border: 1px solid var(--border);
+    border-radius: 20px; padding: 40px 32px;
+  }
+  .audit-banner h2 { font-size: 23px; font-weight: 800; letter-spacing: -0.01em; margin-bottom: 10px; }
+  .audit-banner p { font-size: 14.5px; color: var(--text-2); max-width: 440px; margin: 0 auto 24px; line-height: 1.5; }
+
   /* ── AI Stack ── */
   .stack-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px 40px; }
   .stack-col-head { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; margin-bottom: 12px; }
@@ -434,6 +443,17 @@
           <li>AI-enabled workflows and reporting</li>
         </ul>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ AUDIT BANNER ═══ -->
+<section class="audit-banner">
+  <div class="wrap">
+    <div class="audit-banner-card">
+      <h2>Not sure what's holding your growth back?</h2>
+      <p>Get a free marketing audit covering your ICP, positioning, messaging, and growth opportunities.</p>
+      <a href="mailto:tina.vislianska@gmail.com?subject=Free%20Marketing%20Audit%20Request" class="btn primary">Request Your Free Audit</a>
     </div>
   </div>
 </section>
