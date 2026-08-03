@@ -178,21 +178,21 @@
   @media (max-width: 760px) { .stat-grid { grid-template-columns: repeat(2, 1fr); } }
 
   /* ── Services ── */
-  .service-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-  .service-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 22px; }
+  .service-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .service-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 26px; }
   .service-icon {
     width: 38px; height: 38px; border-radius: 10px; background: var(--tag-bg);
     display: flex; align-items: center; justify-content: center; margin-bottom: 16px;
   }
   .service-icon svg { width: 18px; height: 18px; }
   .service-card h3 { font-size: 15.5px; font-weight: 700; margin-bottom: 4px; }
-  .service-sub { font-size: 12px; color: var(--muted); margin-bottom: 14px; }
+  .service-sub { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+  .service-card p { font-size: 12.5px; color: var(--text-2); line-height: 1.55; margin-bottom: 16px; }
   .service-card ul { list-style: none; }
   .service-card li {
     font-size: 12.5px; color: var(--text-2); padding-left: 20px; position: relative; margin-bottom: 8px; line-height: 1.4;
   }
   .service-card li::before { content: '✓'; position: absolute; left: 0; color: var(--text); font-weight: 700; font-size: 11px; }
-  @media (max-width: 900px) { .service-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 560px) { .service-grid { grid-template-columns: 1fr; } }
 
   /* ── AI Stack ── */
@@ -371,48 +371,67 @@
 <section id="services" style="background:var(--bg-2)">
   <div class="wrap">
     <div class="sec-head">
-      <div class="sec-tag">Services</div>
-      <p class="sec-sub">Ship AI-native growth systems with proven results</p>
+      <div class="sec-tag">Build the foundation for market leadership</div>
+      <p class="sec-sub">Research, positioning, brand, and growth, all pointed in the same direction.</p>
     </div>
     <div class="service-grid">
       <div class="service-card">
         <div class="service-icon" data-icon="search"></div>
-        <h3>AI Customer Intelligence</h3>
-        <div class="service-sub">Systems that surface real buyer signals</div>
+        <h3>ICP &amp; Customer Intelligence</h3>
+        <div class="service-sub">Find the market worth winning</div>
+        <p>I turn scattered customer, competitor, and market data into a clear answer: who to target, and why they'll buy.</p>
         <ul>
-          <li>Reddit, competitor &amp; customer research pipelines</li>
-          <li>Pain-point prioritization frameworks</li>
-          <li>ICP &amp; market mapping</li>
+          <li>ICP discovery and segmentation</li>
+          <li>Customer interviews and voice-of-customer research</li>
+          <li>Pain-point and buying-trigger analysis</li>
+          <li>Competitor and category intelligence</li>
+          <li>Market and opportunity mapping</li>
+          <li>Continuous customer-intelligence systems</li>
         </ul>
       </div>
       <div class="service-card">
-        <div class="service-icon" data-icon="health"></div>
-        <h3>GEO &amp; AI Search</h3>
-        <div class="service-sub">Get cited by AI answer engines</div>
+        <div class="service-icon" data-icon="target"></div>
+        <h3>Positioning &amp; Messaging</h3>
+        <div class="service-sub">Give buyers a reason to choose you</div>
+        <p>I turn what your product does into a message buyers get instantly, and a position competitors can't easily copy.</p>
         <ul>
-          <li>Query intelligence &amp; source-pattern analysis</li>
-          <li>Technical discoverability audits</li>
-          <li>Authority content &amp; citation monitoring</li>
+          <li>Positioning strategy</li>
+          <li>Value proposition development</li>
+          <li>Competitive differentiation</li>
+          <li>Messaging architecture</li>
+          <li>Category and brand narrative</li>
+          <li>Website and launch messaging</li>
+          <li>Sales and product-marketing narratives</li>
         </ul>
       </div>
       <div class="service-card">
-        <div class="service-icon" data-icon="aiOrbit"></div>
-        <h3>Product-Led Growth Systems</h3>
-        <div class="service-sub">Turn insight into product decisions</div>
+        <div class="service-icon" data-icon="media"></div>
+        <h3>Brand &amp; Content Strategy</h3>
+        <div class="service-sub">Turn your position into a recognizable brand</div>
+        <p>I build the content and communication systems that make the brand useful, credible, and memorable everywhere customers meet it.</p>
         <ul>
-          <li>AI-agent workflow design</li>
-          <li>GTM experimentation</li>
-          <li>Positioning &amp; messaging</li>
+          <li>Brand communication strategy</li>
+          <li>Founder-led content systems</li>
+          <li>Editorial and campaign strategy</li>
+          <li>Authority-building content</li>
+          <li>Social and community strategy</li>
+          <li>GEO and AI-search visibility</li>
+          <li>Content production systems</li>
         </ul>
       </div>
       <div class="service-card">
         <div class="service-icon" data-icon="growth"></div>
-        <h3>Automated Content &amp; Ops</h3>
-        <div class="service-sub">Scale without scaling headcount</div>
+        <h3>GTM &amp; Growth Systems</h3>
+        <div class="service-sub">Turn market clarity into repeatable demand</div>
+        <p>I build and test the channels, campaigns, partnerships, and workflows that turn one-off wins into a growth engine that keeps running.</p>
         <ul>
-          <li>AI-powered documentation &amp; tutorials</li>
-          <li>Programmatic video production</li>
-          <li>Research &amp; reporting automation</li>
+          <li>Go-to-market strategy and experimentation</li>
+          <li>Lead-generation systems</li>
+          <li>Distribution strategy</li>
+          <li>Partnerships and community growth</li>
+          <li>Product-led growth initiatives</li>
+          <li>Marketing automation</li>
+          <li>AI-enabled workflows and reporting</li>
         </ul>
       </div>
     </div>
