@@ -245,13 +245,29 @@
   }
 
   /* ── AI Stack ── */
-  .stack-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px 40px; }
-  .stack-col-head { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; margin-bottom: 12px; }
-  .stack-col-head svg { width: 16px; height: 16px; color: var(--text-2); }
+  .stack-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .stack-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .stack-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+    border-color: var(--text);
+  }
+  .stack-icon {
+    width: 38px; height: 38px; border-radius: 10px; background: var(--tag-bg);
+    display: flex; align-items: center; justify-content: center; margin-bottom: 16px;
+    transition: background .2s ease;
+  }
+  .stack-icon svg { width: 18px; height: 18px; color: var(--text); transition: color .2s ease; }
+  .stack-card:hover .stack-icon { background: var(--accent); }
+  .stack-card:hover .stack-icon svg { color: var(--accent-text); }
+  .stack-card h3 { font-size: 15.5px; font-weight: 700; margin-bottom: 14px; }
   .stack-tags { display: flex; flex-wrap: wrap; gap: 6px; }
   .stack-tag { font-size: 11.5px; background: var(--tag-bg); color: var(--tag-text); padding: 5px 10px; border-radius: 6px; }
-  @media (max-width: 760px) { .stack-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 520px) { .stack-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 900px) { .stack-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .stack-grid { grid-template-columns: 1fr; } }
 
   /* ── Experience timeline ── */
   .timeline { position: relative; padding-left: 32px; max-width: 780px; margin: 0 auto; }
@@ -508,8 +524,9 @@
       <p class="sec-sub">The tools within my work</p>
     </div>
     <div class="stack-grid">
-      <div>
-        <div class="stack-col-head"><span data-icon="search"></span> Research</div>
+      <div class="stack-card">
+        <div class="stack-icon" data-icon="search"></div>
+        <h3>Research</h3>
         <div class="stack-tags">
           <span class="stack-tag">Apify Scrapers</span><span class="stack-tag">AI-Powered Research</span>
           <span class="stack-tag">Notebook LM</span><span class="stack-tag">Google Trends</span>
@@ -517,16 +534,18 @@
           <span class="stack-tag">Similarweb</span><span class="stack-tag">Ahrefs</span>
         </div>
       </div>
-      <div>
-        <div class="stack-col-head"><span data-icon="aiOrbit"></span> Agentic Systems</div>
+      <div class="stack-card">
+        <div class="stack-icon" data-icon="aiOrbit"></div>
+        <h3>Agentic Systems</h3>
         <div class="stack-tags">
           <span class="stack-tag">Multi-Agent Workflows</span>
           <span class="stack-tag">Model Context Protocol (MCP)</span><span class="stack-tag">Memory &amp; Context Management</span>
           <span class="stack-tag">API Integrations</span>
         </div>
       </div>
-      <div>
-        <div class="stack-col-head"><span data-icon="growth"></span> Automation</div>
+      <div class="stack-card">
+        <div class="stack-icon" data-icon="growth"></div>
+        <h3>Automation</h3>
         <div class="stack-tags">
           <span class="stack-tag">n8n</span><span class="stack-tag">Make</span>
           <span class="stack-tag">Zapier</span><span class="stack-tag">Claude Code</span>
