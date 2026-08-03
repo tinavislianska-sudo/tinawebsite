@@ -146,6 +146,17 @@
     transition: background .2s ease, color .2s ease, border-color .2s ease;
   }
   .btn.tertiary:hover { background: color-mix(in srgb, var(--card) 70%, transparent); color: var(--text); }
+  .btn.tertiary .surprise-star {
+    display: inline-block;
+    animation: surprise-twinkle 2.2s ease-in-out infinite;
+  }
+  @keyframes surprise-twinkle {
+    0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    50% { transform: scale(1.25) rotate(12deg); opacity: 0.55; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .btn.tertiary .surprise-star { animation: none; }
+  }
 
   .hero-photo-wrap { position: relative; width: 280px; margin: 0 auto; }
   .hero-photo {
@@ -431,7 +442,7 @@
       <div class="btn-row">
         <a href="#cases" class="btn primary">View Selected Work</a>
         <a href="https://drive.google.com/file/d/10yrr33mir40633bw5abhVe9PU9ETtrRh/view?usp=sharing" target="_blank" rel="noopener" class="btn secondary">Download CV</a>
-        <button type="button" class="btn tertiary" id="surpriseBtn" aria-label="Surprise me: jump to a hidden scratch-card case study"><span aria-hidden="true">✦</span> Surprise me</button>
+        <button type="button" class="btn tertiary" id="surpriseBtn" aria-label="Surprise me: jump to a hidden scratch-card case study"><span class="surprise-star" aria-hidden="true">✦</span> Surprise me</button>
       </div>
     </div>
     <div class="hero-photo-wrap">
