@@ -137,7 +137,7 @@
   .btn.secondary { background: var(--card); color: var(--text); }
   .btn.secondary:hover { background: var(--tag-bg); }
 
-  .hero-photo-wrap { position: relative; display: flex; justify-content: center; }
+  .hero-photo-wrap { position: relative; width: 280px; margin: 0 auto; }
   .hero-photo {
     width: 280px; height: 280px; border-radius: 50%;
     background: linear-gradient(150deg, var(--bg-2), var(--border));
@@ -152,12 +152,18 @@
     background: var(--card); border: 1px solid var(--border); box-shadow: var(--shadow);
     display: flex; align-items: center; justify-content: center; font-size: 16px;
   }
+  .linkedin-badge {
+    top: -6px; right: -6px; background: #0a66c2; border: 2px solid var(--bg);
+    color: #fff; transition: transform .15s ease;
+  }
+  .linkedin-badge:hover { transform: scale(1.08); }
+  .linkedin-badge svg { width: 20px; height: 20px; }
   @media (max-width: 900px) {
     .hero-grid { grid-template-columns: 1fr; text-align: center; }
     .hero-desc { margin-left: auto; margin-right: auto; }
     .btn-row { justify-content: center; }
     .hero h1 { font-size: 42px; }
-    .hero-photo-wrap { order: -1; margin-bottom: 12px; }
+    .hero-photo-wrap { order: -1; margin-bottom: 12px; width: 200px; }
     .hero-photo { width: 200px; height: 200px; font-size: 56px; }
   }
 
@@ -376,6 +382,7 @@
     </div>
     <div class="hero-photo-wrap">
       <div class="hero-photo"><img src="images/kristina-hero.png" alt="Kristina Vislianska"></div>
+      <a href="https://www.linkedin.com/in/kristinavislianska" target="_blank" rel="noopener" class="orbit-badge linkedin-badge" aria-label="LinkedIn" data-icon="linkedin"></a>
     </div>
   </div>
 </section>
@@ -901,6 +908,7 @@
 <script>
 // ═══ ICONS ═══
 const ICONS = {
+  linkedin: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.85 0-2.14 1.44-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.62-1.85 3.34-1.85 3.57 0 4.23 2.35 4.23 5.4v6.34zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>',
   aiOrbit: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2.25"/><path d="M4.35 8.1c2-3.35 5.75-4.9 9.25-3.8 3.45 1.05 5.85 4.45 5.65 8.05-.2 3.65-2.95 6.75-6.55 7.35"/><path d="M19.65 15.9c-2 3.35-5.75 4.9-9.25 3.8-3.45-1.05-5.85-4.45-5.65-8.05.2-3.65 2.95-6.75 6.55-7.35"/><circle cx="4.6" cy="8" r="1"/><circle cx="19.4" cy="16" r="1"/></svg>',
   health: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.2-7-10.1A3.9 3.9 0 0 1 12 7.5a3.9 3.9 0 0 1 7 2.4C19 15.8 12 20 12 20Z"/><path d="M8.5 12h2l1-2.2 1.5 4.4 1-2.2h1.5"/></svg>',
   growth: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 18.5V14M10 18.5v-8M15 18.5V7M20 18.5V3.5"/><path d="m4.5 9 5-4 4 2 6-5"/></svg>',
