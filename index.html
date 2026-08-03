@@ -296,6 +296,35 @@
   .tl-sub-meta { font-size: 11.5px; color: var(--muted); margin-bottom: 4px; }
   .tl-sub-item p { font-size: 12.5px; color: var(--text-2); line-height: 1.5; }
 
+  /* ── Scratch case ── */
+  .scratch-eyebrow {
+    font-size: 11.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 10px;
+  }
+  .scratch-card {
+    position: relative; max-width: 720px; margin: 0 auto; border-radius: 20px; overflow: hidden;
+    border: 1px solid var(--border); background: var(--card); box-shadow: var(--shadow);
+  }
+  .scratch-revealed { padding: 44px 40px; }
+  .scratch-label {
+    font-size: 11.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 10px;
+  }
+  .scratch-revealed h3 { font-size: 22px; font-weight: 800; letter-spacing: -0.01em; line-height: 1.3; margin-bottom: 14px; }
+  .scratch-revealed p { font-size: 14.5px; color: var(--text-2); line-height: 1.6; margin-bottom: 20px; max-width: 580px; }
+  .scratch-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .scratch-canvas {
+    position: absolute; inset: 0; width: 100%; height: 100%; display: block;
+    cursor: pointer; touch-action: none; transition: opacity .5s ease;
+  }
+  .scratch-card.is-revealed .scratch-canvas { opacity: 0; pointer-events: none; }
+  .scratch-actions { text-align: center; margin-top: 20px; }
+  @media (max-width: 560px) {
+    .scratch-revealed { padding: 32px 24px; }
+    .scratch-revealed h3 { font-size: 19px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .scratch-canvas { transition: none; } }
+
   /* ── Cases ── */
   .case-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
   .case-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
@@ -638,6 +667,33 @@
   </div>
 </section>
 
+<!-- ═══ SCRATCH CASE ═══ -->
+<section id="scratch-case">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="scratch-eyebrow">One story didn't fit on the CV</div>
+      <div class="sec-tag">Scratch to uncover my original zero-to-one case.</div>
+    </div>
+    <div class="scratch-card" id="scratchCard">
+      <div class="scratch-revealed">
+        <div class="scratch-label">The Flower-Mask Experiment</div>
+        <h3>I turned an unexpected idea into a product—and found people willing to buy it.</h3>
+        <p>I created masks from flowers, shaped the story around them, brought the idea to market, and sold them. Long before I called it positioning or zero-to-one marketing, I was already testing what makes an unfamiliar product desirable.</p>
+        <div class="scratch-tags">
+          <span class="stack-tag">Product Idea</span>
+          <span class="stack-tag">Positioning</span>
+          <span class="stack-tag">Storytelling</span>
+          <span class="stack-tag">Demand Validation</span>
+        </div>
+      </div>
+      <canvas class="scratch-canvas" id="scratchCanvas" aria-hidden="true"></canvas>
+    </div>
+    <div class="scratch-actions">
+      <button type="button" class="btn secondary" id="scratchRevealBtn">Reveal the case</button>
+    </div>
+  </div>
+</section>
+
 <!-- ═══ CASES ═══ -->
 <section id="cases">
   <div class="wrap">
@@ -943,6 +999,147 @@ darkBtn.addEventListener('click', () => {
   document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
   darkBtn.innerHTML = dark ? ICONS.sun : ICONS.moon;
 });
+
+// ═══ SCRATCH CASE ═══
+(function () {
+  const card = document.getElementById('scratchCard');
+  const canvas = document.getElementById('scratchCanvas');
+  const revealBtn = document.getElementById('scratchRevealBtn');
+  if (!card || !canvas || !revealBtn) return;
+
+  const ctx = canvas.getContext('2d');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let revealed = false;
+  let scratching = false;
+  let lastPoint = null;
+  let progressPending = false;
+
+  function cssVar(name, fallback) {
+    const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    return v || fallback;
+  }
+
+  function sizeCanvas() {
+    if (revealed) return;
+    const rect = card.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = Math.max(1, Math.round(rect.width * dpr));
+    canvas.height = Math.max(1, Math.round(rect.height * dpr));
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    drawCover(rect.width, rect.height);
+  }
+
+  function drawCover(w, h) {
+    if (revealed) return;
+    ctx.clearRect(0, 0, w, h);
+    const grad = ctx.createLinearGradient(0, 0, w, h);
+    grad.addColorStop(0, cssVar('--bg-2', '#f0f0f2'));
+    grad.addColorStop(1, cssVar('--border', '#e6e6e6'));
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, w, h);
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = cssVar('--text', '#141414');
+    ctx.font = "700 20px 'JetBrains Mono', monospace";
+    ctx.fillText('SCRATCH HERE', w / 2, h / 2 - 12);
+    ctx.fillStyle = cssVar('--muted', '#8a8a92');
+    ctx.font = "13px Inter, sans-serif";
+    ctx.fillText('A hidden chapter from before the CV', w / 2, h / 2 + 16);
+  }
+
+  function getPoint(e) {
+    const rect = canvas.getBoundingClientRect();
+    return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+  }
+
+  function scratchAt(x, y) {
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.beginPath();
+    ctx.arc(x, y, 22, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  function scratchLine(from, to) {
+    const dist = Math.hypot(to.x - from.x, to.y - from.y);
+    const steps = Math.max(1, Math.ceil(dist / 6));
+    for (let i = 0; i <= steps; i++) {
+      const x = from.x + (to.x - from.x) * (i / steps);
+      const y = from.y + (to.y - from.y) * (i / steps);
+      scratchAt(x, y);
+    }
+  }
+
+  function checkProgress() {
+    if (progressPending || revealed) return;
+    progressPending = true;
+    requestAnimationFrame(() => {
+      progressPending = false;
+      if (revealed || !canvas.width || !canvas.height) return;
+      const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+      const stride = 4 * 6;
+      let cleared = 0, total = 0;
+      for (let i = 3; i < data.length; i += stride) {
+        total++;
+        if (data[i] < 40) cleared++;
+      }
+      if (total > 0 && cleared / total >= 0.5) reveal();
+    });
+  }
+
+  function reveal() {
+    if (revealed) return;
+    revealed = true;
+    card.classList.add('is-revealed');
+    if (reducedMotion) canvas.style.transition = 'none';
+    window.setTimeout(() => {
+      if (canvas.parentNode) canvas.remove();
+    }, reducedMotion ? 0 : 550);
+  }
+
+  function pointerDown(e) {
+    if (revealed) return;
+    scratching = true;
+    if (canvas.setPointerCapture) canvas.setPointerCapture(e.pointerId);
+    lastPoint = getPoint(e);
+    scratchAt(lastPoint.x, lastPoint.y);
+    checkProgress();
+  }
+  function pointerMove(e) {
+    if (!scratching || revealed) return;
+    if (e.buttons === 0 && e.pointerType !== 'touch') { scratching = false; lastPoint = null; return; }
+    const p = getPoint(e);
+    scratchLine(lastPoint, p);
+    lastPoint = p;
+    checkProgress();
+  }
+  function pointerUp() {
+    scratching = false;
+    lastPoint = null;
+  }
+
+  canvas.addEventListener('pointerdown', pointerDown);
+  canvas.addEventListener('pointermove', pointerMove);
+  window.addEventListener('pointerup', pointerUp);
+  window.addEventListener('pointercancel', pointerUp);
+
+  revealBtn.addEventListener('click', reveal);
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(sizeCanvas, 150);
+  });
+
+  const themeObserver = new MutationObserver(() => {
+    if (!revealed) {
+      const rect = card.getBoundingClientRect();
+      drawCover(rect.width, rect.height);
+    }
+  });
+  themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+  sizeCanvas();
+})();
 </script>
 </body>
 </html>
