@@ -136,6 +136,16 @@
   .btn.primary:hover { opacity: 0.88; }
   .btn.secondary { background: var(--card); color: var(--text); }
   .btn.secondary:hover { background: var(--tag-bg); }
+  .btn.tertiary {
+    background: color-mix(in srgb, var(--card) 45%, transparent);
+    backdrop-filter: blur(10px) saturate(140%);
+    -webkit-backdrop-filter: blur(10px) saturate(140%);
+    border: 1px solid color-mix(in srgb, var(--border) 80%, transparent);
+    color: var(--text-2);
+    font-weight: 500;
+    transition: background .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .btn.tertiary:hover { background: color-mix(in srgb, var(--card) 70%, transparent); color: var(--text); }
 
   .hero-photo-wrap { position: relative; width: 280px; margin: 0 auto; }
   .hero-photo {
@@ -319,11 +329,25 @@
   }
   .scratch-card.is-revealed .scratch-canvas { opacity: 0; pointer-events: none; }
   .scratch-actions { text-align: center; margin-top: 20px; }
+  .scratch-card.scratch-hint { animation: scratch-ring-pulse 0.9s ease-in-out 2; }
+  .scratch-card.scratch-hint .scratch-canvas { animation: scratch-shimmer 0.9s ease-in-out 2; }
+  @keyframes scratch-ring-pulse {
+    0%, 100% { box-shadow: var(--shadow); }
+    50% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--text) 12%, transparent), var(--shadow); }
+  }
+  @keyframes scratch-shimmer {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.15); }
+  }
   @media (max-width: 560px) {
     .scratch-revealed { padding: 32px 24px; }
     .scratch-revealed h3 { font-size: 19px; }
   }
-  @media (prefers-reduced-motion: reduce) { .scratch-canvas { transition: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    .scratch-canvas { transition: none; }
+    .scratch-card.scratch-hint, .scratch-card.scratch-hint .scratch-canvas { animation: none; }
+    html { scroll-behavior: auto; }
+  }
 
   /* ── Cases ── */
   .case-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
@@ -407,6 +431,7 @@
       <div class="btn-row">
         <a href="#cases" class="btn primary">View Selected Work</a>
         <a href="https://drive.google.com/file/d/10yrr33mir40633bw5abhVe9PU9ETtrRh/view?usp=sharing" target="_blank" rel="noopener" class="btn secondary">Download CV</a>
+        <button type="button" class="btn tertiary" id="surpriseBtn" aria-label="Surprise me: jump to a hidden scratch-card case study"><span aria-hidden="true">✦</span> Surprise me</button>
       </div>
     </div>
     <div class="hero-photo-wrap">
@@ -1139,6 +1164,24 @@ darkBtn.addEventListener('click', () => {
   themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
   sizeCanvas();
+})();
+
+// ═══ SURPRISE ME ═══
+(function () {
+  const surpriseBtn = document.getElementById('surpriseBtn');
+  const scratchSection = document.getElementById('scratch-case');
+  const scratchCardEl = document.getElementById('scratchCard');
+  if (!surpriseBtn || !scratchSection || !scratchCardEl) return;
+
+  surpriseBtn.addEventListener('click', () => {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    scratchSection.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'center' });
+    if (reducedMotion) return;
+    scratchCardEl.classList.remove('scratch-hint');
+    void scratchCardEl.offsetWidth;
+    scratchCardEl.classList.add('scratch-hint');
+    window.setTimeout(() => scratchCardEl.classList.remove('scratch-hint'), 1900);
+  });
 })();
 </script>
 </body>
