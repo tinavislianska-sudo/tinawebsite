@@ -387,6 +387,24 @@
   .case-detail li strong { color: var(--text); }
   .case-list-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 20px; }
   @media (max-width: 640px) { .case-list-grid { grid-template-columns: 1fr; } }
+
+  /* Expanded case card: go wide for long-form case studies */
+  .case-card:has(details[open]) { grid-column: 1 / -1; }
+  .case-card:has(details[open]) img { height: 220px; }
+  .case-card:has(details[open]) .case-body { padding: 28px 44px 36px; }
+  .case-card:has(details[open]) h3 { font-size: 19px; }
+  .case-card:has(details[open]) .case-detail { max-width: 900px; margin-left: auto; margin-right: auto; }
+  .case-card:has(details[open]) .case-detail p,
+  .case-card:has(details[open]) .case-detail ul { font-size: 14.5px; line-height: 1.7; }
+  .case-card:has(details[open]) .case-detail h4 { font-size: 12px; margin-top: 20px; }
+  .case-card:has(details[open]) .case-list-grid { grid-template-columns: repeat(3, 1fr); gap: 4px 28px; }
+  @media (max-width: 900px) {
+    .case-card:has(details[open]) .case-list-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .case-card:has(details[open]) .case-body { padding: 24px; }
+    .case-card:has(details[open]) .case-list-grid { grid-template-columns: 1fr; }
+  }
   @media (max-width: 900px) { .case-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 600px) { .case-grid { grid-template-columns: 1fr; } }
 
