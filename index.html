@@ -393,8 +393,8 @@
   .case-stat { background: var(--tag-bg); border-radius: 8px; padding: 10px 6px; text-align: center; }
   .case-stat-num { font-size: 14px; font-weight: 700; color: var(--text); white-space: nowrap; }
   .case-stat-lbl { font-size: 10px; color: var(--muted); margin-top: 2px; }
-  .case-detail p.case-takeaway { font-weight: 700; color: var(--text); margin-top: 14px; }
   .case-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+  .case-card:has(.case-stat-grid) .case-result:has(+ details[open]) { display: none; }
 
   /* ── Contact ── */
   .contact-card {
@@ -754,7 +754,7 @@
         <div class="case-body">
           <h3>CogniAgent — Turning Market Signals Into a Scalable Growth Engine</h3>
           <div class="case-role">CogniAgent · Founding AI Growth Systems Lead · 2025–Present</div>
-          <p>Turning fragmented market signals into a repeatable customer-intelligence and growth engine for a multi-vertical AI platform.</p>
+          <p>Reddit conversations, competitor reviews, and campaign data, turned into an 80% drop in cost per lead.</p>
           <div class="case-result">$15 → $3 CPL · 5× lead efficiency · 90% automated</div>
           <details>
             <summary class="case-toggle"><span data-icon="chev"></span> View case study</summary>
@@ -776,7 +776,6 @@
                 <span class="stack-tag">Category trends</span>
               </div>
               <p>The system surfaced the strongest customer segments, the language they used to describe problems, and the gaps competitors left open. I translated that into sharper ICP targeting, tighter positioning, and ready-made workflow templates for lead qualification, support, and dispatching.</p>
-              <p class="case-takeaway">The result: fragmented market signals turned into one repeatable growth engine.</p>
             </div>
           </details>
         </div>
