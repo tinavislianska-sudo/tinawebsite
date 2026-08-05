@@ -393,8 +393,19 @@
   .case-stat { background: var(--tag-bg); border-radius: 8px; padding: 10px 6px; text-align: center; }
   .case-stat-num { font-size: 14px; font-weight: 700; color: var(--text); white-space: nowrap; }
   .case-stat-lbl { font-size: 10px; color: var(--muted); margin-top: 2px; }
-  .case-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
   .case-card:has(.case-stat-grid) .case-result:has(+ details[open]) { display: none; }
+  .case-scheme { display: flex; flex-direction: column; margin-top: 16px; }
+  .case-scheme-block { background: var(--tag-bg); border-radius: 12px; padding: 16px 18px; }
+  .case-scheme-label {
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em;
+    color: var(--muted); margin-bottom: 10px;
+  }
+  .case-scheme-block ul.case-list-grid { margin-bottom: 0; }
+  .case-scheme-connector {
+    display: flex; justify-content: center; padding: 4px 0; color: var(--muted);
+  }
+  .case-scheme-connector svg { width: 14px; height: 14px; }
+  @media (max-width: 480px) { .case-scheme-block ul.case-list-grid { grid-template-columns: 1fr; } }
 
   /* ── Contact ── */
   .contact-card {
@@ -767,15 +778,45 @@
                 <div class="case-stat"><div class="case-stat-num">+80%</div><div class="case-stat-lbl">content</div></div>
               </div>
               <p>CogniAgent was expanding into new service-business verticals without a reliable way to prioritize customers, and acquisition costs were climbing as a result. I built a continuous customer-intelligence system to find the highest-value segments and turn every insight into product-ready decisions.</p>
-              <div class="case-tags">
-                <span class="stack-tag">Market research</span>
-                <span class="stack-tag">Reddit analysis</span>
-                <span class="stack-tag">Competitor monitoring</span>
-                <span class="stack-tag">Customer feedback</span>
-                <span class="stack-tag">Campaign data</span>
-                <span class="stack-tag">Category trends</span>
+              <div class="case-scheme">
+                <div class="case-scheme-block">
+                  <div class="case-scheme-label">Inputs — what I combined</div>
+                  <ul class="case-list-grid">
+                    <li>Large-scale vertical and market research</li>
+                    <li>Customer conversations and feedback</li>
+                    <li>Reddit conversation analysis</li>
+                    <li>Competitor monitoring</li>
+                    <li>Reviews of competing products</li>
+                    <li>Recurring pain points and feature requests</li>
+                    <li>Campaign and funnel-performance data</li>
+                    <li>Market and category developments</li>
+                  </ul>
+                </div>
+                <div class="case-scheme-connector"><span data-icon="chev" style="transform:rotate(90deg);display:inline-flex"></span></div>
+                <div class="case-scheme-block">
+                  <div class="case-scheme-label">Insights — what it found</div>
+                  <ul class="case-list-grid">
+                    <li>The customer segments with the strongest problems</li>
+                    <li>The pain points urgent enough to drive action</li>
+                    <li>The workflows with the greatest automation potential</li>
+                    <li>The language customers used to describe their needs</li>
+                    <li>The gaps and frustrations left by competing products</li>
+                    <li>The use cases easiest to understand, adopt and sell</li>
+                  </ul>
+                </div>
+                <div class="case-scheme-connector"><span data-icon="chev" style="transform:rotate(90deg);display:inline-flex"></span></div>
+                <div class="case-scheme-block">
+                  <div class="case-scheme-label">Applied to — what I did with it</div>
+                  <ul class="case-list-grid">
+                    <li>Sharper ICP priorities</li>
+                    <li>Differentiated positioning</li>
+                    <li>More focused campaigns</li>
+                    <li>Clearer product decisions</li>
+                    <li>Ready-made workflow templates for lead qualification, support and dispatching</li>
+                    <li>Reduced setup friction and faster time to value</li>
+                  </ul>
+                </div>
               </div>
-              <p>The system surfaced the strongest customer segments, the language they used to describe problems, and the gaps competitors left open. I translated that into sharper ICP targeting, tighter positioning, and ready-made workflow templates for lead qualification, support, and dispatching.</p>
             </div>
           </details>
         </div>
