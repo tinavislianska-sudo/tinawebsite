@@ -361,7 +361,7 @@
   }
 
   /* ── Cases ── */
-  .case-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .case-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
   .case-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
   .case-card img { width: 100%; height: 150px; object-fit: cover; border-bottom: 1px solid var(--border); }
   .case-body { padding: 18px; }
@@ -387,7 +387,6 @@
   .case-detail li strong { color: var(--text); }
   .case-list-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 20px; }
   @media (max-width: 640px) { .case-list-grid { grid-template-columns: 1fr; } }
-  @media (max-width: 640px) { .case-grid { grid-template-columns: 1fr; } }
 
   .case-stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(78px, 1fr)); gap: 6px; margin-bottom: 16px; }
   .case-stat { background: var(--tag-bg); border-radius: 8px; padding: 10px 6px; text-align: center; }
@@ -395,17 +394,22 @@
   .case-stat-lbl { font-size: 10px; color: var(--muted); margin-top: 2px; }
   .case-card:has(.case-stat-grid) .case-result:has(+ details[open]) { display: none; }
   .case-scheme { display: flex; flex-direction: column; margin-top: 16px; }
-  .case-scheme-block { background: var(--tag-bg); border-radius: 12px; padding: 16px 18px; }
+  .case-scheme-block { background: var(--tag-bg); border-radius: 12px; padding: 18px 20px; flex: 1; }
   .case-scheme-label {
-    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em;
-    color: var(--muted); margin-bottom: 10px;
+    font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em;
+    color: var(--muted); margin-bottom: 12px;
   }
-  .case-scheme-block ul.case-list-grid { margin-bottom: 0; }
+  .case-scheme-block ul.case-list-grid { margin-bottom: 0; grid-template-columns: 1fr; }
   .case-scheme-connector {
-    display: flex; justify-content: center; padding: 4px 0; color: var(--muted);
+    display: flex; align-items: center; justify-content: center; padding: 4px 0; color: var(--muted);
   }
-  .case-scheme-connector svg { width: 14px; height: 14px; }
-  @media (max-width: 480px) { .case-scheme-block ul.case-list-grid { grid-template-columns: 1fr; } }
+  .case-scheme-connector svg { width: 14px; height: 14px; transform: rotate(90deg); }
+  @media (min-width: 760px) {
+    .case-scheme { flex-direction: row; align-items: stretch; gap: 4px; }
+    .case-scheme-connector { padding: 0 4px; }
+    .case-scheme-connector svg { transform: none; }
+    .case-scheme-block ul.case-list-grid { font-size: 13px; }
+  }
 
   /* ── Contact ── */
   .contact-card {
@@ -792,7 +796,7 @@
                     <li>Market and category developments</li>
                   </ul>
                 </div>
-                <div class="case-scheme-connector"><span data-icon="chev" style="transform:rotate(90deg);display:inline-flex"></span></div>
+                <div class="case-scheme-connector"><span data-icon="chev"></span></div>
                 <div class="case-scheme-block">
                   <div class="case-scheme-label">Insights — what it found</div>
                   <ul class="case-list-grid">
@@ -804,7 +808,7 @@
                     <li>The use cases easiest to understand, adopt and sell</li>
                   </ul>
                 </div>
-                <div class="case-scheme-connector"><span data-icon="chev" style="transform:rotate(90deg);display:inline-flex"></span></div>
+                <div class="case-scheme-connector"><span data-icon="chev"></span></div>
                 <div class="case-scheme-block">
                   <div class="case-scheme-label">Applied to — what I did with it</div>
                   <ul class="case-list-grid">
