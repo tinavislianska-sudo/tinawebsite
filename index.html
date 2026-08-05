@@ -389,6 +389,13 @@
   @media (max-width: 640px) { .case-list-grid { grid-template-columns: 1fr; } }
   @media (max-width: 640px) { .case-grid { grid-template-columns: 1fr; } }
 
+  .case-stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(78px, 1fr)); gap: 6px; margin-bottom: 16px; }
+  .case-stat { background: var(--tag-bg); border-radius: 8px; padding: 10px 6px; text-align: center; }
+  .case-stat-num { font-size: 14px; font-weight: 700; color: var(--text); white-space: nowrap; }
+  .case-stat-lbl { font-size: 10px; color: var(--muted); margin-top: 2px; }
+  .case-detail p.case-takeaway { font-weight: 700; color: var(--text); margin-top: 14px; }
+  .case-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+
   /* ── Contact ── */
   .contact-card {
     max-width: 480px; margin: 0 auto; background: var(--card); border: 1px solid var(--border);
@@ -752,42 +759,24 @@
           <details>
             <summary class="case-toggle"><span data-icon="chev"></span> View case study</summary>
             <div class="case-detail">
-              <h4>Challenge</h4>
-              <p>CogniAgent was entering multiple service-business verticals without a reliable way to determine which ICPs, customer problems and product opportunities offered the greatest commercial potential.</p>
-              <p>Broad targeting drove up acquisition costs, while prospects struggled to connect the product's AI capabilities with immediate business outcomes.</p>
-              <h4>What I Did</h4>
-              <p class="case-lead">I built a continuous customer-intelligence system combining:</p>
-              <ul class="case-list-grid">
-                <li><strong>Large-scale</strong> vertical and market research</li>
-                <li>Customer conversations and feedback</li>
-                <li><strong>Reddit</strong> conversation analysis</li>
-                <li>Competitor monitoring</li>
-                <li>Reviews of competing products</li>
-                <li>Recurring pain points and feature requests</li>
-                <li>Campaign and funnel-performance data</li>
-                <li>Market and category developments</li>
-              </ul>
-              <p class="case-lead">The system helped identify:</p>
-              <ul class="case-list-grid">
-                <li>The customer segments with the <strong>strongest problems</strong></li>
-                <li>The pain points urgent enough to drive action</li>
-                <li>The workflows with the greatest automation potential</li>
-                <li>The language customers used to describe their needs</li>
-                <li>The gaps and frustrations left by competing products</li>
-                <li>The use cases <strong>easiest to sell</strong></li>
-              </ul>
-              <p>I translated these insights into sharper ICP priorities, differentiated positioning, more focused campaigns and clearer product decisions.</p>
-              <p>I also turned recurring customer needs into ready-made workflow templates for lead qualification, customer support, dispatching and other service operations—reducing setup friction and accelerating time to value.</p>
-              <h4>Impact</h4>
-              <ul>
-                <li><strong>$15 → $3 CPL</strong> — Reduced cost per lead by 80%.</li>
-                <li><strong>5× lead efficiency</strong> — Generated five times more leads from the same campaign budget.</li>
-                <li><strong>+15% product conversion</strong> — Increased conversion with clearer, ready-made customer solutions.</li>
-                <li><strong>90% automated</strong> — Automated recurring research, monitoring and marketing workflows.</li>
-                <li><strong>+80% content capacity</strong> — Increased production without proportional headcount growth.</li>
-              </ul>
-              <h4>Takeaway</h4>
-              <p>By connecting customer intelligence with ICP strategy, positioning, product development and acquisition, I turned fragmented market signals into a repeatable growth engine.</p>
+              <div class="case-stat-grid">
+                <div class="case-stat"><div class="case-stat-num">$15→$3</div><div class="case-stat-lbl">CPL</div></div>
+                <div class="case-stat"><div class="case-stat-num">5×</div><div class="case-stat-lbl">leads</div></div>
+                <div class="case-stat"><div class="case-stat-num">+15%</div><div class="case-stat-lbl">conversion</div></div>
+                <div class="case-stat"><div class="case-stat-num">90%</div><div class="case-stat-lbl">automated</div></div>
+                <div class="case-stat"><div class="case-stat-num">+80%</div><div class="case-stat-lbl">content</div></div>
+              </div>
+              <p>CogniAgent was expanding into new service-business verticals without a reliable way to prioritize customers, and acquisition costs were climbing as a result. I built a continuous customer-intelligence system to find the highest-value segments and turn every insight into product-ready decisions.</p>
+              <div class="case-tags">
+                <span class="stack-tag">Market research</span>
+                <span class="stack-tag">Reddit analysis</span>
+                <span class="stack-tag">Competitor monitoring</span>
+                <span class="stack-tag">Customer feedback</span>
+                <span class="stack-tag">Campaign data</span>
+                <span class="stack-tag">Category trends</span>
+              </div>
+              <p>The system surfaced the strongest customer segments, the language they used to describe problems, and the gaps competitors left open. I translated that into sharper ICP targeting, tighter positioning, and ready-made workflow templates for lead qualification, support, and dispatching.</p>
+              <p class="case-takeaway">The result: fragmented market signals turned into one repeatable growth engine.</p>
             </div>
           </details>
         </div>
