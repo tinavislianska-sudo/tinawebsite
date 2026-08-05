@@ -378,6 +378,17 @@
     color: var(--text); font-size: 12px; font-weight: 700;
     padding: 6px 14px; border-radius: 100px;
   }
+  .case-award-badge {
+    position: absolute; top: 12px; right: 12px; z-index: 2;
+    background: color-mix(in srgb, var(--card) 85%, transparent);
+    backdrop-filter: blur(10px) saturate(140%);
+    -webkit-backdrop-filter: blur(10px) saturate(140%);
+    border: 1px solid var(--border);
+    color: var(--text); font-size: 12px; font-weight: 700;
+    padding: 6px 14px 6px 10px; border-radius: 100px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .case-award-badge .dot { width: 9px; height: 9px; border-radius: 50%; background: #e5202e; flex-shrink: 0; }
   .case-cover { width: 100%; height: 150px; border-bottom: 1px solid var(--border); background: var(--bg-2); display: block; }
   .case-cover text { font-family: Inter, sans-serif; }
   .case-body { padding: 18px; }
@@ -967,7 +978,8 @@
       </div>
 
       <div class="case-card">
-        <img src="images/whitebitcase1.png" alt="WhiteBIT partnership campaign">
+        <img src="images/whitebit-website.webp" alt="WhiteBIT brand campaign from whitebit.com">
+        <div class="case-award-badge"><span class="dot"></span> Red Dot Award</div>
         <div class="case-body">
           <h3>WhiteBIT</h3>
           <div class="case-role">Lead Content Marketer · 2022–2023</div>
