@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="1000" height="1000"><rect width="1000" height="1000" rx="200" ry="200" fill="#454545"></rect><g transform="matrix(33.333333333333336,0,0,33.333333333333336,99.38741220285493,99.48177910039277)"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="24" height="24"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="ic/star" clip-path="url(#clip0_2908_8003)">
+<path id="star" d="M12.0189 24.0313C12.0142 17.3974 6.63758 12.0207 0.00369104 12.016C6.63758 12.0113 12.0142 6.63464 12.0189 0.00075531C12.0236 6.63464 17.4003 12.0113 24.0342 12.016C17.4003 12.0207 12.0236 17.3974 12.0189 24.0313Z" fill="url(#paint0_linear_2908_8003)"></path>
+</g>
+<defs>
+<linearGradient id="paint0_linear_2908_8003" x1="12.0189" y1="0.000766769" x2="12.0189" y2="24.0312" gradientUnits="userSpaceOnUse">
+<stop stop-color="#1FA16B"></stop>
+<stop offset="1" stop-color="#38EAA0"></stop>
+</linearGradient>
+<clipPath id="clip0_2908_8003">
+<rect width="24" height="24" fill="white" transform="translate(0.00390625)"></rect>
+</clipPath>
+</defs>
+</svg></svg></g></svg>
