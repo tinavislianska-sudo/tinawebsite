@@ -860,26 +860,43 @@
       <div class="case-card">
         <img src="images/cognagent-1.png" alt="CogniAgent productized agent workflows">
         <div class="case-body">
-          <h3>Agent Workflows</h3>
+          <h3>CogniAgent — Social Content &amp; Competitor Intelligence Pipeline</h3>
           <div class="case-role">CogniAgent · Founding AI Growth Systems Lead · 2025–Present</div>
-          <p>Productized AI agents handling lead qualification, support, dispatching, and more across service verticals.</p>
-          <div class="case-result">90% automated</div>
+          <p>Social content and competitor tracking were both manual, ad hoc processes with no repeatable system behind them. I built a Claude Code pipeline that drafts on-brand posts end to end — idea to copy fact-checked against a technical skill built from CogniAgent's own documentation, to on-brand images, to a review-ready bundle — and a separate agent that watches competitor accounts across five platforms, alerts on anything new the moment it posts, writes up the gap where the brand could stand out, and feeds it straight back into the pipeline as a new post idea.</p>
+          <div class="case-result">30% engagement · 99% automated · Zero missed competitor moves</div>
           <details>
             <summary class="case-toggle"><span data-icon="chev"></span> View case study</summary>
             <div class="case-detail">
               <div class="case-stat-grid">
-                <div class="case-stat"><div class="case-stat-icon" data-icon="bolt"></div><div class="case-stat-num">90%</div><div class="case-stat-lbl">automated</div></div>
+                <div class="case-stat"><div class="case-stat-icon" data-icon="media"></div><div class="case-stat-num">30%</div><div class="case-stat-lbl">engagement</div></div>
+                <div class="case-stat"><div class="case-stat-icon" data-icon="bolt"></div><div class="case-stat-num">99%</div><div class="case-stat-lbl">automated</div></div>
+                <div class="case-stat"><div class="case-stat-icon" data-icon="search"></div><div class="case-stat-num">Zero</div><div class="case-stat-lbl">missed competitor moves</div></div>
               </div>
-              <h4>Challenge</h4>
-              <p>Manual, repetitive customer-facing workflows limited how many verticals and customers the team could serve at once.</p>
-              <h4>What I Built</h4>
-              <ul>
-                <li>Lead qualification and booking agents with CRM and calendar integrations</li>
-                <li>Customer support triage and dispatch agents with human escalation paths</li>
-                <li>Reusable agent architecture deployed across HVAC, cleaning, security, and e-commerce verticals</li>
-              </ul>
-              <h4>Result</h4>
-              <p>Automated ~90% of recurring workflows across served verticals.</p>
+              <div class="case-scheme">
+                <div class="case-scheme-block">
+                  <div class="case-scheme-label">Inputs — what I combined</div>
+                  <ul class="case-list-grid">
+                    <li>Brand voice and visual-style guidelines as the single source of truth for every draft</li>
+                    <li>A multi-agent chain — strategist, copywriter, fact-checker, image-prompter, image-QA, packager — each owning one stage of a post</li>
+                    <li>The cogniagent-technical skill, built from CogniAgent's own product documentation, as the fact-checker's grounding source</li>
+                    <li>OpenAI's image API for on-brand visual generation</li>
+                    <li>Competitor profile URLs across LinkedIn, X, Instagram, YouTube, and TikTok</li>
+                    <li>The Playwright browser MCP for live, no-API competitor monitoring</li>
+                  </ul>
+                </div>
+                <div class="case-scheme-connector"><span data-icon="chev"></span></div>
+                <div class="case-scheme-block">
+                  <div class="case-scheme-label">Applied to — what I did with it</div>
+                  <ul class="case-list-grid">
+                    <li>Built an end-to-end content pipeline — idea → copy → fact-check → image → QA → review-ready bundle — gated by a deterministic validation check before anything reaches approval</li>
+                    <li>Grounded every draft's fact-check against real CogniAgent documentation, not the model's assumptions, catching product-accuracy errors before they reach review</li>
+                    <li>Kept publishing manual by design: the system produces upload-ready bundles, not autoposts, so a human makes the final call every time</li>
+                    <li>Built a competitor-scout agent that reads live posts across five platforms, diffs them against what's already been seen, alerts on anything new, and writes up the gap where the brand could stand out</li>
+                    <li>Solved the login-wall problem with a persistent browser session, unblocking competitors that were previously unreadable</li>
+                    <li>Drove a 30% increase in engagement while automating 99% of the pipeline end to end, with zero missed competitor moves since launch</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </details>
         </div>
