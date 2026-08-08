@@ -378,6 +378,11 @@
     color: var(--text); font-size: 12px; font-weight: 700;
     padding: 6px 14px; border-radius: 100px;
   }
+  .case-badge-row {
+    position: absolute; top: 12px; left: 12px; z-index: 2;
+    display: flex; flex-wrap: wrap; gap: 8px; max-width: calc(100% - 24px);
+  }
+  .case-badge-row .case-category-badge { position: static; }
   .case-award-badge {
     position: absolute; top: 12px; right: 12px; z-index: 2;
     background: color-mix(in srgb, var(--card) 85%, transparent);
@@ -887,9 +892,12 @@
             <g transform="translate(366 88)"><use href="#fw-file" x="0" y="-9" width="11" height="13"/><text x="19" y="0">PIPELINE-CONTEXT.md</text></g>
           </g>
         </svg>
+        <div class="case-badge-row">
+          <div class="case-category-badge">Multi-Agent System</div>
+          <div class="case-category-badge">Marketing Operations</div>
+        </div>
         <div class="case-body">
           <h3>CogniAgent — Social Content &amp; Competitor Intelligence Pipeline</h3>
-          <div class="case-role">CogniAgent · Founding AI Growth Systems Lead · 2025–Present</div>
           <p>Social content and competitor tracking were both manual, ad hoc processes with no repeatable system behind them. I built a Claude Code pipeline that drafts on-brand posts end to end — idea to copy fact-checked against a technical skill built from CogniAgent's own documentation, to on-brand images, to a review-ready bundle — and a separate agent that watches competitor accounts across five platforms, alerts on anything new the moment it posts, writes up the gap where the brand could stand out, and feeds it straight back into the pipeline as a new post idea.</p>
           <div class="case-result">30% engagement · 99% automated · Zero missed competitor moves</div>
           <details>
@@ -954,7 +962,10 @@
           <text x="300" y="112" text-anchor="middle" font-size="12" fill="var(--muted)">Guide</text>
           <text x="480" y="112" text-anchor="middle" font-size="12" fill="var(--muted)">Video</text>
         </svg>
-        <div class="case-category-badge">Agentic System</div>
+        <div class="case-badge-row">
+          <div class="case-category-badge">Agentic System</div>
+          <div class="case-category-badge">Marketing Operations</div>
+        </div>
         <div class="case-body">
           <h3>CogniAgent — AI Content Machine</h3>
           <p>Every new agent workflow built on the platform needed documentation and content, but manual production couldn't keep pace with product velocity. I built an automated pipeline that turns every newly built workflow into guides, tutorials, and video content — long and short form — the moment it ships.</p>
