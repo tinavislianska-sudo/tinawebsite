@@ -394,6 +394,16 @@
     display: flex; align-items: center; gap: 6px;
   }
   .case-award-badge .dot { width: 9px; height: 9px; border-radius: 50%; background: #e5202e; flex-shrink: 0; }
+  .case-github-badge {
+    position: absolute; top: 12px; right: 12px; z-index: 2;
+    width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+    background: color-mix(in srgb, var(--card) 85%, transparent);
+    backdrop-filter: blur(10px) saturate(140%);
+    -webkit-backdrop-filter: blur(10px) saturate(140%);
+    border: 1px solid var(--border);
+    border-radius: 50%; color: var(--text);
+  }
+  .case-github-badge svg { width: 16px; height: 16px; }
   .case-cover { width: 100%; height: 150px; border-bottom: 1px solid var(--border); background: var(--bg-2); display: block; }
   .case-cover text { font-family: Inter, sans-serif; }
   .case-body { padding: 18px; }
@@ -895,6 +905,9 @@
             <g transform="translate(366 88)"><use href="#fw-file" x="0" y="-9" width="11" height="13"/><text x="19" y="0">PIPELINE-CONTEXT.md</text></g>
           </g>
         </svg>
+        <div class="case-github-badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.333-1.755-1.333-1.755-1.089-.744.084-.729.084-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        </div>
         <div class="case-badge-row">
           <div class="case-category-badge">Multi-Agent System</div>
           <div class="case-category-badge">Marketing Operations</div>
@@ -965,6 +978,9 @@
           <text x="300" y="112" text-anchor="middle" font-size="12" fill="var(--muted)">Guide</text>
           <text x="480" y="112" text-anchor="middle" font-size="12" fill="var(--muted)">Video</text>
         </svg>
+        <div class="case-github-badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.333-1.755-1.333-1.755-1.089-.744.084-.729.084-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        </div>
         <div class="case-badge-row">
           <div class="case-category-badge">Agentic System</div>
           <div class="case-category-badge">Marketing Operations</div>
@@ -1192,6 +1208,72 @@
                     <li>Launched AMA programs and recurring community events</li>
                     <li>Ran a reply-first distribution strategy on X</li>
                     <li>Drove 45% engagement growth in six months, took YouTube from 0 to 2,000+ subscribers, and pulled 150+ average live attendees per community event</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <svg class="case-cover" viewBox="0 0 600 150" role="img" aria-label="Diagram: Meta and Google ad data feeding into one dashboard">
+          <circle cx="150" cy="65" r="26" fill="var(--card)" stroke="var(--border)"/>
+          <g stroke="var(--text)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" fill="none" transform="translate(138 53)">
+            <rect x="4" y="5" width="16" height="14" rx="2"/>
+            <path d="m10 9 5 3-5 3Z"/>
+          </g>
+          <circle cx="150" cy="115" r="26" fill="var(--card)" stroke="var(--border)"/>
+          <g stroke="var(--text)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" fill="none" transform="translate(138 103)">
+            <circle cx="10.75" cy="10.75" r="6.25"/>
+            <path d="m15.5 15.5 4.25 4.25"/>
+          </g>
+          <line x1="176" y1="65" x2="280" y2="90" stroke="var(--border)" stroke-width="2" stroke-dasharray="4 5"/>
+          <line x1="176" y1="115" x2="280" y2="90" stroke="var(--border)" stroke-width="2" stroke-dasharray="4 5"/>
+          <circle cx="310" cy="90" r="26" fill="var(--card)" stroke="var(--border)"/>
+          <g stroke="var(--text)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" fill="none" transform="translate(298 78)">
+            <rect x="0" y="0" width="24" height="24" rx="3"/>
+            <path d="M6 9h12M6 15h7.5"/>
+          </g>
+          <text x="150" y="35" text-anchor="middle" font-size="12" fill="var(--muted)">Meta ads</text>
+          <text x="150" y="150" text-anchor="middle" font-size="12" fill="var(--muted)">Google ads</text>
+          <text x="310" y="137" text-anchor="middle" font-size="12" fill="var(--muted)">Dashboard</text>
+        </svg>
+        <div class="case-badge-row">
+          <div class="case-category-badge">Agentic System</div>
+          <div class="case-category-badge">Marketing Operations</div>
+        </div>
+        <div class="case-body">
+          <h3>Ad Tracker</h3>
+          <p>Competitor ad activity was invisible unless I manually checked each platform — no unified way to see what competitors were actually running on Meta or Google. I built a tracker that pulls live ad data from both, keeps it synced, and turns it into a reviewable dashboard.</p>
+          <div class="case-result">10,000 competitors tracked · 25,000 ads captured · 2 platforms, 1 dashboard</div>
+          <details>
+            <summary class="case-toggle"><span data-icon="chev"></span> View case study</summary>
+            <div class="case-detail">
+              <div class="case-stat-grid">
+                <div class="case-stat"><div class="case-stat-icon" data-icon="search"></div><div class="case-stat-num">10,000</div><div class="case-stat-lbl">competitors tracked</div></div>
+                <div class="case-stat"><div class="case-stat-icon" data-icon="media"></div><div class="case-stat-num">25,000</div><div class="case-stat-lbl">ads captured</div></div>
+                <div class="case-stat"><div class="case-stat-icon" data-icon="link"></div><div class="case-stat-num">2→1</div><div class="case-stat-lbl">platforms, one dashboard</div></div>
+              </div>
+              <div class="case-scheme">
+                <div class="case-scheme-block">
+                  <div class="case-scheme-label">Inputs — what I combined</div>
+                  <ul class="case-list-grid">
+                    <li>Apify's Facebook Ad Library scraper for Meta ad data</li>
+                    <li>Apify's Google Ads Transparency Center scraper for Google ad data</li>
+                    <li>A tracked competitor list and a database schema to store ad history over time</li>
+                    <li>A sync orchestrator to pull and reconcile both sources on a schedule</li>
+                  </ul>
+                </div>
+                <div class="case-scheme-connector"><span data-icon="chev"></span></div>
+                <div class="case-scheme-block">
+                  <div class="case-scheme-label">Applied to — what I did with it</div>
+                  <ul class="case-list-grid">
+                    <li>Set up the project from scratch: config, database schema, adapter structure</li>
+                    <li>Built dedicated Meta and Google adapters, each normalizing a different platform's ad data into one schema</li>
+                    <li>Built a sync orchestrator to keep both sources current</li>
+                    <li>Built a dashboard generator and CSV export for reviewing competitor ad activity</li>
+                    <li>Tracked 10,000 competitors across Meta and Google, capturing 25,000+ ads automatically — all through a single dashboard</li>
                   </ul>
                 </div>
               </div>
