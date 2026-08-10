@@ -334,6 +334,19 @@
   .scratch-revealed h3 { font-size: 22px; font-weight: 800; letter-spacing: -0.01em; line-height: 1.3; margin-bottom: 14px; }
   .scratch-revealed p { font-size: 14.5px; color: var(--text-2); line-height: 1.6; margin-bottom: 20px; max-width: 580px; }
   .scratch-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .scratch-press {
+    display: flex; align-items: center; gap: 12px; margin-top: 20px;
+    padding-top: 20px; border-top: 1px solid var(--border);
+  }
+  .scratch-press-cover {
+    width: 48px; height: 64px; object-fit: cover; border-radius: 6px;
+    border: 1px solid var(--border); flex-shrink: 0;
+  }
+  .scratch-press-label {
+    font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--muted);
+  }
+  .scratch-press-title { font-size: 14px; font-weight: 700; color: var(--text); margin-top: 2px; }
+  .scratch-press-sub { font-size: 12.5px; color: var(--text-2); margin-top: 2px; }
   .scratch-canvas {
     position: absolute; inset: 0; width: 100%; height: 100%; display: block;
     cursor: pointer; touch-action: none; transition: opacity .5s ease;
@@ -793,6 +806,14 @@
           <span class="stack-tag">Positioning</span>
           <span class="stack-tag">Storytelling</span>
           <span class="stack-tag">Demand Validation</span>
+        </div>
+        <div class="scratch-press">
+          <img src="images/slanted-43-cover.jpeg" alt="Slanted 43 magazine cover" class="scratch-press-cover">
+          <div>
+            <div class="scratch-press-label">Published in</div>
+            <div class="scratch-press-title">Slanted 43</div>
+            <div class="scratch-press-sub">International design &amp; cultural creation</div>
+          </div>
         </div>
       </div>
       <canvas class="scratch-canvas" id="scratchCanvas" aria-hidden="true"></canvas>
