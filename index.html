@@ -547,6 +547,77 @@
   }
   .case-strategy { margin-bottom: 24px; }
   .case-strategy h4 { color: var(--text); }
+
+  /* Subtle editorial identity: ink, cobalt, and connected signals. */
+  :root {
+    --accent: #294edb;
+    --accent-text: #fff;
+    --bg-2: #f5f7fb;
+    --tag-bg: #f0f3fa;
+    --border: #e0e5ee;
+    --signal-soft: #edf1ff;
+    --signal-line: #c5d0fb;
+  }
+  [data-theme="dark"] {
+    --accent: #a9bbff;
+    --accent-text: #111a35;
+    --bg-2: #121722;
+    --tag-bg: #1c2333;
+    --border: #2c3447;
+    --signal-soft: #1b2543;
+    --signal-line: #3c4f88;
+  }
+  .hero { position: relative; isolation: isolate; padding-bottom: 84px; }
+  .hero::before { content: ''; position: absolute; inset: 90px 0 0; z-index: -1; pointer-events: none; background: radial-gradient(ellipse at 78% 45%, var(--signal-soft), transparent 48%); }
+  .hero-name { display: inline-flex; align-items: center; gap: 10px; font-size: .875rem; letter-spacing: .01em; }
+  .hero-name::before { content: ''; width: 7px; height: 7px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+  .hero h1 { letter-spacing: -.045em; line-height: 1.07; margin-bottom: 24px; }
+  .hero-highlight { color: var(--accent); }
+  .hero-desc strong { color: var(--text); font-weight: 600; }
+  .hero-photo-wrap { width: 300px; padding: 10px; border: 1px solid var(--signal-line); border-radius: 50%; }
+  .hero-photo-wrap::before { content: ''; position: absolute; inset: -22px; border: 1px dashed var(--signal-line); border-radius: 50%; pointer-events: none; }
+  .hero-photo-wrap::after { content: ''; position: absolute; width: 12px; height: 12px; border: 3px solid var(--bg); background: var(--accent); border-radius: 50%; left: 10px; bottom: 28px; }
+  .hero-photo { box-shadow: 0 18px 42px rgba(15,30,70,.12); }
+  .btn { border-radius: 12px; transition: background .2s, box-shadow .2s; }
+  .btn.primary { box-shadow: 0 4px 12px color-mix(in srgb, var(--accent) 18%, transparent); }
+  .nav { box-shadow: 0 5px 24px rgba(15,30,70,.06); }
+  .nav-name { letter-spacing: -.025em; }
+  .sec-head { text-align: left; margin-bottom: 32px; }
+  .sec-tag { font-size: clamp(1.6rem, 3vw, 2.1rem); letter-spacing: -.035em; }
+  .sec-sub { max-width: 650px; font-size: 1rem; }
+  #outcomes .sec-head { border-top: 1px solid var(--border); padding-top: 30px; }
+  .stat-card { display: flex; flex-direction: column; padding: 26px; border-radius: 18px; border-top: 3px solid var(--accent); }
+  .stat-num { font-size: clamp(1.5rem, 2.45vw, 1.9rem); color: var(--accent); letter-spacing: -.045em; line-height: 1.2; margin: 6px 0 14px; }
+  .stat-icon, .service-icon { background: var(--signal-soft); color: var(--accent); }
+  .stat-icon svg { color: var(--accent); }
+  .stat-card .text-link { margin-top: auto; padding-top: 22px; }
+  .text-link { text-decoration-color: var(--signal-line); text-decoration-thickness: 1px; transition: color .2s; }
+  .text-link:hover { color: var(--accent); }
+  #cases .sec-head { max-width: 900px; margin-left: auto; margin-right: auto; }
+  .case-card { border-radius: 20px; box-shadow: 0 4px 16px rgba(15,30,70,.025); }
+  .case-card:hover { transform: translateY(-2px); border-color: var(--signal-line); }
+  .case-result { background: var(--signal-soft); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; padding: 12px 14px; }
+  .case-strategy { padding: 4px 0 4px 20px; border-left: 1px solid var(--signal-line); }
+  .case-strategy h4 { color: var(--accent); }
+  .service-card { display: flex; flex-direction: column; border-radius: 18px; }
+  .service-card .text-link { margin-top: auto; padding-top: 18px; }
+  .service-card h3 { letter-spacing: -.02em; }
+  .tl-dot { border-color: var(--accent); }
+  #contact .sec-head { text-align: center; }
+  #contact .sec-sub { margin-left: auto; margin-right: auto; }
+  .contact-card { border-top: 3px solid var(--accent); }
+  @media (max-width: 900px) {
+    .hero-photo-wrap { width: 220px; margin-top: 18px; }
+    .hero-photo { width: 200px; height: 200px; }
+    .hero h1 { font-size: clamp(2.1rem, 6.5vw, 3.6rem); }
+    .hero { padding-bottom: 64px; }
+  }
+  @media (max-width: 600px) {
+    .hero::before { background: radial-gradient(ellipse at 50% 85%, var(--signal-soft), transparent 58%); }
+    .stat-card { padding: 22px; }
+    .stat-num { font-size: 1.9rem; }
+    .hero-photo-wrap::before { inset: -14px; }
+  }
 </style>
 </head>
 <body>
@@ -572,7 +643,7 @@
   <div class="wrap hero-grid">
     <div>
       <p class="hero-name">Kristina Vislianska · 10+ years in marketing</p>
-      <h1>Growth Strategy &amp; Innovation</h1>
+      <h1>Growth Strategy<br>&amp; <span class="hero-highlight">Innovation</span></h1>
       <p class="hero-desc">I turn customer, market, and performance data into unconventional paths to growth. I connect insights across product, content, search, community, and partnerships.</p>
       <p class="hero-desc"><strong>I find the opportunity, design the experiment, and build the systems to scale what works.</strong></p>
       <div class="btn-row">
