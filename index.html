@@ -502,6 +502,49 @@
   footer { text-align: center; padding: 40px 24px 60px; font-size: 12.5px; color: var(--muted); }
 
   #note-content-placeholder { display: none; }
+
+  /* Portfolio hierarchy and readable case studies. */
+  .hero { padding: 140px 24px 64px; }
+  .hero h1 { font-size: clamp(2.1rem, 4.3vw, 3.6rem); line-height: 1.08; }
+  .hero-name { font-size: 1rem; font-weight: 600; margin-bottom: 18px; }
+  .hero-meta { color: var(--text-2); font-size: .875rem; margin-top: 20px; }
+  .text-link { display: inline-block; font-size: .875rem; font-weight: 600; text-decoration: underline; text-underline-offset: 4px; }
+  #outcomes { padding-top: 32px; padding-bottom: 48px; }
+  .stat-grid, .service-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .stat-lbl, .service-card li, .case-result, .case-toggle, .case-detail h4, .case-stat-lbl { font-size: .875rem; }
+  .stat-card .text-link { margin-top: 16px; }
+  .service-card p, .case-card > .case-body > p, .case-detail p, .case-detail ul { font-size: 1rem; line-height: 1.65; }
+  .service-card h3, .case-card h3 { font-size: 1.125rem; line-height: 1.4; }
+  .service-card li { margin-bottom: 12px; }
+  .case-body { padding: 24px; }
+  .case-scheme-block { min-width: 0; }
+  .case-scheme-block ul.case-list-grid { font-size: 1rem; }
+  .case-grid { max-width: 900px; gap: 24px; }
+  .case-card[id], #scratch-case { scroll-margin-top: 100px; }
+  .case-card img { height: 210px; }
+  .more-projects { max-width: 900px; margin: 32px auto 0; }
+  .more-projects > summary { cursor: pointer; font-size: 1rem; font-weight: 600; padding: 18px 0; border-top: 1px solid var(--border); }
+  .more-count { font-size: .875rem; font-weight: 400; color: var(--text-2); margin-left: 12px; }
+  .more-projects[open] > summary { margin-bottom: 12px; }
+  .contact-row .val { overflow-wrap: anywhere; }
+  a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--text); outline-offset: 5px; }
+  @media (max-width: 900px) {
+    .service-grid { grid-template-columns: 1fr; }
+    .hero-photo-wrap { order: 0; }
+    .case-scheme { flex-direction: column; }
+  }
+  @media (max-width: 600px) {
+    section { padding: 64px 20px; }
+    .hero { padding: 116px 20px 48px; }
+    .stat-grid { grid-template-columns: 1fr; }
+    .case-body { padding: 20px; }
+    .case-stat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .case-card img { height: 170px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
 </style>
 </head>
 <body>
@@ -510,11 +553,10 @@
   <nav class="nav">
     <div class="nav-name">Kristina Vislianska</div>
     <div class="nav-links">
-      <a href="#about">About</a>
+      <a href="#cases">Work</a>
       <a href="#services">Services</a>
-      <a href="#stack">AI Stack</a>
       <a href="#experience">Experience</a>
-      <a href="#cases">Cases</a>
+      <a href="#about">About</a>
     </div>
     <div class="nav-right">
       <button class="icon-btn" id="dark-toggle" aria-label="Toggle dark mode"></button>
@@ -527,15 +569,17 @@
 <section class="hero" id="top">
   <div class="wrap hero-grid">
     <div>
-      <h1>Kristina Vislianska</h1>
-      <div class="hero-role"><span class="mono">Founding AI Lead Marketer · 10+ years</span></div>
-      <p class="hero-desc">Hey, I'm Kristina. I find companies their best market and take them from unknown to in-demand - building the AI agents and pipelines myself, from ICP research to content that gets cited by ChatGPT and Perplexity, not just ranked by Google.</p>
-      <p class="hero-desc"><strong>I take the decision, agentic systems execute.</strong></p>
+      <p class="hero-name">Kristina Vislianska · 10+ years in marketing</p>
+      <h1>AI Product Marketing &amp; Growth Systems</h1>
+      <p class="hero-desc">I help B2B SaaS and AI teams find their best-fit customers, sharpen their positioning, and build systems that turn strategy into repeatable growth.</p>
+      <p class="hero-desc"><strong>I lead the strategy and build the AI systems myself.</strong></p>
       <div class="btn-row">
-        <a href="#cases" class="btn primary">View Selected Work</a>
-        <a href="https://drive.google.com/file/d/1GTIwLNADWlnB3VLnwPeZkVLNfUG8637A/view?usp=sharing" target="_blank" rel="noopener" class="btn secondary">Download CV</a>
-        <button type="button" class="btn tertiary" id="surpriseBtn" aria-label="Surprise me: jump to a hidden scratch-card case study"><span class="surprise-star" aria-hidden="true">✦</span> Surprise me</button>
+        <a href="#contact" class="btn primary">Let’s talk</a>
+        <a href="#cases" class="btn secondary">View selected work</a>
+
+
       </div>
+      <p class="hero-meta">Lisbon, Portugal · Remote · <a href="https://drive.google.com/file/d/1GTIwLNADWlnB3VLnwPeZkVLNfUG8637A/view?usp=sharing" target="_blank" rel="noopener" class="text-link">View CV</a></p>
     </div>
     <div class="hero-photo-wrap">
       <div class="hero-photo"><img src="images/kristina-hero-2.webp" alt="Kristina Vislianska"></div>
@@ -544,289 +588,22 @@
   </div>
 </section>
 
-<!-- ═══ ABOUT ═══ -->
-<section id="about">
+<section id="outcomes">
   <div class="wrap">
-    <div class="sec-head">
-      <p class="sec-sub" style="font-weight: 700; color: var(--text);">Selected outcomes from recent work</p>
-    </div>
+    <div class="sec-head"><h2 class="sec-tag">Selected outcomes</h2></div>
     <div class="stat-grid">
-      <div class="stat-card">
-        <div class="stat-icon" data-icon="target"></div>
-        <div class="stat-num">5×</div>
-        <div class="stat-lbl"><strong>Lead-generation efficiency</strong><br>Reduced CPL from $15 to $3, generating five times more leads from the same budget.</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon" data-icon="growth"></div>
-        <div class="stat-num">80%</div>
-        <div class="stat-lbl"><strong>Lower acquisition cost</strong><br>The same lead volume at one-fifth of the previous spend.</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon" data-icon="bolt"></div>
-        <div class="stat-num">90%</div>
-        <div class="stat-lbl"><strong>Automated</strong><br>Reduced recurring manual work and created more capacity without increasing headcount.</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon" data-icon="users"></div>
-        <div class="stat-num">+130K</div>
-        <div class="stat-lbl"><strong>Followers</strong><br>Expanded brand reach in just three months.</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon" data-icon="media"></div>
-        <div class="stat-num">2.4×</div>
-        <div class="stat-lbl"><strong>Engagement</strong><br>Turned the brand relaunch into measurable audience growth.</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon" data-icon="mail"></div>
-        <div class="stat-num">15K</div>
-        <div class="stat-lbl"><strong>Subscribers</strong><br>Built an owned distribution channel in three months.</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon" data-icon="link"></div>
-        <div class="stat-num">10+</div>
-        <div class="stat-lbl"><strong>New partners monthly</strong><br>Created a repeatable partnership pipeline from zero.</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon" data-icon="content"></div>
-        <div class="stat-num">+15%</div>
-        <div class="stat-lbl"><strong>Product conversion</strong><br>Built ready-made workflow templates that reduced setup friction and helped users reach value faster.</div>
-      </div>
+      <div class="stat-card"><div class="stat-icon" data-icon="target"></div><div class="stat-num">$15 → $3</div><div class="stat-lbl"><strong>Cost per lead · CogniAgent</strong><br>Customer intelligence applied to targeting and campaigns.</div><a class="text-link" href="#case-cogniagent">Explore the system →</a></div>
+      <div class="stat-card"><div class="stat-icon" data-icon="search"></div><div class="stat-num">3 months</div><div class="stat-lbl"><strong>To recurring AI citations · NikoHealth</strong><br>Visibility in ChatGPT and Perplexity for relevant healthcare queries.</div><a class="text-link" href="#case-nikohealth">Explore the approach →</a></div>
+      <div class="stat-card"><div class="stat-icon" data-icon="users"></div><div class="stat-num">+130K</div><div class="stat-lbl"><strong>Followers · Bitcoin Magazine</strong><br>Audience growth in three months following a brand relaunch.</div><a class="text-link" href="#case-bitcoin">Explore the relaunch →</a></div>
     </div>
   </div>
 </section>
 
-<!-- ═══ SERVICES ═══ -->
-<section id="services" style="background:var(--bg-2)">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="sec-tag">Build the foundation for market leadership</div>
-      <p class="sec-sub">Research, positioning, brand, and growth, all pointed in the same direction</p>
-    </div>
-    <div class="service-grid">
-      <div class="service-card">
-        <div class="service-icon" data-icon="search"></div>
-        <h3>ICP &amp; Customer Intelligence</h3>
-        <div class="service-sub">Find the market worth winning</div>
-        <p>I turn scattered customer, competitor, and market data into a clear answer: who to target, and why they'll buy.</p>
-        <ul>
-          <li>ICP discovery and segmentation</li>
-          <li>Customer interviews and voice-of-customer research</li>
-          <li>Pain-point and buying-trigger analysis</li>
-          <li>Competitor and category intelligence</li>
-          <li>Market and opportunity mapping</li>
-          <li>Continuous customer-intelligence systems</li>
-        </ul>
-      </div>
-      <div class="service-card">
-        <div class="service-icon" data-icon="target"></div>
-        <h3>Positioning &amp; Messaging</h3>
-        <div class="service-sub">Give buyers a reason to choose you</div>
-        <p>I turn what your product does into a message buyers get instantly, and a position competitors can't easily copy.</p>
-        <ul>
-          <li>Positioning strategy</li>
-          <li>Value proposition development</li>
-          <li>Competitive differentiation</li>
-          <li>Messaging architecture</li>
-          <li>Category and brand narrative</li>
-          <li>Website and launch messaging</li>
-          <li>Sales and product-marketing narratives</li>
-        </ul>
-      </div>
-      <div class="service-card">
-        <div class="service-icon" data-icon="media"></div>
-        <h3>Brand &amp; Content Strategy</h3>
-        <div class="service-sub">Turn your position into a recognizable brand</div>
-        <p>I build the content and communication systems that make the brand useful, credible, and memorable everywhere customers meet it.</p>
-        <ul>
-          <li>Brand communication strategy</li>
-          <li>Founder-led content systems</li>
-          <li>Editorial and campaign strategy</li>
-          <li>Authority-building content</li>
-          <li>Social and community strategy</li>
-          <li>GEO and AI-search visibility</li>
-          <li>Content production systems</li>
-        </ul>
-      </div>
-      <div class="service-card">
-        <div class="service-icon" data-icon="growth"></div>
-        <h3>GTM &amp; Growth Systems</h3>
-        <div class="service-sub">Turn market clarity into repeatable demand</div>
-        <p>I build and test the channels, campaigns, partnerships, and workflows that turn one-off wins into a growth engine that keeps running.</p>
-        <ul>
-          <li>Go-to-market strategy and experimentation</li>
-          <li>Lead-generation systems</li>
-          <li>Distribution strategy</li>
-          <li>Partnerships and community growth</li>
-          <li>Product-led growth initiatives</li>
-          <li>Marketing automation</li>
-          <li>AI-enabled workflows and reporting</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ AUDIT BANNER ═══ -->
-<section class="audit-banner">
-  <div class="wrap">
-    <div class="audit-banner-inner">
-      <div class="audit-banner-text">
-        <h2>Not sure what's holding your growth back?</h2>
-        <p>Get a free marketing audit covering your ICP, positioning, messaging, and growth opportunities.</p>
-      </div>
-      <a href="mailto:tina.vislianska@gmail.com?subject=Free%20Marketing%20Audit%20Request" class="btn primary">Request Your Free Audit</a>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ AI STACK ═══ -->
-<section id="stack">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="sec-tag">AI Stack</div>
-      <p class="sec-sub">The research, AI, and automation capabilities behind my work</p>
-    </div>
-    <div class="stack-grid">
-      <div class="stack-card">
-        <div class="stack-icon" data-icon="search"></div>
-        <h3>Research</h3>
-        <div class="stack-tags">
-          <span class="stack-tag">Apify Scrapers</span><span class="stack-tag">AI-Powered Research</span>
-          <span class="stack-tag">Notebook LM</span><span class="stack-tag">Google Trends</span>
-          <span class="stack-tag">Reddit</span><span class="stack-tag">G2</span><span class="stack-tag">Capterra</span>
-          <span class="stack-tag">Similarweb</span><span class="stack-tag">Ahrefs</span><span class="stack-tag">Gemini</span>
-        </div>
-      </div>
-      <div class="stack-card">
-        <div class="stack-icon" data-icon="aiOrbit"></div>
-        <h3>Agentic Systems</h3>
-        <div class="stack-tags">
-          <span class="stack-tag">Multi-Agent Workflows</span>
-          <span class="stack-tag">Model Context Protocol (MCP)</span><span class="stack-tag">Memory &amp; Context Management</span>
-          <span class="stack-tag">API Integrations</span>
-        </div>
-      </div>
-      <div class="stack-card">
-        <div class="stack-icon" data-icon="growth"></div>
-        <h3>Automation</h3>
-        <div class="stack-tags">
-          <span class="stack-tag">n8n</span><span class="stack-tag">Make</span>
-          <span class="stack-tag">Zapier</span><span class="stack-tag">Claude Code</span>
-          <span class="stack-tag">Codex</span><span class="stack-tag">Remotion &amp; Hyperframes</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ EXPERIENCE ═══ -->
-<section id="experience" style="background:var(--bg-2)">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="sec-tag">Experience</div>
-      <p class="sec-sub">AI product marketing across B2B SaaS, healthcare, media, and Web3</p>
-    </div>
-    <div class="timeline">
-
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-head"><span class="tl-role">Founding AI Growth Systems Lead</span><span class="tl-badge">Full-time</span></div>
-        <div class="tl-meta"><strong><a href="https://cogniagent.ai/" target="_blank" rel="noopener" class="tl-co-link">CogniAgent</a></strong> · 2025 – Present · Founding-stage AI SaaS</div>
-        <p>Built the AI systems behind CogniAgent's growth - customer intelligence, content, and competitor monitoring - cutting CPL from $15 to $3 and automating 90% of recurring work.</p>
-      </div>
-
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-head"><span class="tl-role">AI Search &amp; Intelligence Strategist</span><span class="tl-badge">Full-time</span></div>
-        <div class="tl-meta"><strong><a href="https://nikohealth.com/" target="_blank" rel="noopener" class="tl-co-link">NikoHealth</a></strong>, through Glorium Technologies · Dec 2025 – Present · US Healthcare B2B SaaS</div>
-        <p>Built NikoHealth's AI-search visibility from zero, winning recurring ChatGPT and Perplexity citations in a specialized healthcare niche.</p>
-      </div>
-
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-head"><span class="tl-role">Growth Systems Advisor</span><span class="tl-badge">Project</span></div>
-        <div class="tl-meta"><strong><a href="https://futureprinciple.com/" target="_blank" rel="noopener" class="tl-co-link">Future Principle</a></strong> · Jan – Apr 2025 · Early-stage startup</div>
-        <p>Built a founder-led growth system from scratch, taking a LinkedIn newsletter to 780 subscribers in month one.</p>
-      </div>
-
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-head"><span class="tl-role">Independent Consultant - Growth, Brand &amp; Community</span><span class="tl-badge">Freelance</span></div>
-        <div class="tl-meta">Oct 2023 – Oct 2025</div>
-        <div class="tl-sub">
-          <div class="tl-sub-item">
-            <div class="tl-sub-role"><a href="https://bitcoinmagazine.com/" target="_blank" rel="noopener" class="tl-co-link">Bitcoin Magazine</a></div>
-            <div class="tl-sub-meta">Oct 2023 – Jan 2024 · Media brand</div>
-            <p>Rebranded and relaunched a leading Bitcoin media brand: +130K followers, 2.4× engagement, 15K newsletter subs in 3 months.</p>
-          </div>
-          <div class="tl-sub-item">
-            <div class="tl-sub-role"><a href="https://atleta.network/" target="_blank" rel="noopener" class="tl-co-link">Atleta Network</a></div>
-            <div class="tl-sub-meta">Jan – Aug 2024 · Early-stage L1 blockchain</div>
-            <p>Built a partnerships engine from zero for an early-stage L1: 10+ new partners onboarded every month.</p>
-          </div>
-          <div class="tl-sub-item">
-            <div class="tl-sub-role"><a href="https://spellwallet.io/" target="_blank" rel="noopener" class="tl-co-link">Spell Wallet</a></div>
-            <div class="tl-sub-meta">Jun – Oct 2025 · MPC crypto wallet</div>
-            <p>Drove community-led distribution for an MPC wallet: 45% engagement growth, 0 → 2,000+ YouTube subscribers.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-head"><span class="tl-role">Lead Content Marketer, Brand Communications</span><span class="tl-badge">Full-time</span></div>
-        <div class="tl-meta"><strong><a href="https://whitebit.com/" target="_blank" rel="noopener" class="tl-co-link">WhiteBIT</a></strong> · Jul 2022 – Mar 2023 · Established crypto exchange, Europe</div>
-        <p>Rebuilt WhiteBIT's brand communications with a mascot-driven content strategy - a transformation recognized with a 2023 Red Dot Award, 50% community growth, 3× UGC.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══ SCRATCH CASE ═══ -->
-<section id="scratch-case">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="scratch-eyebrow">One story didn't fit on the CV</div>
-      <div class="sec-tag">Scratch to uncover my original zero-to-one case.</div>
-    </div>
-    <div class="scratch-card" id="scratchCard">
-      <div class="scratch-revealed">
-        <div class="scratch-label">The Flower-Mask Experiment</div>
-        <h3>I turned an unexpected idea into a product, and found people willing to buy it.</h3>
-        <p>I created masks from flowers, shaped the story around them, brought the idea to market, and sold them as NFTs. Long before I called it positioning or zero-to-one marketing, I was already testing what makes an unfamiliar product desirable. I was also published in Slanted 43 edition. It focuses on international design and cultural creation.</p>
-        <div class="scratch-tags">
-          <span class="stack-tag">Product Idea</span>
-          <span class="stack-tag">Positioning</span>
-          <span class="stack-tag">Storytelling</span>
-          <span class="stack-tag">Demand Validation</span>
-        </div>
-        <div class="scratch-press">
-          <img src="images/slanted-43-cover.jpeg" alt="Slanted 43 magazine cover" class="scratch-press-cover">
-          <div>
-            <div class="scratch-press-label">Published in</div>
-            <div class="scratch-press-title">Slanted 43</div>
-            <div class="scratch-press-sub">International design &amp; cultural creation</div>
-          </div>
-        </div>
-      </div>
-      <canvas class="scratch-canvas" id="scratchCanvas" aria-hidden="true"></canvas>
-    </div>
-    <div class="scratch-actions">
-      <button type="button" class="btn secondary" id="scratchRevealBtn">Reveal the case</button>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ CASES ═══ -->
 <section id="cases">
   <div class="wrap">
-    <div class="sec-head">
-      <div class="sec-tag">Cases</div>
-    </div>
+    <div class="sec-head"><h2 class="sec-tag">Selected work</h2><p class="sec-sub">Customer intelligence, AI visibility, and brand growth in practice.</p></div>
     <div class="case-grid">
-
-      <div class="case-card">
+<div class="case-card" id="case-cogniagent">
         <img src="images/cogniagent-website.webp" alt="CogniAgent AI agent workflow canvas from cogniagent.ai">
         <div class="case-badge-row">
           <div class="case-category-badge">Marketing Intelligence System</div>
@@ -888,8 +665,87 @@
           </details>
         </div>
       </div>
-
-      <div class="case-card">
+<div class="case-card" id="case-nikohealth">
+        <img src="images/nikohealth-website.png" alt="NikoHealth product dashboard from nikohealth.com">
+        <div class="case-category-badge">AI Search</div>
+        <div class="case-body">
+          <h3>NikoHealth</h3>
+          <p>AI engines were answering the exact healthcare software questions NikoHealth's buyers were asking - and NikoHealth was invisible in every one of them. I built the system that put them back in the answer: query intelligence, authority content, and citation monitoring, working together.</p>
+          <div class="case-result">Recurring ChatGPT &amp; Perplexity citations in 3 months</div>
+          <details>
+            <summary class="case-toggle"><span data-icon="chev"></span> View case study</summary>
+            <div class="case-detail">
+              <div class="case-stat-grid">
+                <div class="case-stat"><div class="case-stat-icon" data-icon="search"></div><div class="case-stat-num">3 months</div><div class="case-stat-lbl">to recurring AI citations</div></div>
+              </div>
+              <div class="case-scheme">
+                <div class="case-scheme-block">
+                  <div class="case-scheme-label">Inputs - what I combined</div>
+                  <ul class="case-list-grid">
+                    <li>ChatGPT and Perplexity answers, reverse-engineered for query intent and source patterns</li>
+                    <li>A technical discoverability audit exposing crawlability and accessibility blockers</li>
+                    <li>Owned content and third-party authority sources primed for citation</li>
+                  </ul>
+                </div>
+                <div class="case-scheme-connector"><span data-icon="chev"></span></div>
+                <div class="case-scheme-block">
+                  <div class="case-scheme-label">Applied to - what I did with it</div>
+                  <ul class="case-list-grid">
+                    <li>Eliminated the technical and accessibility barriers blocking NikoHealth from AI answers</li>
+                    <li>Built owned and third-party authority content targeting high-intent queries</li>
+                    <li>Stood up continuous citation monitoring across ChatGPT and Perplexity</li>
+                    <li>Won recurring citations across a monitored set of commercially relevant DME/HME queries within 3 months; targeted Reddit posts drove 1,000+ impressions each</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </details>
+        </div>
+      </div>
+<div class="case-card" id="case-bitcoin">
+        <img src="images/bitcoinmagazine-website.png" alt="Bitcoin Magazine logo from bitcoinmagazine.com" style="object-position: 50% 25%;">
+        <div class="case-category-badge">Growth</div>
+        <div class="case-body">
+          <h3>Bitcoin Magazine</h3>
+          <p>Bitcoin Magazine's brand no longer resonated with a new generation of readers, risking relevance while its longtime audience still expected credibility and continuity. I rebuilt the brand for both: a full rebrand and relaunch that grew reach without losing trust.</p>
+          <div class="case-result">+130K followers · 2.4× engagement · 15K newsletter subs in 3 months</div>
+          <details>
+            <summary class="case-toggle"><span data-icon="chev"></span> View case study</summary>
+            <div class="case-detail">
+              <div class="case-stat-grid">
+                <div class="case-stat"><div class="case-stat-icon" data-icon="users"></div><div class="case-stat-num">+130K</div><div class="case-stat-lbl">followers</div></div>
+                <div class="case-stat"><div class="case-stat-icon" data-icon="media"></div><div class="case-stat-num">2.4×</div><div class="case-stat-lbl">engagement</div></div>
+                <div class="case-stat"><div class="case-stat-icon" data-icon="mail"></div><div class="case-stat-num">15K</div><div class="case-stat-lbl">newsletter subs in 3mo</div></div>
+              </div>
+              <div class="case-scheme">
+                <div class="case-scheme-block">
+                  <div class="case-scheme-label">Inputs - what I combined</div>
+                  <ul class="case-list-grid">
+                    <li>The gap between longtime reader expectations and what a new generation of Bitcoin audiences wanted</li>
+                    <li>Underrepresented voices in the space, channeled into a dedicated editorial initiative</li>
+                    <li>Newsletter and social growth loops tied directly to community and content</li>
+                  </ul>
+                </div>
+                <div class="case-scheme-connector"><span data-icon="chev"></span></div>
+                <div class="case-scheme-block">
+                  <div class="case-scheme-label">Applied to - what I did with it</div>
+                  <ul class="case-list-grid">
+                    <li>Executed a full rebrand and social relaunch</li>
+                    <li>Launched the Proof for Women editorial initiative</li>
+                    <li>Built newsletter acquisition loops around community and content</li>
+                    <li>Grew the brand by +130K new social followers, 2.4× engagement, and 15K newsletter subscriptions in 3 months</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+    <details class="more-projects">
+      <summary>More projects <span class="more-count">7 case studies</span></summary>
+      <div class="case-grid">
+<div class="case-card">
         <svg class="case-cover" viewBox="0 0 600 150" role="img" aria-label="File tree of the agents and skills folders behind the pipeline">
           <defs>
             <g id="fw-folder"><path d="M1 3.6h5.2l1.6 1.6H15a1 1 0 0 1 1 1v6.3a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4.6a1 1 0 0 1 1-1Z" fill="none" stroke="var(--text)" stroke-width="1.3" stroke-linejoin="round"/></g>
@@ -928,7 +784,7 @@
         </div>
         <div class="case-body">
           <h3>CogniAgent - Social Content &amp; Competitor Intelligence Pipeline</h3>
-          <p>Social content and competitor tracking were both manual, ad hoc processes with no repeatable system behind them. I built a Claude Code pipeline that drafts on-brand posts end to end - idea to copy fact-checked against a technical skill built from CogniAgent's own documentation, to on-brand images, to a review-ready bundle - and a separate agent that watches competitor accounts across five platforms, alerts on anything new the moment it posts, writes up the gap where the brand could stand out, and feeds it straight back into the pipeline as a new post idea.</p>
+          <p>I built a content pipeline that turns ideas into fact-checked copy, on-brand images, and review-ready posts. A separate agent monitors competitor accounts across five platforms and feeds new opportunities into the pipeline.</p>
           <div class="case-result">30% engagement · 99% automated · Zero missed competitor moves</div>
           <details>
             <summary class="case-toggle"><span data-icon="chev"></span> View case study</summary>
@@ -967,8 +823,7 @@
           </details>
         </div>
       </div>
-
-      <div class="case-card">
+<div class="case-card">
         <svg class="case-cover" viewBox="0 0 600 150" role="img" aria-label="Diagram: agent workflow becomes a guide, then video">
           <circle cx="120" cy="65" r="26" fill="var(--card)" stroke="var(--border)"/>
           <g stroke="var(--text)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" fill="none">
@@ -1033,46 +888,7 @@
           </details>
         </div>
       </div>
-
-      <div class="case-card">
-        <img src="images/nikohealth-website.png" alt="NikoHealth product dashboard from nikohealth.com">
-        <div class="case-category-badge">AI Search</div>
-        <div class="case-body">
-          <h3>NikoHealth</h3>
-          <p>AI engines were answering the exact healthcare software questions NikoHealth's buyers were asking - and NikoHealth was invisible in every one of them. I built the system that put them back in the answer: query intelligence, authority content, and citation monitoring, working together.</p>
-          <div class="case-result">Recurring ChatGPT &amp; Perplexity citations in 3 months</div>
-          <details>
-            <summary class="case-toggle"><span data-icon="chev"></span> View case study</summary>
-            <div class="case-detail">
-              <div class="case-stat-grid">
-                <div class="case-stat"><div class="case-stat-icon" data-icon="search"></div><div class="case-stat-num">3 months</div><div class="case-stat-lbl">to recurring AI citations</div></div>
-              </div>
-              <div class="case-scheme">
-                <div class="case-scheme-block">
-                  <div class="case-scheme-label">Inputs - what I combined</div>
-                  <ul class="case-list-grid">
-                    <li>ChatGPT and Perplexity answers, reverse-engineered for query intent and source patterns</li>
-                    <li>A technical discoverability audit exposing crawlability and accessibility blockers</li>
-                    <li>Owned content and third-party authority sources primed for citation</li>
-                  </ul>
-                </div>
-                <div class="case-scheme-connector"><span data-icon="chev"></span></div>
-                <div class="case-scheme-block">
-                  <div class="case-scheme-label">Applied to - what I did with it</div>
-                  <ul class="case-list-grid">
-                    <li>Eliminated the technical and accessibility barriers blocking NikoHealth from AI answers</li>
-                    <li>Built owned and third-party authority content targeting high-intent queries</li>
-                    <li>Stood up continuous citation monitoring across ChatGPT and Perplexity</li>
-                    <li>Won recurring citations across a monitored set of commercially relevant DME/HME queries within 3 months; targeted Reddit posts drove 1,000+ impressions each</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </details>
-        </div>
-      </div>
-
-      <div class="case-card">
+<div class="case-card">
         <img src="images/whitebit-website.webp" alt="WhiteBIT brand campaign from whitebit.com" style="object-position: 50% 89%;">
         <div class="case-category-badge">Brand Communications</div>
         <div class="case-award-badge"><span class="dot"></span> Red Dot Award</div>
@@ -1112,48 +928,7 @@
           </details>
         </div>
       </div>
-
-      <div class="case-card">
-        <img src="images/bitcoinmagazine-website.png" alt="Bitcoin Magazine logo from bitcoinmagazine.com" style="object-position: 50% 25%;">
-        <div class="case-category-badge">Growth</div>
-        <div class="case-body">
-          <h3>Bitcoin Magazine</h3>
-          <p>Bitcoin Magazine's brand no longer resonated with a new generation of readers, risking relevance while its longtime audience still expected credibility and continuity. I rebuilt the brand for both: a full rebrand and relaunch that grew reach without losing trust.</p>
-          <div class="case-result">+130K followers · 2.4× engagement · 15K newsletter subs in 3 months</div>
-          <details>
-            <summary class="case-toggle"><span data-icon="chev"></span> View case study</summary>
-            <div class="case-detail">
-              <div class="case-stat-grid">
-                <div class="case-stat"><div class="case-stat-icon" data-icon="users"></div><div class="case-stat-num">+130K</div><div class="case-stat-lbl">followers</div></div>
-                <div class="case-stat"><div class="case-stat-icon" data-icon="media"></div><div class="case-stat-num">2.4×</div><div class="case-stat-lbl">engagement</div></div>
-                <div class="case-stat"><div class="case-stat-icon" data-icon="mail"></div><div class="case-stat-num">15K</div><div class="case-stat-lbl">newsletter subs in 3mo</div></div>
-              </div>
-              <div class="case-scheme">
-                <div class="case-scheme-block">
-                  <div class="case-scheme-label">Inputs - what I combined</div>
-                  <ul class="case-list-grid">
-                    <li>The gap between longtime reader expectations and what a new generation of Bitcoin audiences wanted</li>
-                    <li>Underrepresented voices in the space, channeled into a dedicated editorial initiative</li>
-                    <li>Newsletter and social growth loops tied directly to community and content</li>
-                  </ul>
-                </div>
-                <div class="case-scheme-connector"><span data-icon="chev"></span></div>
-                <div class="case-scheme-block">
-                  <div class="case-scheme-label">Applied to - what I did with it</div>
-                  <ul class="case-list-grid">
-                    <li>Executed a full rebrand and social relaunch</li>
-                    <li>Launched the Proof for Women editorial initiative</li>
-                    <li>Built newsletter acquisition loops around community and content</li>
-                    <li>Grew the brand by +130K new social followers, 2.4× engagement, and 15K newsletter subscriptions in 3 months</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </details>
-        </div>
-      </div>
-
-      <div class="case-card">
+<div class="case-card">
         <img src="images/atleta-website.png" alt="Atleta Network logo from atleta.network">
         <div class="case-category-badge">Co-Marketing Partnerships</div>
         <div class="case-body">
@@ -1190,8 +965,7 @@
           </details>
         </div>
       </div>
-
-      <div class="case-card">
+<div class="case-card">
         <img src="images/spellwallet-app-screenshot.jpeg" alt="Spell Wallet app balance screen" style="object-position: 50% 0%;">
         <div class="case-category-badge">Growth</div>
         <div class="case-body">
@@ -1229,8 +1003,7 @@
           </details>
         </div>
       </div>
-
-      <div class="case-card">
+<div class="case-card">
         <svg class="case-cover" viewBox="0 0 600 150" role="img" aria-label="Diagram: Meta and Google ad data feeding into one dashboard">
           <circle cx="150" cy="65" r="26" fill="var(--card)" stroke="var(--border)"/>
           <g stroke="var(--text)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" fill="none" transform="translate(138 53)">
@@ -1298,8 +1071,7 @@
           </details>
         </div>
       </div>
-
-      <div class="case-card">
+<div class="case-card">
         <svg class="case-cover" viewBox="0 0 600 150" role="img" aria-label="Diagram: creator Reels feed pattern analysis, which generates hooks">
           <circle cx="120" cy="65" r="26" fill="var(--card)" stroke="var(--border)"/>
           <g stroke="var(--text)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" fill="none" transform="translate(108 53)">
@@ -1369,22 +1141,197 @@
           </details>
         </div>
       </div>
+      </div>
+    </details>
+  </div>
+</section>
+
+<section id="services" style="background:var(--bg-2)">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="sec-tag">How I can help</h2><p class="sec-sub">Start with the challenge your team needs to solve.</p></div>
+    <div class="service-grid">
+      <div class="service-card">
+        <div class="service-icon" data-icon="search"></div><h3>Customer research &amp; positioning</h3>
+        <p>For teams deciding who to target and how to explain their product’s value.</p>
+        <ul><li>Priority customer segments and buying triggers</li><li>Competitor research and a differentiated value proposition</li><li>Messaging for your website, launch, and sales conversations</li></ul>
+        <a class="text-link" href="#case-cogniagent">See the CogniAgent case →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon" data-icon="bolt"></div><h3>AI-powered marketing operations</h3>
+        <p>For teams whose research and content needs have outgrown their manual processes.</p>
+        <ul><li>Customer and competitor intelligence workflows</li><li>Content pipelines grounded in your product and brand</li><li>Automation with human review before publishing</li></ul>
+        <a class="text-link" href="mailto:tina.vislianska@gmail.com?subject=Marketing%20automation">Discuss your workflow →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon" data-icon="target"></div><h3>AI search visibility</h3>
+        <p>For companies whose buyers research software through ChatGPT and Perplexity.</p>
+        <ul><li>Relevant buyer queries and citation opportunities</li><li>Discoverability audits and authority content</li><li>Ongoing monitoring of AI-search citations</li></ul>
+        <a class="text-link" href="#case-nikohealth">See the NikoHealth case →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="audit-banner">
+  <div class="wrap">
+    <div class="audit-banner-inner">
+      <div class="audit-banner-text">
+        <h2>Not sure what's holding your growth back?</h2>
+        <p>Send your website, target audience, and biggest growth challenge. Request a free audit of your positioning, messaging, and growth opportunities.</p>
+      </div>
+      <a href="mailto:tina.vislianska@gmail.com?subject=Free%20Marketing%20Audit%20Request&amp;body=Website%3A%20%0ATarget%20audience%3A%20%0ABiggest%20growth%20challenge%3A%20" class="btn primary">Request Your Free Audit</a>
+    </div>
+  </div>
+</section>
+
+<section id="experience" style="background:var(--bg-2)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-tag">Experience</div>
+      <p class="sec-sub">AI product marketing across B2B SaaS, healthcare, media, and Web3</p>
+    </div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-head"><span class="tl-role">Founding AI Growth Systems Lead</span><span class="tl-badge">Full-time</span></div>
+        <div class="tl-meta"><strong><a href="https://cogniagent.ai/" target="_blank" rel="noopener" class="tl-co-link">CogniAgent</a></strong> · 2025 – Present · Founding-stage AI SaaS</div>
+        <p>Built the AI systems behind CogniAgent's growth - customer intelligence, content, and competitor monitoring - cutting CPL from $15 to $3 and automating 90% of recurring work.</p>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-head"><span class="tl-role">AI Search &amp; Intelligence Strategist</span><span class="tl-badge">Full-time</span></div>
+        <div class="tl-meta"><strong><a href="https://nikohealth.com/" target="_blank" rel="noopener" class="tl-co-link">NikoHealth</a></strong>, through Glorium Technologies · Dec 2025 – Present · US Healthcare B2B SaaS</div>
+        <p>Built NikoHealth's AI-search visibility from zero, winning recurring ChatGPT and Perplexity citations in a specialized healthcare niche.</p>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-head"><span class="tl-role">Growth Systems Advisor</span><span class="tl-badge">Project</span></div>
+        <div class="tl-meta"><strong><a href="https://futureprinciple.com/" target="_blank" rel="noopener" class="tl-co-link">Future Principle</a></strong> · Jan – Apr 2025 · Early-stage startup</div>
+        <p>Built a founder-led growth system from scratch, taking a LinkedIn newsletter to 780 subscribers in month one.</p>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-head"><span class="tl-role">Independent Consultant - Growth, Brand &amp; Community</span><span class="tl-badge">Freelance</span></div>
+        <div class="tl-meta">Oct 2023 – Oct 2025</div>
+        <div class="tl-sub">
+          <div class="tl-sub-item">
+            <div class="tl-sub-role"><a href="https://bitcoinmagazine.com/" target="_blank" rel="noopener" class="tl-co-link">Bitcoin Magazine</a></div>
+            <div class="tl-sub-meta">Oct 2023 – Jan 2024 · Media brand</div>
+            <p>Rebranded and relaunched a leading Bitcoin media brand: +130K followers, 2.4× engagement, 15K newsletter subs in 3 months.</p>
+          </div>
+          <div class="tl-sub-item">
+            <div class="tl-sub-role"><a href="https://atleta.network/" target="_blank" rel="noopener" class="tl-co-link">Atleta Network</a></div>
+            <div class="tl-sub-meta">Jan – Aug 2024 · Early-stage L1 blockchain</div>
+            <p>Built a partnerships engine from zero for an early-stage L1: 10+ new partners onboarded every month.</p>
+          </div>
+          <div class="tl-sub-item">
+            <div class="tl-sub-role"><a href="https://spellwallet.io/" target="_blank" rel="noopener" class="tl-co-link">Spell Wallet</a></div>
+            <div class="tl-sub-meta">Jun – Oct 2025 · MPC crypto wallet</div>
+            <p>Drove community-led distribution for an MPC wallet: 45% engagement growth, 0 → 2,000+ YouTube subscribers.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-head"><span class="tl-role">Lead Content Marketer, Brand Communications</span><span class="tl-badge">Full-time</span></div>
+        <div class="tl-meta"><strong><a href="https://whitebit.com/" target="_blank" rel="noopener" class="tl-co-link">WhiteBIT</a></strong> · Jul 2022 – Mar 2023 · Established crypto exchange, Europe</div>
+        <p>Rebuilt WhiteBIT's brand communications with a mascot-driven content strategy - a transformation recognized with a 2023 Red Dot Award, 50% community growth, 3× UGC.</p>
+      </div>
 
     </div>
   </div>
 </section>
 
-<!-- ═══ CONTACT ═══ -->
+<section id="stack">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-tag">AI Stack</div>
+      <p class="sec-sub">The research, AI, and automation capabilities behind my work</p>
+    </div>
+    <div class="stack-grid">
+      <div class="stack-card">
+        <div class="stack-icon" data-icon="search"></div>
+        <h3>Research</h3>
+        <div class="stack-tags">
+          <span class="stack-tag">Apify Scrapers</span><span class="stack-tag">AI-Powered Research</span>
+          <span class="stack-tag">Notebook LM</span><span class="stack-tag">Google Trends</span>
+          <span class="stack-tag">Reddit</span><span class="stack-tag">G2</span><span class="stack-tag">Capterra</span>
+          <span class="stack-tag">Similarweb</span><span class="stack-tag">Ahrefs</span><span class="stack-tag">Gemini</span>
+        </div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-icon" data-icon="aiOrbit"></div>
+        <h3>Agentic Systems</h3>
+        <div class="stack-tags">
+          <span class="stack-tag">Multi-Agent Workflows</span>
+          <span class="stack-tag">Model Context Protocol (MCP)</span><span class="stack-tag">Memory &amp; Context Management</span>
+          <span class="stack-tag">API Integrations</span>
+        </div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-icon" data-icon="growth"></div>
+        <h3>Automation</h3>
+        <div class="stack-tags">
+          <span class="stack-tag">n8n</span><span class="stack-tag">Make</span>
+          <span class="stack-tag">Zapier</span><span class="stack-tag">Claude Code</span>
+          <span class="stack-tag">Codex</span><span class="stack-tag">Remotion &amp; Hyperframes</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div id="scratch-case">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="scratch-eyebrow">Beyond the CV</h2>
+      <div class="sec-tag">Scratch to uncover my original zero-to-one case.</div>
+    </div>
+    <div class="scratch-card" id="scratchCard">
+      <div class="scratch-revealed">
+        <div class="scratch-label">The Flower-Mask Experiment</div>
+        <h3>I turned an unexpected idea into a product, and found people willing to buy it.</h3>
+        <p>I created masks from flowers, shaped the story around them, brought the idea to market, and sold them as NFTs. Long before I called it positioning or zero-to-one marketing, I was already testing what makes an unfamiliar product desirable. The project was also published in Slanted 43, a magazine focused on international design and cultural creation.</p>
+        <div class="scratch-tags">
+          <span class="stack-tag">Product Idea</span>
+          <span class="stack-tag">Positioning</span>
+          <span class="stack-tag">Storytelling</span>
+          <span class="stack-tag">Demand Validation</span>
+        </div>
+        <div class="scratch-press">
+          <img src="images/slanted-43-cover.jpeg" alt="Slanted 43 magazine cover" class="scratch-press-cover">
+          <div>
+            <div class="scratch-press-label">Published in</div>
+            <div class="scratch-press-title">Slanted 43</div>
+            <div class="scratch-press-sub">International design &amp; cultural creation</div>
+          </div>
+        </div>
+      </div>
+      <canvas class="scratch-canvas" id="scratchCanvas" aria-hidden="true"></canvas>
+    </div>
+    <div class="scratch-actions">
+      <button type="button" class="btn secondary" id="scratchRevealBtn">Reveal the case</button>
+    </div>
+  </div>
+  </div>
+</section>
+
 <section id="contact" style="background:var(--bg-2)">
   <div class="wrap">
     <div class="sec-head">
       <div class="sec-tag">Contact</div>
-      <p class="sec-sub">Let's find what makes you in-demand.</p>
+      <p class="sec-sub">Let’s talk about your next growth challenge.</p>
     </div>
     <div class="contact-card">
       <div class="contact-row">
         <div class="ic" data-icon="mail"></div>
-        <div><div class="lbl">Email</div><div class="val">tina.vislianska@gmail.com</div></div>
+        <div><div class="lbl">Email</div><div class="val"><a href="mailto:tina.vislianska@gmail.com">tina.vislianska@gmail.com</a></div></div>
       </div>
       <div class="contact-row">
         <div class="ic" data-icon="pin"></div>
@@ -1392,9 +1339,9 @@
       </div>
       <div class="contact-row">
         <div class="ic" data-icon="link"></div>
-        <div><div class="lbl">LinkedIn</div><div class="val">linkedin.com/in/kristinavislianska</div></div>
+        <div><div class="lbl">LinkedIn</div><div class="val"><a href="https://www.linkedin.com/in/kristinavislianska" target="_blank" rel="noopener">Kristina on LinkedIn</a></div></div>
       </div>
-      <div class="contact-status mono">Available for freelance &amp; full-time<br>status: "Open to work"</div>
+      <div class="contact-status">Available for freelance projects and full-time roles.</div>
       <div class="contact-cta">
         <a href="mailto:tina.vislianska@gmail.com" class="btn primary">Email Me</a>
         <a href="https://www.linkedin.com/in/kristinavislianska" target="_blank" rel="noopener" class="btn secondary">View LinkedIn</a>
