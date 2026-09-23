@@ -605,3 +605,12 @@ h1,h2,h3,.nav-name,.price,.result{font-family:'Manrope','DM Sans',sans-serif}
 .panel h3{font-weight:650;letter-spacing:-.025em}
 .intro{font-size:19px;line-height:1.65;letter-spacing:-.015em}
 .price,.result{font-weight:650;letter-spacing:-.035em}
+
+.feedback-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.feedback-card { display: flex; flex-direction: column; }
+.feedback-card blockquote { flex: 1; font-size: 1.05rem; line-height: 1.7; }
+.feedback-card blockquote p { color: var(--text); }
+.feedback-card blockquote p + p { margin-top: 16px; }
+.feedback-card footer { margin-top: 28px; padding: 18px 0 0; border-top: 1px solid var(--border); color: var(--text-2); font-size: .875rem; }
+.feedback-card footer strong { display: block; color: var(--text); font-size: 1rem; }
+@media (max-width: 700px) { .feedback-grid { grid-template-columns: 1fr; } }

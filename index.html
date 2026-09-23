@@ -606,6 +606,12 @@
   #contact .sec-head { text-align: center; }
   #contact .sec-sub { margin-left: auto; margin-right: auto; }
   .contact-card { border-top: 3px solid var(--accent); }
+  .feedback-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+  .feedback-card { display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 30px; }
+  .feedback-card blockquote { flex: 1; color: var(--text); font-size: 1.05rem; line-height: 1.7; }
+  .feedback-card blockquote p + p { margin-top: 16px; }
+  .feedback-card footer { margin-top: 28px; padding: 18px 0 0; border-top: 1px solid var(--border); color: var(--text-2); font-size: .875rem; }
+  .feedback-card footer strong { display: block; color: var(--text); font-size: 1rem; }
   @media (max-width: 900px) {
     .hero-photo-wrap { width: 220px; margin-top: 18px; }
     .hero-photo { width: 200px; height: 200px; }
@@ -613,6 +619,8 @@
     .hero { padding-bottom: 64px; }
   }
   @media (max-width: 600px) {
+    .feedback-grid { grid-template-columns: 1fr; }
+    .feedback-card { padding: 24px; }
     .hero::before { background: radial-gradient(ellipse at 50% 85%, var(--signal-soft), transparent 58%); }
     .stat-card { padding: 22px; }
     .stat-num { font-size: 1.9rem; }
@@ -1402,6 +1410,31 @@
       <button type="button" class="btn secondary" id="scratchRevealBtn">Reveal the case</button>
     </div>
   </div>
+  </div>
+</section>
+
+<section id="feedback">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-tag">What it’s like to work with me</h2>
+      <p class="sec-sub">Feedback from people I’ve worked with on the same team.</p>
+    </div>
+    <div class="feedback-grid">
+      <article class="feedback-card">
+        <blockquote>
+          <p>“She has a rare ability to bridge design, marketing, and product thinking — seeing unexpected connections and guiding ideas into places you didn’t know existed.”</p>
+          <p>“Always engaged, deeply thoughtful, and creative in ways that are both surprising and precise.”</p>
+        </blockquote>
+        <footer><strong>Oleg Gorlachov</strong>Product architect &amp; designer · May 2025</footer>
+      </article>
+      <article class="feedback-card">
+        <blockquote>
+          <p>“She combines a sharp mind with strong creativity and has a rare ability to transform loose ideas into something clear and impressive.”</p>
+          <p>“As a designer, I especially appreciated the way she handled product decisions: a clear focus on the user, clear priorities and a lack of ego in collaboration.”</p>
+        </blockquote>
+        <footer><strong>Yaroslav Slauta</strong>UI/UX designer · November 2025</footer>
+      </article>
+    </div>
   </div>
 </section>
 
