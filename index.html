@@ -626,6 +626,13 @@
     .stat-num { font-size: 1.9rem; }
     .hero-photo-wrap::before { inset: -14px; }
   }
+
+#feedback { scroll-margin-top:100px; }
+.feedback-person { display:flex; align-items:center; gap:16px; text-align:left; }
+.feedback-avatar { display:block; width:64px; height:64px; flex:0 0 64px; border-radius:50%; background-repeat:no-repeat; background-color:#fff; }
+.avatar-oleg { background-image:url('/images/oleg-recommendation.jpeg'); background-size:1046.667px 268px; background-position:-30px -18px; }
+.avatar-yaroslav { background-image:url('/images/yaroslav-recommendation.jpeg'); background-size:1030.667px 302.667px; background-position:-10px -9.333px; }
+
 </style>
 <script type="text/javascript">
   (function(c,l,a,r,i,t,y){
@@ -1425,14 +1432,14 @@
           <p>“She has a rare ability to bridge design, marketing, and product thinking — seeing unexpected connections and guiding ideas into places you didn’t know existed.”</p>
           <p>“Always engaged, deeply thoughtful, and creative in ways that are both surprising and precise.”</p>
         </blockquote>
-        <footer><strong>Oleg Gorlachov</strong>Product architect &amp; designer · May 2025</footer>
+        <footer class="feedback-person"><span class="feedback-avatar avatar-oleg" role="img" aria-label="Oleg Gorlachov"></span><div><strong>Oleg Gorlachov</strong>Product architect &amp; designer · May 2025</div></footer>
       </article>
       <article class="feedback-card">
         <blockquote>
           <p>“She combines a sharp mind with strong creativity and has a rare ability to transform loose ideas into something clear and impressive.”</p>
           <p>“As a designer, I especially appreciated the way she handled product decisions: a clear focus on the user, clear priorities and a lack of ego in collaboration.”</p>
         </blockquote>
-        <footer><strong>Yaroslav Slauta</strong>UI/UX designer · November 2025</footer>
+        <footer class="feedback-person"><span class="feedback-avatar avatar-yaroslav" role="img" aria-label="Yaroslav Slauta"></span><div><strong>Yaroslav Slauta</strong>UI/UX designer · November 2025</div></footer>
       </article>
     </div>
   </div>
