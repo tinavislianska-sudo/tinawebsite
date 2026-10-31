@@ -45,3 +45,36 @@ body { font-size:16px; line-height:1.7; }
   *,*::before,*::after { animation:none!important; transition:none!important; }
   .btn:hover,.nav-cta:hover,.proof:hover { transform:none; }
 }
+
+/* Offlist-inspired layer (matches the homepage): Instrument Sans, ink on white, warm greys, pill controls, hairline cards. */
+:root{--bg:#fff;--bg-2:#fafaf8;--card:#fff;--text:#111;--text-2:#4a4845;--muted:#6b6860;--border:#e8e8e8;--accent:#111;--accent-text:#fff;--signal-soft:#f5f5f5;--ok:#15803d;--ok-surface:#dcfce7;--mark:oklch(.85 .14 305)}
+[data-theme="dark"]{--bg:#111110;--bg-2:#161614;--card:#1a1a18;--text:#f3f1ec;--text-2:#c9c5bc;--muted:#8f8b82;--border:#2b2a27;--accent:#f3f1ec;--accent-text:#111;--signal-soft:#232220;--ok:#4ade80;--ok-surface:#13291c;--mark:oklch(.55 .14 305)}
+body,h1,h2,h3,.nav-name,.price,.result{font-family:'Instrument Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+.nav{width:100%;max-width:1024px;height:60px;justify-content:space-between;padding:0 10px 0 22px;background:color-mix(in srgb,var(--card) 72%,transparent);backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);border-color:color-mix(in srgb,var(--text) 8%,transparent);box-shadow:0 1px 0 rgba(0,0,0,.04),0 4px 20px rgba(0,0,0,.06)}
+.nav-name{font-size:17px;font-weight:600;letter-spacing:-.02em}
+.nav-links a{padding:7px 12px;font-size:15px;font-weight:500;color:var(--muted)}
+.nav-links a:hover{background:transparent;color:var(--text)}
+.icon-btn{width:38px;height:38px;font-size:16px}
+.nav-cta{min-height:42px;padding:0 20px;font-size:15px}
+.btn{border-radius:9999px;font-size:15px;padding:12px 22px}
+.btn:hover,.nav-cta:hover{box-shadow:none}
+.btn.primary:hover,.nav-cta:hover{background:color-mix(in srgb,var(--accent) 85%,var(--bg))}
+.service-hero{background:none}
+.service-hero h1{font-weight:600;letter-spacing:-.035em;line-height:1.1}
+.hero-highlight{color:inherit;background:linear-gradient(var(--mark),var(--mark)) no-repeat 0 100%/100% .1em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.intro{font-size:18px;line-height:1.6}
+.eyebrow,.number{font:700 11px/1.6 'Instrument Sans',sans-serif;letter-spacing:.1em;color:var(--muted)}
+.process .number{font-size:12px}
+.section-title{font-weight:600;letter-spacing:-.035em;line-height:1.15}
+.panel{border-radius:22px}
+.panel h3{font-weight:600}
+.offer.featured{border-color:var(--text);box-shadow:0 0 0 1px var(--text)}
+.badge{color:var(--ok);background:var(--ok-surface);font-weight:600}
+.price{font-weight:600}
+.offer li::marker{color:var(--ok)}
+.result{color:var(--ok);font-weight:600}
+.subtle-link{font-weight:600;text-decoration-color:currentColor;text-decoration-thickness:1.5px}
+.subtle-link:hover{color:var(--muted);text-decoration-color:currentColor}
+.proof{transition:border-color .2s ease,box-shadow .2s ease}
+@media(hover:hover){.btn:hover,.nav-cta:hover{transform:none}.proof:hover{transform:none;border-color:var(--text);box-shadow:0 0 0 1px var(--text)}}
+@media(max-width:700px){.nav{height:56px;padding:0 8px 0 16px}.nav-name{font-size:14px}.nav-cta{padding:0 14px;font-size:13px}}
