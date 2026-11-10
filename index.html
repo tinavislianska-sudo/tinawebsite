@@ -794,9 +794,11 @@
   .press-card:hover { border-color: var(--text); box-shadow: 0 0 0 1px var(--text); }
   .press-logo {
     display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    width: 96px; height: 64px; background: #fff; border: 1px solid var(--border); border-radius: 14px;
+    width: 120px; height: 64px; background: #fff; border: 1px solid var(--border); border-radius: 14px;
   }
   .press-logo img { width: 60px; height: auto; }
+  .press-logo img.logo-wide { width: 100px; }
+  .press-card + .press-card { margin-top: 12px; }
   .press-text { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
   .press-label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
   .press-title { font-size: 1.0625rem; font-weight: 600; letter-spacing: -.015em; line-height: 1.35; }
@@ -806,7 +808,7 @@
   }
   @media (max-width: 640px) {
     .press-card { flex-wrap: wrap; }
-    .press-text { flex-basis: calc(100% - 114px); }
+    .press-text { flex-basis: calc(100% - 138px); }
     .press-cta { width: 100%; text-align: center; }
   }
 
@@ -858,6 +860,14 @@
       <span class="press-text">
         <span class="press-label">Published on DOU</span>
         <span class="press-title">Read my article on DOU.ua, the Ukrainian IT community</span>
+      </span>
+      <span class="press-cta">Read the article</span>
+    </a>
+    <a class="press-card" href="https://hackernoon.com/a-practitioners-field-guide-to-marketing-engineering" target="_blank" rel="noopener">
+      <span class="press-logo"><img class="logo-wide" src="images/hackernoon-logo.png" alt="HackerNoon" width="619" height="100"></span>
+      <span class="press-text">
+        <span class="press-label">Published on HackerNoon</span>
+        <span class="press-title">A Practitioner's Field Guide to Marketing Engineering</span>
       </span>
       <span class="press-cta">Read the article</span>
     </a>
